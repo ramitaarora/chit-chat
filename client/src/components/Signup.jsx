@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import Auth from '../utils/auth';
+
 export default function Signup() {
 
     const [formState, setFormState] = useState({
