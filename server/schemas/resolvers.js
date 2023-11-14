@@ -11,7 +11,13 @@ const resolvers = {
         },
         chat: async (parent, { _id }) => {
             return Chat.findOne({ _id });
-        }
+        },
+        me: async (parent, args, context) => {
+            if (context.user) {
+              return User.findOne({ _id: context.user._id }).populate('thoughts');
+            }
+            throw AuthenticationError;
+          },
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
@@ -21,15 +27,13 @@ const resolvers = {
         },
         newChat: async (parent, { text, user1, user2}, context) => {
             if (context.user) {
-                const chat = await Chat.create(
-                    { $addToSet: {
-                        text: []
-                    }},
+                return await Chat.create(
+                    { $push: { text: [text] } },
                     { user1: user1 },
                     { user2: user2 }
                 )
             }
-            throwAuthenticationError;
+            throw AuthenticationError;
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -51,21 +55,19 @@ const resolvers = {
         editUser: async (parent, args, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
-                    { _id: args._id},
-                    { email: args.email},
-                    { bio: args.bio },
-                    { photo: args.photo },
-                    { $addToSet: {
-                        interests: [args.interests]
-                    }},
+                    { _id: context.user._id},
+                    { fullName: args.fullName,
+                    bio: args.bio,
+                    photo: args.photo,
+                    $push: { interests: [args.interests] } },
                     { new: true, runValidators: true },
                 )
             }
         },
-        saveChat: async (parent, args) => {
+        saveChat: async (parent, { _id, text }) => {
             return Chat.findOneAndUpdate(
-                { _id: args._id },
-
+                { _id: _id },
+                { $push: { text: [text] } }
             )
         }
     }

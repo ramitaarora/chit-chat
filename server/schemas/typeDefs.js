@@ -4,6 +4,7 @@ const typeDefs = `
         username: String!
         email: String!
         password: String!
+        fullName: String
         bio: String
         photo: String
         interests: [String]
@@ -16,7 +17,7 @@ const typeDefs = `
 
     type Chat {
         _id: ID
-        text: [Object]!
+        text: Array!
         user1: User!
         user2: User!
     }
@@ -31,7 +32,7 @@ const typeDefs = `
         addUser(username: String!, email: String!, password: String!): Auth
         newChat(text: Object, user1: String!, user2: String!)
         login(email: String!, password: String!): Auth
-        editUser(_id: ID!, email: String, bio: String, photo: String, interests: Array): User
+        editUser(fullName: String, bio: String, photo: String, interests: Array): User
         saveChat(_id: ID!, text: Object): Chat
     }
 `;
