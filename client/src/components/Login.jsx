@@ -3,7 +3,7 @@ import Auth from '../utils/auth';
 
 export default function Login() {
 
-    const [formState, setFormState] = useState({ uesrname: '', password: '' });
+    const [formState, setFormState] = useState({ username: '', password: '' });
     const [login, { error, data }] = useMutation(LOGIN_USER); // Will need to change to match schema
 
     const handleChange = (event) => {
