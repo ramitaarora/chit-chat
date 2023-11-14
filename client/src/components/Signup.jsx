@@ -4,12 +4,13 @@ import Auth from '../utils/auth';
 export default function Signup() {
 
     const [formState, setFormState] = useState({
-        name: '',
+        fullName: '',
         email: '',
         username: '',
         password: '',
     });
-    const [addUser, { error, data }] = useMutation(CREATE_USER); // Will need to change to match schema
+    // const [addUser, { error, data }] = useMutation(CREATE_USER);
+    // Will need to update to match schema
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -39,9 +40,9 @@ export default function Signup() {
             <form onSubmit={handleFormSubmit}>
                 <input
                     placeholder="Your name"
-                    name="name"
+                    name="fullName"
                     type="text"
-                    value={formState.name}
+                    value={formState.fullName}
                     onChange={handleChange}
                 />
                 <input
