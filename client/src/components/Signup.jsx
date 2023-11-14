@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
-export default function Signup() {
+export default function Signup({ handleLogin }) {
 
     const [formState, setFormState] = useState({
         fullName: '',
@@ -10,7 +11,7 @@ export default function Signup() {
         password: '',
     });
     // const [addUser, { error, data }] = useMutation(CREATE_USER);
-    // Will need to update to match schema
+    // Match utils mutations later
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -39,28 +40,28 @@ export default function Signup() {
         <>
             <form onSubmit={handleFormSubmit}>
                 <input
-                    placeholder="Your name"
+                    placeholder="Full Name"
                     name="fullName"
                     type="text"
                     value={formState.fullName}
                     onChange={handleChange}
                 />
                 <input
-                    placeholder="Your email"
+                    placeholder="Email"
                     name="email"
                     type="email"
                     value={formState.email}
                     onChange={handleChange}
                 />
                 <input
-                    placeholder="Your username"
+                    placeholder="Username"
                     name="username"
                     type="text"
                     value={formState.username}
                     onChange={handleChange}
                 />
                 <input
-                    placeholder="Your password"
+                    placeholder="Password"
                     name="password"
                     type="password"
                     value={formState.password}
@@ -71,6 +72,12 @@ export default function Signup() {
                     type="submit"
                 >
                     Create
+                </button>
+                <button
+                    style={{ cursor: 'pointer' }}
+                    onClick={handleLogin}
+                >
+                    Login Instead
                 </button>
             </form>
         </>

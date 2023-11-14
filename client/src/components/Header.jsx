@@ -1,5 +1,5 @@
 export default function Header() {
     return (
-        <div>Header Here</div>
+        <div>Header Placeholder</div>
     )
 }

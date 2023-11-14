@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 
-const Home = () => {
+const LandingPage = () => {
 
   const [form, setForm] = useState(null);
 
@@ -25,10 +25,12 @@ const Home = () => {
           <button onClick={handleSignup}>Signup</button>
         </div>
       )}
-      {form === 'login' && <Login />}
-      {form === 'signup' && <Signup />}
+      <div>
+        {form === 'login' && <Login handleSignup={handleSignup}/>}
+        {form === 'signup' && <Signup handleLogin={handleLogin}/>}
+      </div>
     </main>
   );
 };
 
-export default Home;
+export default LandingPage;

@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
-export default function Login() {
+export default function Login({ handleSignup }) {
 
     const [formState, setFormState] = useState({ username: '', password: '' });
     // const [login, { error, data }] = useMutation(LOGIN_USER);
-    // Will need to update to match schema
+    // Match utils mutations later
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -39,14 +40,14 @@ export default function Login() {
         <>
             <form onSubmit={handleFormSubmit}>
                 <input
-                    placeholder="Your username"
+                    placeholder="Username"
                     name="username"
                     type="text"
                     value={formState.username}
                     onChange={handleChange}
                 />
                 <input
-                    placeholder="Your password"
+                    placeholder="Password"
                     name="password"
                     type="password"
                     value={formState.password}
@@ -57,6 +58,12 @@ export default function Login() {
                     type="submit"
                 >
                     Login
+                </button>
+                <button
+                    style={{ cursor: 'pointer' }}
+                    onClick={handleSignup}
+                >
+                    Sign Up Instead
                 </button>
             </form>
         </>
