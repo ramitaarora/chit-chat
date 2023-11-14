@@ -1,34 +1,32 @@
 import { useQuery } from '@apollo/client';
-
-import ThoughtList from '../components/ThoughtList';
-import ThoughtForm from '../components/ThoughtForm';
-
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { useState } from 'react';
+import Header from '../components/Header';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
-  const thoughts = data?.thoughts || [];
+
+  const [form, setForm] = useState(null);
+
+  const handleLogin = () => {
+    setForm('login');
+  };
+
+  const handleSignup = () => {
+    setForm('signup');
+  };
 
   return (
     <main>
-      <div className="flex-row justify-center">
-        <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
-        >
-          <ThoughtForm />
+      <Header />
+      {form === null && (
+        <div>
+          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleSignup}>Signup</button>
         </div>
-        <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ThoughtList
-              thoughts={thoughts}
-              title="Some Feed for Thought(s)..."
-            />
-          )}
-        </div>
-      </div>
+      )}
+      {form === 'login' && <Login />}
+      {form === 'signup' && <Signup />}
     </main>
   );
 };
