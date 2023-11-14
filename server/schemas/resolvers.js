@@ -19,7 +19,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }; 
         },
-        addChat: async (parent, { text, user1, user2}, context) => {
+        newChat: async (parent, { text, user1, user2}, context) => {
             if (context.user) {
                 const chat = await Chat.create(
                     { $addToSet: {
@@ -62,7 +62,7 @@ const resolvers = {
                 )
             }
         },
-        addToChat: async (parent, args) => {
+        saveChat: async (parent, args) => {
             return Chat.findOneAndUpdate(
                 { _id: args._id },
 

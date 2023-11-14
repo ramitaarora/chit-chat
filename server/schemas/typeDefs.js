@@ -29,6 +29,7 @@ const typeDefs = `
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
+        newChat(text: Object, user1: String!, user2: String!)
         login(email: String!, password: String!): Auth
         editUser(_id: ID!, email: String, bio: String, photo: String, interests: Array): User
         saveChat(_id: ID!, text: Object): Chat
