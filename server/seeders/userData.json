@@ -7,6 +7,27 @@
     },
     {
         "fullname": "Eric",
-        "username": ""
+        "username": "styleGod",
+        "email": "e@l.com",
+        "password": "12345678"
+    },
+    {
+        "fullname": "Ramita",
+        "username": "bakingGod",
+        "email": "r@i.com",
+        "password": "12345678"
+    },
+    {
+        "fullname": "Justin",
+        "username": "lakersGod",
+        "email": "j@c.com",
+        "password": "12345678"
+    },
+    {
+        "fullname": "Jaime",
+        "username": "catGod",
+        "email": "j@h.com",
+        "password": "12345678"
     }
+
 ]
