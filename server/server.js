@@ -4,6 +4,10 @@ const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 
+// socket io
+const http = require('http');
+const socketIO = require('socket.io');
+
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -14,9 +18,14 @@ const server = new ApolloServer({
   resolvers,
 });
 
+const socketServer = http.createServer(app);
+const io = socketIO(socketServer);
+// app.use(express.static(path.join('public')));
+
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();
+  
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
@@ -34,12 +43,41 @@ const startApolloServer = async () => {
   }
 
   db.once('open', () => {
-    app.listen(PORT, () => {
+    socketServer.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
     });
+
   });
 };
 
 // Call the async function to start the server
   startApolloServer();
+
+io.on('connection', (socket) => {
+  console.log('User connected:', socket.id);
+
+  // Listen for incoming chat messages
+  socket.on('chat message', (data) => {
+    console.log('Received message:', data);
+
+    // Save the message to MongoDB
+    // const message = new Message({ user: data.user, text: data.message });
+    // message.save((err) => {
+    //   if (err) {
+    //     console.error('Error saving message to database:', err);
+    //   } else {
+    //     console.log('Message saved to the database');
+    //   }
+    // });
+
+    // Broadcast the message to all connected clients
+    io.emit('chat message', data.message);
+  });
+
+  // Listen for user disconnection
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+});
+
