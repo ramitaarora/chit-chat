@@ -1,8 +1,8 @@
-export default function SendBox() {
+export default function SendBox({ sendMsg }) {
     return (
         <section>
             <input type="text"></input>
-            <button onClick={handleSendMsg}>Send</button>
+            <button onClick={sendMsg}>Send</button>
         </section>
     )
 }
