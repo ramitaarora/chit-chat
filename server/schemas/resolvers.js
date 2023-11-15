@@ -32,7 +32,6 @@ const resolvers = {
                         { 
                             sender: sender,
                             textContent: textContent,
-                            chatId: chatId
                         }
                     ] } },
                     { user1: user1 },
@@ -77,7 +76,6 @@ const resolvers = {
                     { 
                         sender: sender,
                         textContent: textContent,
-                        chatId: chatId
                     }
                 ] } }
             )
