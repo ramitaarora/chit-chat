@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.jsx';
 import LandingPage from './pages/LandingPage';
 import ErrorPage from './pages/ErrorPage';
-import OtherProfilePage from './pages/OtherProfilePage.jsx';
+import FriendProfilePage from './pages/FriendProfilePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'user/:userID',
-        element: <OtherProfilePage />,
+        element: <FriendProfilePage />,
       },
       {
         path: 'chat/:chatID',

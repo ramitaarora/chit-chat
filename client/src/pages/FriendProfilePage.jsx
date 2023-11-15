@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { QUERY_USER, QUERY_CHAT } from '../utils/queries';
 import { NEW_CHAT } from '../utils/mutations'; // Need mutation to update user with a new friend
-import OtherUserHeader from '../components/OtherUserHeader';
+import FriendHeader from '../components/FriendHeader';
 
 export default function OtherProfilePage() {
 
@@ -52,7 +52,7 @@ export default function OtherProfilePage() {
 
     return (
         <main>
-            <OtherUserHeader userID={userID} />
+            <FriendHeader userID={userID} />
             <section>
                 <div>{user.photo}</div>
                 <div>{user.fullName}</div>

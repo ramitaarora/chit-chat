@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_CHAT } from '../utils/queries';
-import OtherUserHeader from '../components/OtherUserHeader';
+import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 
@@ -23,7 +23,7 @@ export default function ChatPage() {
 
     return (
         <main>
-            <OtherUserHeader userID={userID} />
+            <FriendHeader userID={userID} />
             <ConvoBox chat={selectedChat}/>
             <SendBox />
         </main>
