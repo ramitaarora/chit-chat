@@ -25,7 +25,7 @@ export default function ChatPage() {
         <main>
             <FriendHeader userID={userID} />
             <ConvoBox chat={selectedChat}/>
-            <SendBox />
+            <SendBox sendMsg={handleSendMsg}/>
         </main>
     )
 }

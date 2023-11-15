@@ -4,7 +4,7 @@ import { QUERY_USER, QUERY_CHAT } from '../utils/queries';
 import { NEW_CHAT } from '../utils/mutations'; // Need mutation to update user with a new friend
 import FriendHeader from '../components/FriendHeader';
 
-export default function OtherProfilePage() {
+export default function FriendProfilePage() {
 
     const { userID } = useParams();
 
