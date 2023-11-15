@@ -29,7 +29,6 @@ export default function ProfilePage() {
                     <div class="container" id="interests">
                         <button>interest1</button> <button>interest1</button> <button>interest2</button>
                     </div>
-
                 </div>    
             </div> : null
         }
