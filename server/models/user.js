@@ -27,6 +27,9 @@ const userSchema = new Schema({
     photo: {
         type: String,
     },
+    friends: [{
+        type: Schema.Types.ObjectId, ref: 'User'
+    }]
 });
 
 userSchema.pre('save', async function (next) {
