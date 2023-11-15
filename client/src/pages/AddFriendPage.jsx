@@ -6,11 +6,11 @@ export default function AddFriendPage() {
 
     const { loading, data } = useQuery(QUERY_USER);
 
-    const handleAddFriend = () => {
-        // Finish after adding friend category to users
-    }
-
     const users = data?.users || [];
+
+    const handleAddFriend = () => {
+        // Finish after adding friend category to users 
+    };
 
     return (
         <main>
@@ -18,7 +18,7 @@ export default function AddFriendPage() {
             <div>Add Friends</div>
             <div>
                 {loading ? (
-                    <div>Loading...</div>
+                    <div>Loading Users...</div>
                 ) : (
                     <div>
                         {users.map((user) => (

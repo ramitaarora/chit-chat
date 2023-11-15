@@ -39,7 +39,7 @@ export default function OtherProfilePage() {
                 <div>{user.photo}</div>
                 <div>{user.fullName}</div>
                 <div>{user.bio}</div>
-                <button onClick={handleAddFriend}>Add Friend</button>
+                <button onClick={handleAddFriend}>+</button>
                 <button onClick={handleNewChat}>Start Chat</button>
                 {user.interests.map((interest, index) => (
                     <div key={index}>{interest}</div>
