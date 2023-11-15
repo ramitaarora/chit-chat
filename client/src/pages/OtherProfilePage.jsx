@@ -22,14 +22,19 @@ export default function OtherProfilePage() {
 
     const handleNewChat = async () => {
         try {
-            const { data } = await addChat({
+            const { newChat } = await addChat({
                 variables: {
                     user2: user._id
                 },
             });
+
+            const chatID = newChat._id;
+
+            document.location.replace(`/chat/${chatID}`)
+
         } catch (err) {
             console.error(err);
-        }
+        };
     };
  
     return (
