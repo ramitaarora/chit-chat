@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const userSchema = new Schema({
     fullname: {
         type: String,
-        required: true,
     },
     username: {
         type: String,
@@ -27,6 +26,9 @@ const userSchema = new Schema({
     photo: {
         type: String,
     },
+    friends: [{
+        type: Schema.Types.ObjectId, ref: 'User'
+    }]
 });
 
 userSchema.pre('save', async function (next) {
