@@ -34,7 +34,7 @@ export default function OtherProfilePage() {
  
     return (
         <main>
-            <OtherUserHeader />
+            <OtherUserHeader userID={userID}/>
             <section>
                 <div>{user.photo}</div>
                 <div>{user.fullName}</div>

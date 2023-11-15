@@ -2,9 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
-export default function OtherUserHeader() {
-    // Check if param is userID or chatID to use in chat page
-    const { userID } = useParams();
+export default function OtherUserHeader({ userID }) {
 
     const { data } = useQuery(QUERY_USER, {
         variables: { _id: userID }
