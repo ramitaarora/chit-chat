@@ -22,24 +22,37 @@ export default function OtherProfilePage() {
 
     const handleNewChat = async () => {
         try {
-            const { newChat } = await addChat({
-                variables: {
-                    user2: user._id
-                },
+            const chatExists = await Chat.findOne({
+                $or: [
+                    { user1: context.user._id, user2: user._id },
+                    { user1: user._id, user2: context.user._id },
+                ],
             });
 
-            const chatID = newChat._id;
+            if (chatExists) {
+                const chatID = chatExists._id;
 
-            document.location.replace(`/chat/${chatID}`)
+                document.location.replace(`/chat/${chatID}`)
+            } else {
+                const { newChat } = await addChat({
+                    variables: {
+                        user2: user._id
+                    },
+                });
+
+                const chatID = newChat._id;
+
+                document.location.replace(`/chat/${chatID}`);
+            };
 
         } catch (err) {
             console.error(err);
         };
     };
- 
+
     return (
         <main>
-            <OtherUserHeader userID={userID}/>
+            <OtherUserHeader userID={userID} />
             <section>
                 <div>{user.photo}</div>
                 <div>{user.fullName}</div>
