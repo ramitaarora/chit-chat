@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.jsx';
 import LandingPage from './pages/LandingPage';
 import ErrorPage from './pages/ErrorPage';
+import OtherProfilePage from './pages/OtherProfilePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <LandingPage />
+      },
+      {
+        path: 'user/:userID',
+        element: <OtherProfilePage />,
       }
     ]
   },
