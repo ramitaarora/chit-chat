@@ -1,31 +1,24 @@
-const db = require('../config/connection');
-// const { } = require('../models');
-const cleanDB = require('./cleanDB');
+const connection = require('../config/connection');
+const { User, Chat } = require('../models');
+const users = require('./userData');
 
-db.once('open', async () => {
-  try {
-    await cleanDB('Thought', 'thoughts');
+connection.once('open', async () => {
+    console.log('connected');
+      // Delete the collections if they exist
+      // let userCheck = await connection.db.listUsers({ name: 'users' }).toArray();
+      // if (userCheck.length) {
+      //   await connection.dropCollection('users');
+      // }
+  
+      // let chatCheck = await connection.db.listCollections({ name: 'chats' }).toArray();
+      // if (thoughtCheck.length) {
+      //   await connection.dropCollection('chats');
+      // }
 
-    await cleanDB('User', 'users');
-
-    await User.create(userSeeds);
-
-    for (let i = 0; i < thoughtSeeds.length; i++) {
-      const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: thoughtAuthor },
-        {
-          $addToSet: {
-            thoughts: _id,
-          },
-        }
-      );
-    }
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
-
-  console.log('all done!');
-  process.exit(0);
-});
+    await User.collection.insertMany(users);
+  
+    // Log out the seed data to indicate what should appear in the database
+    console.table(users);
+    console.info('Seeding complete! 🌱');
+    process.exit(0);
+  });
