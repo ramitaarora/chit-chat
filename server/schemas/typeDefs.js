@@ -8,6 +8,7 @@ const typeDefs = `
         bio: String
         photo: String
         interests: [String]
+        friends: [String]
     }
 
     type Auth {
@@ -36,6 +37,7 @@ const typeDefs = `
     }
 
     type Mutation {
+        users: User
         addUser(username: String!, email: String!, password: String!): Auth
         newChat(sender: ID, textContent: String, chatId: ID, user1: String!, user2: String!): Chat
         login(email: String!, password: String!): Auth
