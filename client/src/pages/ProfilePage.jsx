@@ -7,7 +7,6 @@ export default function ProfilePage() {
     return (
         
       <div>
-        {/* <div><a href="#resume" onClick={() => setSection(!section)}><h1 id="resume">RESUME</h1></a></div> */}
         { section ?
             <div className="textion">
                 <div>
@@ -28,7 +27,7 @@ export default function ProfilePage() {
                         <button>edit</button>
                     </div>
                     <div class="container" id="interests">
-                        <button>interest1</button> <button>interest1</button> <button>interest1</button>
+                        <button>interest1</button> <button>interest1</button> <button>interest2</button>
                     </div>
 
                 </div>    
