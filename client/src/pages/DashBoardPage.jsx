@@ -3,6 +3,7 @@ import '/profile-bubble.png';
 import '/profile-2.png';
 import '/profile-3.png';
 import '/profile-4.png';
+import Floatingbutton from '../components/Floatingbutton.jsx';
 function Dashboard() {
 
 return (
@@ -52,7 +53,10 @@ return (
       </section>
   </content>
   </section>
+
+  <Floatingbutton />
 </div>
+
 );
 }
 
