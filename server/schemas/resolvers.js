@@ -14,7 +14,7 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-              return User.findOne({ _id: context.user._id }).populate('thoughts');
+              return User.findOne({ _id: context.user._id });
             }
             throw AuthenticationError;
           },
@@ -25,10 +25,16 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }; 
         },
-        newChat: async (parent, { text, user1, user2}, context) => {
+        newChat: async (parent, { sender, textContent, chatId, user1, user2 }, context) => {
             if (context.user) {
                 return await Chat.create(
-                    { $push: { text: [text] } },
+                    { $push: { text: [
+                        { 
+                            sender: sender,
+                            textContent: textContent,
+                            chatId: chatId
+                        }
+                    ] } },
                     { user1: user1 },
                     { user2: user2 }
                 )
@@ -64,10 +70,16 @@ const resolvers = {
                 )
             }
         },
-        saveChat: async (parent, { _id, text }) => {
+        saveChat: async (parent, { _id, sender, textContent, chatId }) => {
             return Chat.findOneAndUpdate(
                 { _id: _id },
-                { $push: { text: [text] } }
+                { $push: { text: [
+                    { 
+                        sender: sender,
+                        textContent: textContent,
+                        chatId: chatId
+                    }
+                ] } }
             )
         }
     }
