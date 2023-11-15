@@ -34,7 +34,7 @@ const resolvers = {
                             textContent: textContent,
                         }
                     ] } },
-                    { user1: user1 },
+                    { user1: context.user._id },
                     { user2: user2 }
                 )
             }
