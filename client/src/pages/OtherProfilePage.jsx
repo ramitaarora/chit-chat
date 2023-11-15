@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_USER } from '../utils/queries';
+import { QUERY_USER } from '../utils/queries';
 import { NEW_CHAT } from '../utils/mutations'; // Need mutation to update user with a new friend
 import OtherUserHeader from '../components/OtherUserHeader';
 
@@ -8,33 +8,40 @@ export default function OtherProfilePage() {
 
     const { userID } = useParams();
 
-    const { data } = useQuery(QUERY_SINGLE_USER, {
+    const [addChat, { error }] = useMutation(NEW_CHAT)
+
+    const { data } = useQuery(QUERY_USER, {
         variables: { _id: userID }
     });
 
-    const name = data?.fullName;
-    const photo = data?.photo;
-    const bio = data?.bio;
-    const interests = data?.interests;
+    const user = data?.user;
 
     const handleAddFriend = () => {
-
+        // Need to add friends category to users
     }
 
-    const handleNewChat = () => {
-
-    }
+    const handleNewChat = async () => {
+        try {
+            const { data } = await addChat({
+                variables: {
+                    user2: user._id
+                },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
  
     return (
         <main>
             <OtherUserHeader />
             <section>
-                <div>{photo}</div>
-                <div>{name}</div>
-                <div>{bio}</div>
+                <div>{user.photo}</div>
+                <div>{user.fullName}</div>
+                <div>{user.bio}</div>
                 <button onClick={handleAddFriend}>Add Friend</button>
                 <button onClick={handleNewChat}>Start Chat</button>
-                {interests.map((interest, index) => (
+                {user.interests.map((interest, index) => (
                     <div key={index}>{interest}</div>
                 ))}
             </section>
