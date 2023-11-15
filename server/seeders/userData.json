@@ -4,5 +4,9 @@
         "username": "codeGod",
         "email": "w@g.com",
         "password": "12345678"
+    },
+    {
+        "fullname": "Eric",
+        "username": ""
     }
 ]
