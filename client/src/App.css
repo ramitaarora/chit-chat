@@ -21,6 +21,16 @@ body {
   margin: 0;
 }
 
+@font-face {
+  font-family: bubbleFont;
+  src: url(boorsok.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: aristotle;
+  src: url(AristotelicaProDisplayExtralight.otf);
+}
+
 /**
  * Render the `main` element consistently in IE.
  */
