@@ -9,23 +9,27 @@ export default function ChatPage() {
 
     const { chatID } = useParams();
 
-    const { data } = useQuery(QUERY_CHAT, {
-        variables: { _id: chatID }
+    const { loading, data } = useQuery(QUERY_CHAT, {
+        variables: { id: chatID }
     });
-
-    const selectedChat = data?.chat;
-
-    const userID = selectedChat.user2._id;
-
+    
     const handleSendMsg = () => {
         // Use socket.io here
     };
 
-    return (
-        <main>
-            <FriendHeader userID={userID} />
-            <ConvoBox chat={selectedChat}/>
-            <SendBox sendMsg={handleSendMsg}/>
-        </main>
-    )
+    if (loading) {
+        return <div>Loading...</div>;
+    } else {
+        const selectedChat = data.chat;
+        const userID = data.chat.user2._id;
+
+        return (
+            <main>
+                <FriendHeader userID={userID} />
+                <ConvoBox chat={selectedChat}/>
+                <SendBox sendMsg={handleSendMsg}/>
+            </main>
+        )
+    }
+    
 }
