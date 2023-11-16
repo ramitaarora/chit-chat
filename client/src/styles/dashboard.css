@@ -19,6 +19,12 @@ body {
     text-align: center;
 }
 
+.header img {
+    width: 30px;
+    display: inline-flex;
+    /* padding-top: 10px; */
+}
+
 h1, h2 {
     font-family: bubbleFont;
     color: #b4a7e9;
@@ -29,6 +35,13 @@ h1, h2 {
     flex-direction: column;
     align-items: center;
     padding: 30px;
+}
+
+.chat-preview:hover {
+    background-color: rgb(255, 255, 96);
+    cursor: pointer;
+    transform: scale(1.15);
+    transition: 0.5s ease;
 }
 
 .chat-preview {

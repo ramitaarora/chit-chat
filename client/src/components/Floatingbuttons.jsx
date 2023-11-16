@@ -1,7 +1,7 @@
 import React from 'react';
-import { CommentOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
+import { HomeOutlined, SettingOutlined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
-import iconSrc from '../assets/chitchatlogo.png';
+import iconSrc from '/chitchatlogo.png';
 
 const CustomIcon = () => {
 
@@ -22,7 +22,7 @@ const Floatingbutton = () => {
       style={{ right: 90 }}
       icon={<CustomIcon />}
     >
-      <FloatButton />
+      <FloatButton icon={<SettingOutlined />} />
       <FloatButton icon={<HomeOutlined />} />
     </FloatButton.Group>
   );

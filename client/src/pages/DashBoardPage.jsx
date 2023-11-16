@@ -3,22 +3,18 @@ import '/profile-bubble.png';
 import '/profile-2.png';
 import '/profile-3.png';
 import '/profile-4.png';
-// import '..assets/chitchatlogo.png';
+import '/chitchatlogo.png';
 import Floatingbutton from '../components/Floatingbuttons.jsx';
 
-const styles = {
-    pageStyle: {
-        fontFamily: 'aristotle',
-    }
-}
 function Dashboard() {
 
 return (
-<div style={styles.pageStyle}>
-  <section style={styles.pageStyle} className="header">
-  <h1 style={styles.pageStyle}>Chit Chat</h1>
-  <h2>Chats</h2> <img src=""></img>
-</section>
+<div>
+    <section className="header">
+     <h1> <img src="/chitchatlogo.png"></img> Chit Chat <img src="/chitchatlogo.png"></img></h1>
+     <h2>Chats</h2> 
+    </section>
+
 <section className="inbox-container">
   <div className="chat-preview">
       <section className="profile-picture">
