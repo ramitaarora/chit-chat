@@ -16,7 +16,7 @@ connection.once('open', async () => {
         await connection.dropCollection('chats');
       }
 
-    await User.collection.insertMany(users);
+    await User.create(users);
     await Chat.collection.insertMany(chats);
   
     // Log out the seed data to indicate what should appear in the database
