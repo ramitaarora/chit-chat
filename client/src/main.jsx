@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Here we import bootstrap for access to some additional styling
 
+import App from './App';
 import LandingPage from './pages/LandingPage';
 import ErrorPage from './pages/ErrorPage';
 import FriendProfilePage from './pages/FriendProfilePage.jsx';
