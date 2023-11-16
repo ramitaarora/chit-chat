@@ -25,20 +25,26 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }; 
         },
-        newChat: async (parent, { sender, textContent, chatId, user1, user2 }, context) => {
-            if (context.user) {
-                return await Chat.create(
-                    { $push: { text: [
-                        { 
-                            sender: sender,
-                            textContent: textContent,
-                        }
-                    ] } },
-                    { user1: { _id: context.user._id} },
-                    { user2: { _id: user2 } },
-                )
+        newChat: async (parent, { user2 }, context) => {
+            const chatExists = await Chat.findOne({
+                $or: [
+                    { user1: context.user._id, user2: user2._id },
+                    { user1: user2._id, user2: context.user._id },
+                ],
+            });
+
+            if (chatExists) {
+                return chatExists;
             }
-            throw AuthenticationError;
+
+            if (!chatExists) {
+                if (context.user) {
+                    return await Chat.create(
+                        { user1: { _id: context.user._id} },
+                        { user2: { _id: user2 } },
+                    )
+                } throw AuthenticationError;
+            }
         },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
@@ -100,16 +106,18 @@ const resolvers = {
                 return user1;
             }
         },
-        saveChat: async (parent, { _id, sender, textContent, chatId }) => {
-            return Chat.findOneAndUpdate(
-                { _id: _id },
-                { $push: { text: [
-                    { 
-                        sender: sender,
-                        textContent: textContent,
-                    }
-                ] } }
-            )
+        saveMessage: async (parent, { _id, sender, textContent}, contenxt) => {
+            if (context.user) {
+                return Chat.findOneAndUpdate(
+                    { _id: _id },
+                    { $push: { text:
+                        { 
+                            sender: sender,
+                            textContent: textContent,
+                        }
+                    } }
+                )
+            }
         }
     }
 }

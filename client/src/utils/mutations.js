@@ -20,11 +20,14 @@ export const ADD_USER = gql`
 `
 
 export const NEW_CHAT = gql`
-    mutation newChat($user1: String!, $user2: String!, $sender: ID, $textContent: String, $chatId: ID) {
-        newChat(user1: $user1, user2: $user2, sender: $sender, textContent: $textContent, chatId: $chatId) {
-        text {
-            textContent
-            sender
+    mutation NewChat($user2: ID!) {
+        newChat(user2: $user2) {
+        _id
+        user1 {
+            _id
+        }
+        user2 {
+            _id
         }
         }
     }
@@ -65,14 +68,13 @@ export const ADD_FRIEND = gql`
     }
 `
 
-export const SAVE_CHAT = gql`
-    mutation saveChat($id: ID!, $sender: ID, $textContent: String, $chatId: ID) {
-        saveChat(_id: $id, sender: $sender, textContent: $textContent, chatId: $chatId) {
+export const SAVE_MESSAGE = gql`
+    mutation saveMessage($id: ID!, $sender: ID, $textContent: String) {
+        saveMessage(_id: $id, sender: $sender, textContent: $textContent) {
         text {
-            textContent
-            sender
-            chatId
-        }
+                sender
+                textContent
+            }
         }
     }
 `
