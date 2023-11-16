@@ -9,6 +9,7 @@ import ErrorPage from './pages/ErrorPage';
 import FriendProfilePage from './pages/FriendProfilePage.jsx';
 import DashboardPage from './pages/DashBoardPage.jsx';
 import ChatPage from './pages/ChatPage.jsx';
+import AddFriendPage from './pages/AddFriendPage';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: 'chat/:chatID',
         element: <ChatPage />,
+      },
+      {
+        path: 'user',
+        element: <AddFriendPage />,
       }
     ]
   },
