@@ -20,8 +20,8 @@ const resolvers = {
           },
     },
     Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = User.create({ username, email, password });
+        addUser: async (parent, { username, fullName, email, password }) => {
+            const user = User.create({ username, fullName, email, password });
             const token = signToken(user);
             return { token, user }; 
         },
@@ -40,8 +40,8 @@ const resolvers = {
             }
             throw AuthenticationError;
         },
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+        login: async (parent, { username, password }) => {
+            const user = await User.findOne({ username });
       
             if (!user) {
               throw AuthenticationError;
