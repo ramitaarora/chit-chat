@@ -60,15 +60,24 @@ const resolvers = {
         editUser: async (parent, args, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
-                    { _id: context.user._id},
+                    { _id: context.user._id },
                     { fullName: args.fullName,
                     bio: args.bio,
                     photo: args.photo,
-                    $push: { interests: [args.interests] } },
+                    $push: { interests: [args.interests] },
+                    $push: { friends: [args.friends] }},
                     { new: true, runValidators: true },
                 )
             }
         },
+        // addFriend: async(parent, args, context) => {
+        //     if (context.user) {
+        //         return User.findOneAndUpdate(
+        //             { _id: context.user._id },
+        //             { friends:  }
+        //         )
+        //     }
+        // },
         saveChat: async (parent, { _id, sender, textContent, chatId }) => {
             return Chat.findOneAndUpdate(
                 { _id: _id },
