@@ -1,6 +1,5 @@
-// App.jsx
 import React from 'react';
-import { CommentOutlined, CustomerServiceOutlined, SmileOutlined, HomeOutLined } from '@ant-design/icons';
+import { CommentOutlined, HomeOutlined, SmileOutlined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
 
 const Floatingbutton = () => {
@@ -8,12 +7,13 @@ const Floatingbutton = () => {
     <FloatButton.Group
       trigger="hover"
       type="default"
-      style={{ right: 90}}
+      style={{ right: 90 }}
       icon={<SmileOutlined />}
     >
       <FloatButton />
-      <FloatButton icon={<HomeOutLined />} />
+      <FloatButton icon={<HomeOutlined />} /> {/* Replaced CustomerServiceOutlined with HomeOutlined */}
     </FloatButton.Group>
   );
 }
+
 export default Floatingbutton;
