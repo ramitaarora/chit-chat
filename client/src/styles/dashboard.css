@@ -4,7 +4,7 @@ body {
 
 @font-face {
     font-family: bubbleFont;
-    src: url(boorsok.otf);
+    src: url(boorsok.ttf) format('truetype');
 }
 
 .header {

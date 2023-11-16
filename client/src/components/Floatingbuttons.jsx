@@ -1,30 +1,19 @@
 // App.jsx
 import React from 'react';
-import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+import { CommentOutlined, CustomerServiceOutlined, SmileOutlined, HomeOutLined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
+
 const Floatingbutton = () => {
-    return (
-  <>
-    {/* <FloatButton.Group
-      trigger="click"
-      type="primary"
-      style={{ right: 24 }}
-      icon={<CustomerServiceOutlined />}
-    >
-      <FloatButton />
-      <FloatButton icon={<CommentOutlined />} />
-    </FloatButton.Group> */}
+  return (
     <FloatButton.Group
       trigger="hover"
-      type="primary"
-      style={{ right: 94 }}
-      icon={<CustomerServiceOutlined />}
+      type="default"
+      style={{ right: 90}}
+      icon={<SmileOutlined />}
     >
       <FloatButton />
-      <FloatButton icon={<CommentOutlined />} />
+      <FloatButton icon={<HomeOutLined />} />
     </FloatButton.Group>
-  </>
-    );
-    }
-
+  );
+}
 export default Floatingbutton;
