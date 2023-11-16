@@ -21,7 +21,7 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, { username, fullName, email, password }) => {
-            const user = User.create({ username, fullName, email, password });
+            const user = await User.create({ username, fullName, email, password });
             const token = signToken(user);
             return { token, user }; 
         },
@@ -77,15 +77,27 @@ const resolvers = {
         },
         addFriend: async (parent, args, context) => {
             if (context.user) {
-                return User.findOneAndUpdate(
+                const user1 = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     {
-                        $push: {
+                        $addToSet: {
                             friends: args.friend
                         },
                     },
                     { new: true, runValidators: true }
                 );
+
+                const user2 = await User.findOneAndUpdate(
+                    { _id: args.friend },
+                    {
+                        $push: {
+                            friends: context.user._id
+                        },
+                    },
+                    { new: true, runValidators: true }
+                );
+
+                return user1;
             }
         },
         saveChat: async (parent, { _id, sender, textContent, chatId }) => {

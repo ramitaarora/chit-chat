@@ -6,22 +6,23 @@ import Header from '../components/Header';
 
 export default function AddFriendPage() {
 
-    const [addFriend] = useMutation(ADD_FRIEND);
+    const [addFriend, { error }] = useMutation(ADD_FRIEND);
 
     const { loading, data } = useQuery(QUERY_USERS);
 
     const users = data?.users || [];
 
-    const handleAddFriend = (userID) => {
-        addFriend({
-            variables: { friend: userID }
-        })
-            .then((result) => {
-                console.log('Added friend successfully', result)
+    const handleAddFriend = async (userID) => {
+        
+        try {
+            await addFriend({
+                variables: { friend: userID }
             })
-            .then((err) => {
-                console.error('Error adding friend', err)
-            })
+        } catch (e) {
+            console.log(e);
+            console.log(error);
+        }
+
     };
 
     return (

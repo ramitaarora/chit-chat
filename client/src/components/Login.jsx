@@ -25,6 +25,8 @@ export default function Login({ handleSignup }) {
                 variables: { ...formState },
             });
 
+            console.log(data);
+
             Auth.login(data.login.token);
         } catch (err) {
             console.error(err);
@@ -35,7 +37,7 @@ export default function Login({ handleSignup }) {
             password: '',
         });
 
-        document.location.replace('/dashboard');
+        // document.location.replace('/dashboard');
     };
 
     return (

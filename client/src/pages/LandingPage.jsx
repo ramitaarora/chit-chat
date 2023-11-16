@@ -16,7 +16,7 @@ const LandingPage = () => {
         setForm('signup');
     };
 
-    if (Auth.loggedIn) {
+    if (Auth.loggedIn()) {
         document.location.replace('/dashboard')
     } else {
         return (
