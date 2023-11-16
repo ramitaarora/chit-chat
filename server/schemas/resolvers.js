@@ -81,21 +81,13 @@ const resolvers = {
                     { _id: context.user._id },
                     {
                         $push: {
-                            friends: { $each: args.friends || [] },
+                            friends: args.friend
                         },
                     },
                     { new: true, runValidators: true }
                 );
             }
-        }
-        // addFriend: async(parent, args, context) => {
-        //     if (context.user) {
-        //         return User.findOneAndUpdate(
-        //             { _id: context.user._id },
-        //             { friends:  }
-        //         )
-        //     }
-        // },
+        },
         saveChat: async (parent, { _id, sender, textContent, chatId }) => {
             return Chat.findOneAndUpdate(
                 { _id: _id },

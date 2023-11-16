@@ -1,17 +1,27 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
 import { useMutation } from '@apollo/client';
-import { EDIT_USER } from '../utils/mutations';
+import { ADD_FRIEND } from '../utils/mutations';
 import Header from '../components/Header';
 
 export default function AddFriendPage() {
+
+    const [addFriend] = useMutation(ADD_FRIEND);
 
     const { loading, data } = useQuery(QUERY_USERS);
 
     const users = data?.users || [];
 
-    const handleAddFriend = () => {
-        
+    const handleAddFriend = (userID) => {
+        addFriend({
+            variables: { friend: userID }
+        })
+            .then((result) => {
+                console.log('Added friend successfully', result)
+            })
+            .then((err) => {
+                console.error('Error adding friend', err)
+            })
     };
 
     return (
@@ -27,7 +37,7 @@ export default function AddFriendPage() {
                             <section key={user._id}>
                                 <div>{user.photo}</div>
                                 <div>{user.username}</div>
-                                <button onClick={handleAddFriend}>+</button>
+                                <button onClick={() => handleAddFriend(user._id)}>+</button>
                             </section>
                         ))}
                     </div>

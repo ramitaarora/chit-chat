@@ -56,6 +56,15 @@ export const EDIT_USER = gql`
     }
 `
 
+export const ADD_FRIEND = gql`
+    mutation addFriend($friend: ID!) {
+        addFriend(friend: $friend) {
+        _id
+        friends
+        }
+    }
+`
+
 export const SAVE_CHAT = gql`
     mutation saveChat($id: ID!, $sender: ID, $textContent: String, $chatId: ID) {
         saveChat(_id: $id, sender: $sender, textContent: $textContent, chatId: $chatId) {
