@@ -61,15 +61,33 @@ const resolvers = {
             if (context.user) {
                 return User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { fullName: args.fullName,
-                    bio: args.bio,
-                    photo: args.photo,
-                    $push: { interests: [args.interests] },
-                    $push: { friends: [args.friends] }},
+                    {
+                        $set: {
+                            fullName: args.fullName,
+                            bio: args.bio,
+                            photo: args.photo,
+                        },
+                        $push: {
+                            interests: { $each: args.interests || [] },
+                        }
+                    },
                     { new: true, runValidators: true },
                 )
             }
         },
+        addFriend: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    {
+                        $push: {
+                            friends: { $each: args.friends || [] },
+                        },
+                    },
+                    { new: true, runValidators: true }
+                );
+            }
+        }
         // addFriend: async(parent, args, context) => {
         //     if (context.user) {
         //         return User.findOneAndUpdate(
