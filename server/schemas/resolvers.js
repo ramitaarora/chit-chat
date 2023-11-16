@@ -26,7 +26,14 @@ const resolvers = {
             return { token, user }; 
         },
         newChat: async (parent, { user2 }, context) => {
-            if (context.user) {
+            const chatExists = await Chat.findOne({
+                $or: [
+                    { user1: context.user._id, user2: user2._id },
+                    { user1: user2._id, user2: context.user._id },
+                ],
+            });
+
+            if (!chatExists && context.user) {
                 return await Chat.create(
                     { user1: { _id: context.user._id} },
                     { user2: { _id: user2 } },
