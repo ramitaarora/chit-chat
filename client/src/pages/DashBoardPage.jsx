@@ -5,13 +5,19 @@ import '/profile-3.png';
 import '/profile-4.png';
 // import '..assets/chitchatlogo.png';
 import Floatingbutton from '../components/Floatingbuttons.jsx';
+
+const styles = {
+    pageStyle: {
+        fontFamily: 'aristotle',
+    }
+}
 function Dashboard() {
 
 return (
-<div>
-  <section className="header">
-  <h1>Chit Chat</h1>
-  <h2>Chats</h2>
+<div style={styles.pageStyle}>
+  <section style={styles.pageStyle} className="header">
+  <h1 style={styles.pageStyle}>Chit Chat</h1>
+  <h2>Chats</h2> <img src=""></img>
 </section>
 <section className="inbox-container">
   <div className="chat-preview">

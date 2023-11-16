@@ -1,5 +1,6 @@
 body {
-    background-image: linear-gradient(to left, #2a2a2a, #7360bf)
+    background-image: linear-gradient(to left, #2a2a2a, #7360bf);
+    font-family: aristotle;
 }
 
 @font-face {
@@ -7,15 +8,20 @@ body {
     src: url(boorsok.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: aristotle;
+    src: url(AristotelicaProDisplayExtralight.otf);
+}
+
 .header {
     color: white;
     padding: 10px;
     text-align: center;
-    /* font-family: bubbleFont; */
 }
 
 h1, h2 {
     font-family: bubbleFont;
+    color: #b4a7e9;
 }
 
 .inbox-container {
