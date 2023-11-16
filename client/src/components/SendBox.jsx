@@ -1,8 +1,13 @@
-export default function SendBox({ sendMsg }) {
+export default function SendBox() {
+
+    const handleSendMsg = () => {
+        // Use socket.io here
+    };
+
     return (
         <section>
             <input type="text"></input>
-            <button onClick={sendMsg}>Send</button>
+            <button onClick={handleSendMsg}>Send</button>
         </section>
     )
 }
