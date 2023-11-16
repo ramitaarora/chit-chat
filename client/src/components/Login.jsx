@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 export default function Login({ handleSignup }) {
 
     const [formState, setFormState] = useState({ username: '', password: '' });
-    const [login, { error, data }] = useMutation(LOGIN);
+    const [login, { error }] = useMutation(LOGIN);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
