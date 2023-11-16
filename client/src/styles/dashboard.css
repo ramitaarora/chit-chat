@@ -3,14 +3,18 @@ body {
 }
 
 @font-face {
-    src: url(./boorsok.ttf) format('truetype');
     font-family: bubbleFont;
+    src: url(boorsok.ttf) format('truetype');
 }
 
 .header {
     color: white;
     padding: 10px;
     text-align: center;
+    /* font-family: bubbleFont; */
+}
+
+h1, h2 {
     font-family: bubbleFont;
 }
 
