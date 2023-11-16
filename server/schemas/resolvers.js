@@ -34,8 +34,8 @@ const resolvers = {
                             textContent: textContent,
                         }
                     ] } },
-                    { user1: context.user._id },
-                    { user2: user2 }
+                    { user1: { _id: context.user._id} },
+                    { user2: { _id: user2 } },
                 )
             }
             throw AuthenticationError;

@@ -6,11 +6,11 @@ const chatSchema = new Schema ({
         required: true,
     },
     user1: {
-        type: String,
+        type: Schema.Types.ObjectId, ref: 'User',
         required: true,
     },
     user2: {
-        type: String,
+        type: Schema.Types.ObjectId, ref: 'User',
         required: true,
     },
 });
