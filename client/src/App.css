@@ -1716,3 +1716,28 @@ label form [type='radio'] {
     align-content: center;
   }
 }
+
+
+#add-friend, #edit {
+  background-color: #8C52FF;
+  border-radius: 70%;
+  height: 50px;
+  width: 50px;
+  border-width: 0px;
+}
+
+#editImg{
+  height: 20px;
+  width: 20px;
+}
+
+
+#profilePicture {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+}
+
+#header-img{
+  height: 150px;
+}

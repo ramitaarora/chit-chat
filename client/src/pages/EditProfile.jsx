@@ -38,58 +38,119 @@ export default function EditProfile({ handleSignup }) {
 
     return (
         <div>
-            <form onSubmit={handleFormSubmit}>
-                <input
-                    placeholder="Username"
-                    name="username"
-                    type="text"
-                    value={formState.username}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="name"
-                    name="name"
-                    type="text"
-                    value={formState.name}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="profilePic"
-                    name="profilepicture"
-                    type="image"
-                    value={formState.image}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="bio"
-                    name="bio"
-                    type="text"
-                    value={formState.name}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="interest"
-                    name="interest1"
-                    type="text"
-                    value={formState.name}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="interest"
-                    name="interest2"
-                    type="text"
-                    value={formState.name}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="interest"
-                    name="interest3"
-                    type="text"
-                    value={formState.name}
-                    onChange={handleChange}
-                />
-                <button type="submit"> Save Changes</button>
-            </form>
+            <h2>EDIT PROFILE</h2>
+            <div class="form-container">
+                <form onSubmit={handleFormSubmit}>
+                    <div>
+                        <label>Change Your Username</label>
+                        <div>
+                            <input
+                            placeholder="Username"
+                            name="username"
+                            type="text"
+                            value={formState.username}
+                            onChange={handleChange}
+                        />
+                        </div>
+                    </div>
+                    <div>
+                        <label>Change Your Name</label>
+                        <div>
+                            <input
+                            placeholder="name"
+                            name="name"
+                            type="text"
+                            value={formState.name}
+                            onChange={handleChange}
+                        />
+                        </div>
+                    </div>
+                    <div>
+                        <label>Change Your Profile Pic</label>
+                        <div>
+                            <input
+                            placeholder="profilePic"
+                            name="profilepicture"
+                            type="image"
+                            value={formState.image}
+                            onChange={handleChange}
+                        />
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <label>Change Your Bio</label>
+                        <div>
+                            <input
+                            placeholder="bio"
+                            name="bio"
+                            type="text"
+                            value={formState.name}
+                            onChange={handleChange}
+                        />
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <label>Change Your Interests</label>
+                        <div>
+                            <input
+                            placeholder="interest"
+                            name="interest1"
+                            type="text"
+                            value={formState.name}
+                            onChange={handleChange}
+                        />
+                        </div>
+                        <div>
+                            <input
+                            placeholder="interest"
+                            name="interest2"
+                            type="text"
+                            value={formState.name}
+                            onChange={handleChange}
+                        />
+                        </div>
+                        <div>
+                            <input
+                            placeholder="interest"
+                            name="interest3"
+                            type="text"
+                            value={formState.name}
+                            onChange={handleChange}
+                        />
+                        </div>    
+                    </div>
+                    <div>
+                        <button id ="save"type="submit"> Save Changes</button>
+                    </div>
+                    
+                </form>
+            </div>
+            <h2>THEMES</h2>
+            <div class="theme-container">
+                
+                <div class="themes">
+                    <div>
+                        <button class="theme" id="night">
+                            night mode
+                        </button>
+                    </div>
+                <div>
+                        <button class="theme" id="day">
+                            day mode
+                        </button>
+                </div>
+                    <div>
+                        <button class="theme" id="dawn">
+                            dawn mode
+                        </button>
+                    </div>
+                
+                </div>
+            
+            </div>
+            
         </div>
     )
 }
