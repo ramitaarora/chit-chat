@@ -43,11 +43,14 @@ export const LOGIN = gql`
 `
 
 export const EDIT_USER = gql`
-    mutation editUser($fullName: String, $bio: String, $photo: String, $interests: [String]) {
-        editUser(fullName: $fullName, bio: $bio, photo: $photo, interests: $interests) {
+    mutation editUser {
+        editUser {
+        _id
+        username
         fullName
         bio
         photo
+        friends
         interests
         }
     }
