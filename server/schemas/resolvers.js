@@ -20,8 +20,8 @@ const resolvers = {
           },
     },
     Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = User.create({ username, email, password });
+        addUser: async (parent, { username, fullName, email, password }) => {
+            const user = await User.create({ username, fullName, email, password });
             const token = signToken(user);
             return { token, user }; 
         },
@@ -40,8 +40,8 @@ const resolvers = {
             }
             throw AuthenticationError;
         },
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+        login: async (parent, { username, password }) => {
+            const user = await User.findOne({ username });
       
             if (!user) {
               throw AuthenticationError;
@@ -60,13 +60,44 @@ const resolvers = {
         editUser: async (parent, args, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
-                    { _id: context.user._id},
-                    { fullName: args.fullName,
-                    bio: args.bio,
-                    photo: args.photo,
-                    $push: { interests: [args.interests] } },
+                    { _id: context.user._id },
+                    {
+                        $set: {
+                            fullName: args.fullName,
+                            bio: args.bio,
+                            photo: args.photo,
+                        },
+                        $push: {
+                            interests: { $each: args.interests || [] },
+                        }
+                    },
                     { new: true, runValidators: true },
                 )
+            }
+        },
+        addFriend: async (parent, args, context) => {
+            if (context.user) {
+                const user1 = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    {
+                        $addToSet: {
+                            friends: args.friend
+                        },
+                    },
+                    { new: true, runValidators: true }
+                );
+
+                const user2 = await User.findOneAndUpdate(
+                    { _id: args.friend },
+                    {
+                        $push: {
+                            friends: context.user._id
+                        },
+                    },
+                    { new: true, runValidators: true }
+                );
+
+                return user1;
             }
         },
         saveChat: async (parent, { _id, sender, textContent, chatId }) => {
