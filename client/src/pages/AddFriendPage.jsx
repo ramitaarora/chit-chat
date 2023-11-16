@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
+import { useMutation } from '@apollo/client';
+import { EDIT_USER } from '../utils/mutations';
 import Header from '../components/Header';
 
 export default function AddFriendPage() {
@@ -9,7 +11,7 @@ export default function AddFriendPage() {
     const users = data?.users || [];
 
     const handleAddFriend = () => {
-        // Finish after adding friend category to users 
+        
     };
 
     return (
