@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 export default function Login({ handleSignup }) {
 
     const [formState, setFormState] = useState({ username: '', password: '' });
-    // const [login, { error, data }] = useMutation(LOGIN_USER);
-    // Match utils mutations later
+    const [login, { error }] = useMutation(LOGIN);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -25,6 +25,8 @@ export default function Login({ handleSignup }) {
                 variables: { ...formState },
             });
 
+            console.log(data);
+
             Auth.login(data.login.token);
         } catch (err) {
             console.error(err);
@@ -34,6 +36,8 @@ export default function Login({ handleSignup }) {
             username: '',
             password: '',
         });
+
+        // document.location.replace('/dashboard');
     };
 
     return (
