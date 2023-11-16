@@ -33,13 +33,18 @@ const resolvers = {
                 ],
             });
 
-            if (!chatExists && context.user) {
-                return await Chat.create(
-                    { user1: { _id: context.user._id} },
-                    { user2: { _id: user2 } },
-                )
+            if (chatExists) {
+                return chatExists;
             }
-            throw AuthenticationError;
+
+            if (!chatExists) {
+                if (context.user) {
+                    return await Chat.create(
+                        { user1: { _id: context.user._id} },
+                        { user2: { _id: user2 } },
+                    )
+                } throw AuthenticationError;
+            }
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
