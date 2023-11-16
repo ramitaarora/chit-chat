@@ -25,15 +25,9 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }; 
         },
-        newChat: async (parent, { sender, textContent, chatId, user1, user2 }, context) => {
+        newChat: async (parent, { user2 }, context) => {
             if (context.user) {
                 return await Chat.create(
-                    { $push: { text: [
-                        { 
-                            sender: sender,
-                            textContent: textContent,
-                        }
-                    ] } },
                     { user1: { _id: context.user._id} },
                     { user2: { _id: user2 } },
                 )
@@ -64,20 +58,20 @@ const resolvers = {
                     { fullName: args.fullName,
                     bio: args.bio,
                     photo: args.photo,
-                    $push: { interests: [args.interests] } },
+                    $push: { interests: args.interests } },
                     { new: true, runValidators: true },
                 )
             }
         },
-        saveChat: async (parent, { _id, sender, textContent, chatId }) => {
+        saveMessage: async (parent, { _id, sender, textContent }) => {
             return Chat.findOneAndUpdate(
                 { _id: _id },
-                { $push: { text: [
+                { $push: { text:
                     { 
                         sender: sender,
                         textContent: textContent,
                     }
-                ] } }
+                } }
             )
         }
     }
