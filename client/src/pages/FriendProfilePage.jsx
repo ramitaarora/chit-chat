@@ -3,7 +3,6 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
-import Logout from '../components/Logout';
 import Auth from '../utils/auth';
 
 export default function FriendProfilePage() {
@@ -14,11 +13,11 @@ export default function FriendProfilePage() {
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
-    const handleAddFriend = async (user2ID) => {
+    const handleAddFriend = async (ID) => {
 
         try {
             await addFriend({
-                variables: { friend: user2ID }
+                variables: { friend: ID }
             })
         } catch (e) {
             console.log(e);
@@ -37,16 +36,16 @@ export default function FriendProfilePage() {
 
     const exists = existsData?.chatExists;
 
-    const handleNewChat = async (user2ID) => {
+    const handleNewChat = async (ID) => {
         try {
-
             if (exists) {
+                console.log('found exists');
                 // const chatID = exists._id;
                 // document.location.replace(`/chat/${chatID}`);
                 return exists;
             } else {
                 const { data } = await addChat({
-                    variables: { user2: user2ID }
+                    variables: { user2: ID }
                 })
                 // const newChat = data?.newChat;
                 // const chatID = newChat._id;
