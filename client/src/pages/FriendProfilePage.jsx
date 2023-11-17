@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
+import Logout from '../components/Logout';
 
 export default function FriendProfilePage() {
 
@@ -11,8 +12,6 @@ export default function FriendProfilePage() {
     // Add Friend Handler
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
-
-    const [addChat, { chatErr }] = useMutation(NEW_CHAT);
 
     const handleAddFriend = async (userID) => {
 
@@ -28,6 +27,8 @@ export default function FriendProfilePage() {
     };
 
     // New Chat Handler
+
+    const [addChat, { chatErr }] = useMutation(NEW_CHAT);
 
     const { data: existsData } = useQuery(CHAT_EXISTS, {
         variables: { user2: userID }
