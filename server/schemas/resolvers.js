@@ -41,26 +41,6 @@ const resolvers = {
             })
 
             return chat;
-
-            // const chatExists = await Chat.findOne({
-            //     $or: [
-            //         { user1: context.user._id, user2: user2 },
-            //         { user1: user2, user2: context.user._id },
-            //     ],
-            // });
-
-            // if (chatExists) {
-            //     return chatExists;
-            // }
-
-            // if (!chatExists) {
-            //     if (context.user) {
-            //         return await Chat.create(
-            //             { user1: { _id: context.user._id} },
-            //             { user2: { _id: user2 } },
-            //         )
-            //     } throw AuthenticationError;
-            // }
         },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
@@ -85,6 +65,7 @@ const resolvers = {
                     { _id: context.user._id },
                     {
                         $set: {
+                            username: args.username,
                             fullName: args.fullName,
                             bio: args.bio,
                             photo: args.photo,

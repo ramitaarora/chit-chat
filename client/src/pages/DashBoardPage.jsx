@@ -15,8 +15,6 @@ function Dashboard() {
 
     const friends = data?.me.friends;
 
-    console.log(friends);
-
     return (
         <div>
             <section className="header">

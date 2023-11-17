@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 
 export default function EditProfile({ handleSignup }) {
 
-    const [formState, setFormState] = useState({ username: {}, name: {}, profilePicture: {}, bio: {}, interest: {}} );
+    const [formState, setFormState] = useState({ username: {}, name: {}, photo: {}, bio: {}, interests: {}} );
 
 
     const setTheme = (event) => {
@@ -122,7 +122,7 @@ export default function EditProfile({ handleSignup }) {
                                     placeholder="name"
                                     name="name"
                                     type="text"
-                                    value={formState.name}
+                                    value={formState.fullName}
                                     onChange={handleChange}
                                 />
                             </div>
@@ -134,7 +134,7 @@ export default function EditProfile({ handleSignup }) {
                                     placeholder="profilePic"
                                     name="profilepicture"
                                     type="image"
-                                    value={formState.image}
+                                    value={formState.photo}
                                     onChange={handleChange}
                                 />
                             </div>
@@ -147,7 +147,7 @@ export default function EditProfile({ handleSignup }) {
                                     placeholder="bio"
                                     name="bio"
                                     type="text"
-                                    value={formState.name}
+                                    value={formState.bio}
                                     onChange={handleChange}
                                 />
                             </div>
@@ -160,7 +160,7 @@ export default function EditProfile({ handleSignup }) {
                                     placeholder="interest"
                                     name="interest1"
                                     type="text"
-                                    value={formState.name}
+                                    value={formState.interests}
                                     onChange={handleChange}
                                 />
                             </div>
@@ -169,7 +169,7 @@ export default function EditProfile({ handleSignup }) {
                                     placeholder="interest"
                                     name="interest2"
                                     type="text"
-                                    value={formState.name}
+                                    value={formState.interests}
                                     onChange={handleChange}
                                 />
                             </div>
@@ -178,7 +178,7 @@ export default function EditProfile({ handleSignup }) {
                                     placeholder="interest"
                                     name="interest3"
                                     type="text"
-                                    value={formState.name}
+                                    value={formState.interests}
                                     onChange={handleChange}
                                 />
                             </div>
