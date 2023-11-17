@@ -4,6 +4,7 @@ import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
 import Logout from '../components/Logout';
+import Auth from '../utils/auth';
 
 export default function FriendProfilePage() {
 
@@ -66,11 +67,11 @@ export default function FriendProfilePage() {
         variables: { id: userID }
     });
 
-    if (loading) {
+    if (loading && Auth.loggedIn()) {
         return (
             <div>Loading User Profile...</div>
         )
-    } else {
+    } else if (userData && Auth.loggedIn) {
         const user = userData?.user;
 
         return (
@@ -86,6 +87,7 @@ export default function FriendProfilePage() {
                         <div key={index}>{interest}</div>
                     ))}
                 </section>
+                <Logout />
             </main>
         )
     };

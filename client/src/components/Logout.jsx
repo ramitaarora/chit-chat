@@ -4,6 +4,7 @@ export default function Logout() {
 
     const logoutHandler = () => {
         Auth.logout();
+        document.location.replace('/');
     };
 
     return (
