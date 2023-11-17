@@ -27,7 +27,9 @@ export default function AddFriendPage() {
                                 <section key={user._id}>
                                     <div>{user.photo}</div>
                                     <div>{user.username}</div>
-                                    <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
+                                    <button id="add-friend" onClick={() => handleFriendProfilePage(user._id)}>
+                                        <img src="../src/assets/plus.png" id="editImg" />
+                                    </button>
                                 </section>
                             ) : null))}
                         </div>

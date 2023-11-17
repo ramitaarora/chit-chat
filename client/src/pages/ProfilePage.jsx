@@ -35,8 +35,9 @@ export default function ProfilePage() {
                             <p>{myData. bio}</p>
                         </div>
                         <div>
-                            <button id="add-friend"><img src="../src/assets/plus.png" id="editImg" /></button>
-                            <button id="edit" onClick={handleEditProfile}><img src="../src/assets/pencil.png" id="editImg" /></button>
+                            <button id="edit" onClick={handleEditProfile}>
+                                <img src="../src/assets/pencil.png" id="editImg" />
+                            </button>
                         </div>
                         <div className="container" id="interests">
                             {myData.interests.map((interest, index) => (
