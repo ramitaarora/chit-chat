@@ -64,8 +64,8 @@ query chat($id: ID!) {
 `
 
 export const CHAT_EXISTS = gql`
-query chatExists($user1: ID!, $user2: ID!) {
-  chatExists(user1: $user1, user2: $user2) {
+query chatExists($user2: ID!) {
+  chatExists(user2: $user2) {
     _id
     text {
       sender

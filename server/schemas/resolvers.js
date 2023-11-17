@@ -12,10 +12,12 @@ const resolvers = {
         chat: async (parent, { _id }) => {
             return Chat.findOne({ _id });
         },
-        chatExists: async (parent, { user1, user2 }) => {
+        chatExists: async (parent, { user2 }, context) => {
+            const user1 = context.user._id;
+
             return Chat.findOne({ $or: [
                 { user1, user2 },
-                {  user1: user2, user2: user1 },
+                {  user1: user2, user2: user1},
             ] })
         },
         me: async (parent, args, context) => {

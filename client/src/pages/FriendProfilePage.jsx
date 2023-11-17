@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
 
@@ -10,7 +10,9 @@ export default function FriendProfilePage() {
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
-    const [addChat, { chatErr }] = useMutation(NEW_CHAT)
+    const [addChat, { chatErr }] = useMutation(NEW_CHAT);
+
+    const [chatExists, { existsErr }] = useQuery(CHAT_EXISTS);
 
     const handleAddFriend = async (userID) => {
 
@@ -28,6 +30,10 @@ export default function FriendProfilePage() {
     const handleNewChat = async (userID) => {
 
         try {
+            // const exists = await chatExists({
+            //     variables: { user1: }
+            // })
+
             const { data } = await addChat({
                 variables: { user2: userID }
             })
