@@ -18,9 +18,9 @@ const typeDefs = `
 
     type Chat {
         _id: ID
-        text: [TextChat]!
-        user1: User!
-        user2: User!
+        text: [TextChat]
+        user1: User
+        user2: User
     }
 
     type TextChat {
@@ -32,6 +32,7 @@ const typeDefs = `
         users: [User]
         user(_id: ID!): User
         chat(_id: ID!): Chat
+        chatExists(user2: ID!): Chat
         me: User
     }
 
