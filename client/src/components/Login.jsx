@@ -37,7 +37,7 @@ export default function Login({ handleSignup }) {
             password: '',
         });
 
-        // document.location.replace('/dashboard');
+        document.location.replace('/dashboard');
     };
 
     return (
