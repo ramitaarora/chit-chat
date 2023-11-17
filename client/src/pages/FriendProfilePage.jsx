@@ -8,6 +8,8 @@ export default function FriendProfilePage() {
 
     const { userID } = useParams();
 
+    // Add Friend Handler
+
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
     const [addChat, { chatErr }] = useMutation(NEW_CHAT);
@@ -25,26 +27,30 @@ export default function FriendProfilePage() {
 
     };
 
+    // New Chat Handler
+
+    const { data: existsData } = useQuery(CHAT_EXISTS, {
+        variables: { user2: userID }
+    });
+
+    const exists = existsData?.chatExists;
+
     const handleNewChat = async (userID) => {
         try {
-            const { data } = useQuery(CHAT_EXISTS, {
-                variables: { user2: userID }
-            });
-
-            const exists = data?.chatExists;
 
             if (exists) {
-                const chatID = exists._id;
-                document.location.replace(`/chat/${chatID}`);
+                // const chatID = exists._id;
+                // document.location.replace(`/chat/${chatID}`);
                 return exists;
             } else {
                 const { data } = await addChat({
                     variables: { user2: userID }
                 })
-                const newChat = data?.newChat;
-                const chatID = newChat._id;
-                document.location.replace(`/chat/${chatID}`);
-                return newChat;
+                // const newChat = data?.newChat;
+                // const chatID = newChat._id;
+                // document.location.replace(`/chat/${chatID}`);
+                // return newChat;
+                return data;
             }
 
         } catch (e) {
@@ -53,7 +59,9 @@ export default function FriendProfilePage() {
         }
     };
 
-    const { loading, data } = useQuery(QUERY_USER, {
+    // Loading User Profile Page
+
+    const { loading, data: userData } = useQuery(QUERY_USER, {
         variables: { id: userID }
     });
 
@@ -62,7 +70,7 @@ export default function FriendProfilePage() {
             <div>Loading User Profile...</div>
         )
     } else {
-        const user = data?.user;
+        const user = userData?.user;
 
         return (
             <main>
