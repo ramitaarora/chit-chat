@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 export default function Signup({ handleLogin }) {
@@ -10,8 +11,7 @@ export default function Signup({ handleLogin }) {
         username: '',
         password: '',
     });
-    // const [addUser, { error, data }] = useMutation(CREATE_USER);
-    // Match utils mutations later
+    const [addUser, { error, data }] = useMutation(ADD_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,9 +31,12 @@ export default function Signup({ handleLogin }) {
             });
 
             Auth.login(data.addUser.token);
+
         } catch (err) {
             console.error(err);
-        }
+        };
+
+        document.location.replace('/dashboard');
     };
 
     return (

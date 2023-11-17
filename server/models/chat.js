@@ -3,7 +3,6 @@ const {Schema, model} = require('mongoose')
 const chatSchema = new Schema ({
     text: {
         type: Array,
-        required: true,
     },
     user1: {
         type: Schema.Types.ObjectId, ref: 'User',

@@ -1,30 +1,31 @@
-// App.jsx
 import React from 'react';
-import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+import { HomeOutlined, SettingOutlined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
+import iconSrc from '/chitchatlogo.png';
+
+const CustomIcon = () => {
+
+  return (
+    <img
+      src={iconSrc}
+      alt="logo"
+      style={{ width: '100%', height: 'auto', margin: 'auto' }}
+    />
+  );
+};
+
 const Floatingbutton = () => {
-    return (
-  <>
-    {/* <FloatButton.Group
-      trigger="click"
-      type="primary"
-      style={{ right: 24 }}
-      icon={<CustomerServiceOutlined />}
-    >
-      <FloatButton />
-      <FloatButton icon={<CommentOutlined />} />
-    </FloatButton.Group> */}
+  return (
     <FloatButton.Group
       trigger="hover"
-      type="primary"
-      style={{ right: 94 }}
-      icon={<CustomerServiceOutlined />}
+      type="default"
+      style={{ right: 90 }}
+      icon={<CustomIcon />}
     >
-      <FloatButton />
-      <FloatButton icon={<CommentOutlined />} />
+      <FloatButton icon={<SettingOutlined />} />
+      <FloatButton icon={<HomeOutlined />} />
     </FloatButton.Group>
-  </>
-    );
-    }
+  );
+}
 
 export default Floatingbutton;

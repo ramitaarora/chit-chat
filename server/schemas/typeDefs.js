@@ -8,7 +8,7 @@ const typeDefs = `
         bio: String
         photo: String
         interests: [String]
-        friends: [String]
+        friends: [ID]
     }
 
     type Auth {
@@ -38,10 +38,11 @@ const typeDefs = `
     type Mutation {
         users: User
         addUser(username: String!, email: String!, password: String!): Auth
-        newChat(sender: ID, textContent: String, user1: String!, user2: String!): Chat
-        login(email: String!, password: String!): Auth
-        editUser(fullName: String, bio: String, photo: String, interests: [String], friends: [String]): User
-        saveChat(_id: ID!, sender: ID, textContent: String): Chat
+        newChat(user2: ID!): Chat
+        login(username: String!, password: String!): Auth
+        editUser(fullName: String, bio: String, photo: String, interests: [String]): User
+        addFriend(friend: ID): User
+        saveMessage(_id: ID!, sender: ID, textContent: String): Chat
     }
 `;
 

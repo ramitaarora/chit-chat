@@ -1,5 +1,5 @@
 export default function Header() {
     return (
-        <header>Header Placeholder</header>
+        <header><img id="header-img" src="../src/assets/chitchatheader.png"></img></header>
     )
 }
