@@ -46,6 +46,21 @@ export const QUERY_ME = gql`
   }
 `
 
+export const QUERY_FRIENDS = gql`
+  query Me {
+    me {
+      username
+      friends {
+        username
+        photo
+        bio
+        interests
+        fullName
+      }
+    }
+  }
+`
+
 export const QUERY_CHAT = gql`
 query chat($id: ID!) {
   chat(_id: $id) {

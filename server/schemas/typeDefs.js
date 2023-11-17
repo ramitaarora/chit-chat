@@ -8,7 +8,7 @@ const typeDefs = `
         bio: String
         photo: String
         interests: [String]
-        friends: [ID]
+        friends: [User]
     }
 
     type Auth {

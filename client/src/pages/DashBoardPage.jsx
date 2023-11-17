@@ -6,14 +6,16 @@ import '/profile-4.png';
 import '/chitchatlogo.png';
 import Floatingbutton from '../components/Floatingbuttons.jsx';
 import { useQuery } from '@apollo/client';
-import { QUERY_USERS } from '../utils/queries.js';
+import { QUERY_FRIENDS } from '../utils/queries.js';
 import Auth from '../utils/auth';
 
 function Dashboard() {
 
-    const { loading, data } = useQuery(QUERY_USERS);
+    const { loading, data } = useQuery(QUERY_FRIENDS);
 
-    const users = data?.users || [];
+    const friends = data?.me.friends;
+
+    console.log(friends);
 
     return (
         <div>
@@ -27,13 +29,13 @@ function Dashboard() {
                 ) : (
                     <>
                         {
-                            users.map((user) => (
-                                <div className="chat-preview">
+                            friends.map((friend, index) => (
+                                <div key={index} className="chat-preview">
                                     <section className="profile-picture">
-                                        <img src={user.photo} alt="user-one"></img>
+                                        <img src={friend.photo} alt="user-one"></img>
                                     </section>
                                     <section className="message-preview">
-                                        <h3>{user.username}</h3>
+                                        <h3>{friend.username}</h3>
                                         <p>So about coding...</p>
                                     </section>
                                 </div>
