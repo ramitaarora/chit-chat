@@ -62,3 +62,21 @@ query chat($id: ID!) {
   }
 }
 `
+
+export const CHAT_EXISTS = gql`
+query chatExists($user2: ID!) {
+  chatExists(user2: $user2) {
+    _id
+    text {
+      sender
+      textContent
+    }
+    user1 {
+      _id
+    }
+    user2 {
+      _id
+    }
+  }
+}
+`

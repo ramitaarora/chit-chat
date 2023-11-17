@@ -1,6 +1,4 @@
 import Auth from '../utils/auth';
-import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
 
 export default function ConvoBox({ chat }) {
 
