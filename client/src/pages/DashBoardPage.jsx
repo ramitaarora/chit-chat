@@ -6,9 +6,9 @@ import '/profile-4.png';
 import '/chitchatlogo.png';
 import Floatingbutton from '../components/Floatingbuttons.jsx';
 import { useQuery } from '@apollo/client'
-import { QUERY_USER } from '../utils/queries.js'
+import { QUERY_USERS } from '../utils/queries.js'
 function Dashboard() {
-    const { loading, data } = useQuery[QUERY_USER]
+    const { loading, data } = useQuery[QUERY_USERS]
     const users = data?.user || []
     return (
         <div>
