@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_CHAT } from '../utils/queries';
@@ -5,9 +6,9 @@ import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 
-import { socket } from 'socket.io-client';
-import { ConnectionState } from '../components/ConnectionState';
-import { ConnectionManager } from '../components/ConnectionManager';
+import { socket } from '../socket'
+import ConnectionState from '../components/ConnectionState';
+import ConnectionManager from '../components/ConnectionManager';
 
 export default function ChatPage() {
     const [isConnected, setIsConnected] = useState(socket.connected);
@@ -37,6 +38,7 @@ export default function ChatPage() {
         };
     }, []);
 
+
     const { chatID } = useParams();
 
     const { loading, data } = useQuery(QUERY_CHAT, {
@@ -51,11 +53,12 @@ export default function ChatPage() {
 
         return (
             <main>
+                <ConnectionState isConnected={ isConnected } />
                 <FriendHeader userID={userID} />
                 <ConvoBox chat={selectedChat}/>
+                <ConnectionManager />
                 <SendBox chatID={chatID}/>
             </main>
-        )
+        )     
     }
-    
 }
