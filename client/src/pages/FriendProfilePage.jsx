@@ -12,8 +12,6 @@ export default function FriendProfilePage() {
 
     const [addChat, { chatErr }] = useMutation(NEW_CHAT);
 
-    const [chatExists, { existsErr }] = useQuery(CHAT_EXISTS);
-
     const handleAddFriend = async (userID) => {
 
         try {
@@ -28,23 +26,31 @@ export default function FriendProfilePage() {
     };
 
     const handleNewChat = async (userID) => {
-
         try {
-            // const exists = await chatExists({
-            //     variables: { user1: }
-            // })
-
-            const { data } = await addChat({
+            const { data } = useQuery(CHAT_EXISTS, {
                 variables: { user2: userID }
-            })
+            });
 
-            console.log(data);
+            const exists = data?.chatExists;
+
+            if (exists) {
+                const chatID = exists._id;
+                document.location.replace(`/chat/${chatID}`);
+                return exists;
+            } else {
+                const { data } = await addChat({
+                    variables: { user2: userID }
+                })
+                const newChat = data?.newChat;
+                const chatID = newChat._id;
+                document.location.replace(`/chat/${chatID}`);
+                return newChat;
+            }
 
         } catch (e) {
             console.log(e);
             console.log(chatErr);
         }
-
     };
 
     const { loading, data } = useQuery(QUERY_USER, {
@@ -73,21 +79,5 @@ export default function FriendProfilePage() {
                 </section>
             </main>
         )
-    }
-
-    // return (
-    //     <main>
-    //         <FriendHeader userID={userID} />
-    //         <section>
-    //             <div>{user.photo}</div>
-    //             <div>{user.fullName}</div>
-    //             <div>{user.bio}</div>
-    //             <button onClick={() => handleAddFriend(user._id)}>+</button>
-    //             <button onClick={() => handleNewChat(user._id)}>Start Chat</button>
-    //             {user.interests.map((interest, index) => (
-    //                 <div key={index}>{interest}</div>
-    //             ))}
-    //         </section>
-    //     </main>
-    // )
+    };
 }
