@@ -14,11 +14,11 @@ export default function FriendProfilePage() {
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
-    const handleAddFriend = async (userID) => {
+    const handleAddFriend = async (user2ID) => {
 
         try {
             await addFriend({
-                variables: { friend: userID }
+                variables: { friend: user2ID }
             })
         } catch (e) {
             console.log(e);
@@ -37,7 +37,7 @@ export default function FriendProfilePage() {
 
     const exists = existsData?.chatExists;
 
-    const handleNewChat = async (userID) => {
+    const handleNewChat = async (user2ID) => {
         try {
 
             if (exists) {
@@ -46,7 +46,7 @@ export default function FriendProfilePage() {
                 return exists;
             } else {
                 const { data } = await addChat({
-                    variables: { user2: userID }
+                    variables: { user2: user2ID }
                 })
                 // const newChat = data?.newChat;
                 // const chatID = newChat._id;
@@ -67,32 +67,58 @@ export default function FriendProfilePage() {
         variables: { id: userID }
     });
 
-    if (loading && Auth.loggedIn()) {
-        return (
-            <div>Loading User Profile...</div>
-        )
-    } else if (userData && Auth.loggedIn) {
-        const user = userData?.user;
+    const user = userData?.user;
 
-        return (
-            <main>
-                <FriendHeader userID={userID} />
-                <section>
-                    <div>{user.photo}</div>
-                    <div>{user.fullName}</div>
-                    <div>{user.bio}</div>
-                    <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
-                        <img src="../src/assets/plus.png" id="editImg" />
-                    </button>
-                    <button onClick={() => handleNewChat(user._id)}>Start Chat</button>
-                    {user.interests.map((interest, index) => (
-                        <div key={index}>{interest}</div>
-                    ))}
-                </section>
-                <Logout />
-            </main>
-        )
-    } else {
-        document.location.replace('/');
-    };
+    return (
+        <main>
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                <>
+                   <FriendHeader userID={userID} />
+                    <section>
+                        <div>{user.photo}</div>
+                        <div>{user.fullName}</div>
+                        <div>{user.bio}</div>
+                        <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
+                            <img src="../src/assets/plus.png" id="editImg" />
+                        </button>
+                        <button onClick={() => handleNewChat(user._id)}>Start Chat</button>
+                        {user.interests.map((interest, index) => (
+                            <div key={index}>{interest}</div>
+                        ))}
+                    </section> 
+                </>
+            )}
+            
+        </main>
+    )
+
+    // if (loading) {
+    //     return (
+    //         <div>Loading User Profile...</div>
+    //     )
+    // } else {
+    //     const user = userData?.user;
+
+    //     return (
+    //         <main>
+    //             <FriendHeader userID={userID} />
+    //             <section>
+    //                 <div>{user.photo}</div>
+    //                 <div>{user.fullName}</div>
+    //                 <div>{user.bio}</div>
+    //                 <button onClick={() => handleAddFriend(user._id)}>Add Friend</button>
+    //                 <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
+    //                     <img src="../src/assets/plus.png" id="editImg" />
+    //                 </button>
+    //                 <button onClick={() => handleNewChat(user._id)}>Start Chat</button>
+    //                 {user.interests.map((interest, index) => (
+    //                     <div key={index}>{interest}</div>
+    //                 ))}
+    //             </section>
+    //             <Logout />
+    //         </main>
+    //     )
+    // };
 }

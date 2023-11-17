@@ -10,6 +10,7 @@ export default function AddFriendPage() {
     const users = data?.users || [];
 
     const handleFriendProfilePage = (userID) => {
+        console.log(`/user/${userID}`);
         document.location.replace(`/user/${userID}`)
     }
 
@@ -27,9 +28,7 @@ export default function AddFriendPage() {
                                 <section key={user._id}>
                                     <div>{user.photo}</div>
                                     <div>{user.username}</div>
-                                    <button id="add-friend" onClick={() => handleFriendProfilePage(user._id)}>
-                                        <img src="../src/assets/plus.png" id="editImg" />
-                                    </button>
+                                    <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
                                 </section>
                             ) : null))}
                         </div>
@@ -39,5 +38,5 @@ export default function AddFriendPage() {
         )
     } else {
         document.location.replace('/');
-    };
+    }
 }
