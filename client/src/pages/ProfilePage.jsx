@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export default function ProfilePage() {
@@ -7,7 +6,7 @@ export default function ProfilePage() {
     return (
         
       <div>
-        <div className="textion">
+        <div>
             <div>
                 <div id ="username">
                     <h3>@catGod</h3>
@@ -25,8 +24,8 @@ export default function ProfilePage() {
                     <button id="add-friend"><img src="../src/assets/plus.png" id="editImg"/></button>
                     <button id="edit"><img src="../src/assets/pencil.png" id="editImg"/></button>
                 </div>
-                <div class="container" id="interests">
-                    <button class="interest">cats</button> <button class="interest">food</button> <button class="interest">photography</button>
+                <div className="container" id="interests">
+                    <button className="interest" id="interest1">cats</button> <button className="interest" id="interest2">food</button> <button className="interest" id="interest3">photography</button>
                 </div>
 
             </div>    

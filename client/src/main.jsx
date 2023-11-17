@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       //   element: <ChatPage />,
       // },
       {
-        path: 'user',
+        path: 'users',
         element: <AddFriendPage />,
       },
       {

@@ -8,8 +8,6 @@ import SendBox from '../components/SendBox';
 import { socket } from 'socket';
 import { ConnectionState } from './components/ConnectionState';
 import { ConnectionManager } from './components/ConnectionManager';
-import { ConvoBox } from '../components/ConvoBox';
-import { SendBox } from '../components/SendBox';
 
 export default function ChatPage() {
     const [isConnected, setIsConnected] = useState(socket.connected);
