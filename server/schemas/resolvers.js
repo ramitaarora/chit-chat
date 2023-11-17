@@ -7,7 +7,7 @@ const resolvers = {
             return User.find();
         },
         user: async (parent, { _id }) => {
-            return User.findOne({ _id });
+            return User.findOne({ _id }).populate('friends');
         },
         chat: async (parent, { _id }) => {
             return Chat.findOne({ _id });

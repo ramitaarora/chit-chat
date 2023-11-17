@@ -1,29 +1,16 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
-import { useMutation } from '@apollo/client';
-import { ADD_FRIEND } from '../utils/mutations';
 import Header from '../components/Header';
 
 export default function AddFriendPage() {
-
-    const [addFriend, { error }] = useMutation(ADD_FRIEND);
 
     const { loading, data } = useQuery(QUERY_USERS);
 
     const users = data?.users || [];
 
-    const handleAddFriend = async (userID) => {
-        
-        try {
-            await addFriend({
-                variables: { friend: userID }
-            })
-        } catch (e) {
-            console.log(e);
-            console.log(error);
-        }
-
-    };
+    const handleFriendProfilePage = (userID) => {
+        document.location.replace(`/user/${userID}`)
+    }
 
     return (
         <main>
@@ -38,7 +25,7 @@ export default function AddFriendPage() {
                             <section key={user._id}>
                                 <div>{user.photo}</div>
                                 <div>{user.username}</div>
-                                <button onClick={() => handleAddFriend(user._id)}>+</button>
+                                <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
                             </section>
                         ))}
                     </div>

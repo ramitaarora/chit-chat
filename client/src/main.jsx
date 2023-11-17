@@ -9,7 +9,7 @@ import LandingPage from './pages/LandingPage';
 import ErrorPage from './pages/ErrorPage';
 import FriendProfilePage from './pages/FriendProfilePage.jsx';
 import DashboardPage from './pages/DashBoardPage.jsx';
-import ChatPage from './pages/ChatPage.jsx';
+// import ChatPage from './pages/ChatPage.jsx';
 import AddFriendPage from './pages/AddFriendPage';
 import ProfilePage from './pages/ProfilePage.jsx';
 import EditProfile from './pages/EditProfile.jsx';
@@ -32,12 +32,12 @@ const router = createBrowserRouter([
         path: 'user/:userID',
         element: <FriendProfilePage />,
       },
+      // {
+      //   path: 'chat/:chatID',
+      //   element: <ChatPage />,
+      // },
       {
-        path: 'chat/:chatID',
-        element: <ChatPage />,
-      },
-      {
-        path: 'user',
+        path: 'users',
         element: <AddFriendPage />,
       },
       {
