@@ -5,9 +5,9 @@ import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 
-import { socket } from './socket';
-import { ConnectionState } from './components/ConnectionState';
-import { ConnectionManager } from './components/ConnectionManager';
+import { socket } from 'socket.io-client';
+import { ConnectionState } from '../components/ConnectionState';
+import { ConnectionManager } from '../components/ConnectionManager';
 
 export default function ChatPage() {
     const [isConnected, setIsConnected] = useState(socket.connected);
