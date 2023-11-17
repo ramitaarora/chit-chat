@@ -32,6 +32,7 @@ const typeDefs = `
         users: [User]
         user(_id: ID!): User
         chat(_id: ID!): Chat
+        chatExists(user1: ID!, user2: ID!): Chat
         me: User
     }
 
