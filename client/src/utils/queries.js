@@ -34,14 +34,11 @@ export const QUERY_USER = gql`
 export const QUERY_ME = gql`
   query me {
     me {
-      _id
-      bio
-      email
-      fullName
-      interests
-      photo
       username
-      friends
+      fullName
+      photo
+      bio
+      interests
     }
   }
 `

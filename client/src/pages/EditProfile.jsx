@@ -4,10 +4,11 @@ import { EDIT_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 
-export default function EditProfile({ handleSignup }) {
+export default function EditProfile() {
 
-    const [formState, setFormState] = useState({ username: {}, name: {}, photo: {}, bio: {}, interests: {}} );
+    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '', interests: ''} );
 
+    const [editUser, { error }] = useMutation(EDIT_USER);
 
     const setTheme = (event) => {
         const {id} = event.target;
@@ -63,10 +64,7 @@ export default function EditProfile({ handleSignup }) {
             localStorage.setItem("btnColor", "#FF66C4");
             localStorage.setItem("headerImg", "../src/assets/chitchatheader-white.png");
         }
-        
-
-        
-    }
+    };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -80,21 +78,20 @@ export default function EditProfile({ handleSignup }) {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
-            const { data } = await login({
-                variables: { ...formState },
-            });
-
-            Auth.login(data.login.token);
-        } catch (err) {
-            console.error(err);
+            await editUser({
+                variables: { ...formState}
+            })
+        } catch (e) {
+            console.error(e);
+            console.log(error);
         }
 
         setFormState({
-            username: {}, 
-            name: {}, 
-            profilePicture: {}, 
-            bio: {}, 
-            interest: {}
+            username: '', 
+            name: '', 
+            photo: '', 
+            bio: '', 
+            interest: '',
         });
     };
 
@@ -128,19 +125,18 @@ export default function EditProfile({ handleSignup }) {
                                 />
                             </div>
                         </div>
-                        <div>
+                        {/* <div>
                             <label>Change Your Profile Pic</label>
                             <div>
                                 <input
                                     placeholder="profilePic"
-                                    name="profilepicture"
+                                    name="photo"
                                     type="image"
                                     value={formState.photo}
                                     onChange={handleChange}
                                 />
                             </div>
-
-                        </div>
+                        </div> */}
                         <div>
                             <label>Change Your Bio</label>
                             <div>
@@ -154,7 +150,7 @@ export default function EditProfile({ handleSignup }) {
                             </div>
 
                         </div>
-                        <div>
+                        {/* <div>
                             <label>Change Your Interests</label>
                             <div>
                                 <input
@@ -183,7 +179,7 @@ export default function EditProfile({ handleSignup }) {
                                     onChange={handleChange}
                                 />
                             </div>
-                        </div>
+                        </div> */}
                         <div>
                             <button id="save" type="submit"> Save Changes</button>
                         </div>

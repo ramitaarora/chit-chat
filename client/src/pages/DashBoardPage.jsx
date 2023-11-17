@@ -1,9 +1,4 @@
 import '../styles/dashboard.css';
-import '/profile-bubble.png';
-import '/profile-2.png';
-import '/profile-3.png';
-import '/profile-4.png';
-import '/chitchatlogo.png';
 import Floatingbutton from '../components/Floatingbuttons.jsx';
 import { useQuery } from '@apollo/client';
 import { QUERY_FRIENDS } from '../utils/queries.js';
