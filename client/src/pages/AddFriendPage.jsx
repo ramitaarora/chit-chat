@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
+import Auth from '../utils/auth';
 import Header from '../components/Header';
 
 export default function AddFriendPage() {
@@ -21,13 +22,13 @@ export default function AddFriendPage() {
                     <div>Loading Users...</div>
                 ) : (
                     <div>
-                        {users.map((user) => (
+                        {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
                             <section key={user._id}>
                                 <div>{user.photo}</div>
                                 <div>{user.username}</div>
                                 <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
                             </section>
-                        ))}
+                        ) : null))}
                     </div>
                 )}
             </div>
