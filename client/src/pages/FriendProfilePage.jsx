@@ -90,5 +90,7 @@ export default function FriendProfilePage() {
                 <Logout />
             </main>
         )
+    } else {
+        document.location.replace('/');
     };
 }

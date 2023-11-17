@@ -13,25 +13,29 @@ export default function AddFriendPage() {
         document.location.replace(`/user/${userID}`)
     }
 
-    return (
-        <main>
-            <Header />
-            <div>Add Friends</div>
-            <div>
-                {loading ? (
-                    <div>Loading Users...</div>
-                ) : (
-                    <div>
-                        {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
-                            <section key={user._id}>
-                                <div>{user.photo}</div>
-                                <div>{user.username}</div>
-                                <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
-                            </section>
-                        ) : null))}
-                    </div>
-                )}
-            </div>
-        </main>
-    )
+    if (Auth.loggedIn()) {
+        return (
+            <main>
+                <Header />
+                <div>Add Friends</div>
+                <div>
+                    {loading ? (
+                        <div>Loading Users...</div>
+                    ) : (
+                        <div>
+                            {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
+                                <section key={user._id}>
+                                    <div>{user.photo}</div>
+                                    <div>{user.username}</div>
+                                    <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
+                                </section>
+                            ) : null))}
+                        </div>
+                    )}
+                </div>
+            </main>
+        )
+    } else {
+        document.location.replace('/');
+    };
 }
