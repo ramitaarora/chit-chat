@@ -9,7 +9,9 @@ export default function ProfilePage() {
 
     const myData = data?.me;
 
-    console.log(myData);
+    const handleEditProfile = () => {
+        document.location.replace('/edit-profile');
+    }
 
     if (loading) {
         return (
@@ -34,11 +36,11 @@ export default function ProfilePage() {
                         </div>
                         <div>
                             <button id="add-friend"><img src="../src/assets/plus.png" id="editImg" /></button>
-                            <button id="edit"><img src="../src/assets/pencil.png" id="editImg" /></button>
+                            <button id="edit" onClick={handleEditProfile}><img src="../src/assets/pencil.png" id="editImg" /></button>
                         </div>
                         <div className="container" id="interests">
-                            {myData.interests.map((interest) => (
-                                <button className="interest" id="interest1">{interest}</button>
+                            {myData.interests.map((interest, index) => (
+                                <button key={index} className="interest" id="interest1">{interest}</button>
                             ))}
                         </div>
                     </div>
