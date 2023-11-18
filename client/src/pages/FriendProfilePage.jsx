@@ -69,10 +69,11 @@ export default function FriendProfilePage() {
         return (
             <div>Loading User Profile...</div>
         )
-    } else {
-        const user = userData?.user;
+    } else if (userData && chatData) {
 
+        const user = userData?.user;
         const ifExists = chatData?.chatExists;
+        console.log(ifExists);
 
         return (
             <main>

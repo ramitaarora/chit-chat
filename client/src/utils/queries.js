@@ -55,36 +55,36 @@ export const QUERY_FRIENDS = gql`
 `
 
 export const QUERY_CHAT = gql`
-query chat($id: ID!) {
-  chat(_id: $id) {
-    text {
-      sender
-      textContent
-    }
-    user1 {
-      _id
-    }
-    user2 {
-      _id
+  query chat($id: ID!) {
+    chat(_id: $id) {
+      text {
+        sender
+        textContent
+      }
+      user1 {
+        _id
+      }
+      user2 {
+        _id
+      }
     }
   }
-}
 `
 
 export const CHAT_EXISTS = gql`
-query chatExists($user2: ID!) {
-  chatExists(user2: $user2) {
-    _id
-    text {
-      sender
-      textContent
-    }
-    user1 {
+  query ChatExists($user2: ID!) {
+    chatExists(user2: $user2) {
       _id
-    }
-    user2 {
-      _id
+      user1 {
+        _id
+      }
+      user2 {
+        _id
+      }
+      text {
+        sender
+        textContent
+      }
     }
   }
-}
 `
