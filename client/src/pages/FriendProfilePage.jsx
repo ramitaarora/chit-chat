@@ -10,10 +10,6 @@ export default function FriendProfilePage() {
 
     const { userID } = useParams();
 
-    // const [updatePage, setUpdatePage] = useState(false);
-
-    // useEffect(() => console.log('updating page'), [updatePage]);
-
     // Add Friend Handler
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
@@ -80,8 +76,6 @@ export default function FriendProfilePage() {
 
         const user = userData?.user;
         const ifExists = chatData?.chatExists;
-        console.log(chatData, ifExists);
-        // Once chat is created, need to query for chatExists again
 
         return (
             <main>
