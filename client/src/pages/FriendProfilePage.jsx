@@ -72,7 +72,6 @@ export default function FriendProfilePage() {
         const user = userData?.user;
 
         const ifExists = chatData?.chatExists;
-        console.log(ifExists);
 
         return (
             <main>
