@@ -23,7 +23,7 @@ export default function UsersListPage() {
                             <section key={user._id}>
                                 <div>{user.photo}</div>
                                 <div>{user.username}</div>
-                                <Link to={`/user/${user._id}`}>+</Link>
+                                <Link to={`/user/${user._id}`}>Go to profile button</Link>
                             </section>
                         ) : null))}
                     </div>

@@ -86,7 +86,7 @@ export default function FriendProfilePage() {
                     <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
                         <img src="../src/assets/plus.png" id="editImg" />
                     </button>
-                    <button onClick={() => handleNewChat(user._id, ifExists)}>Start Chat</button>
+                    <button onClick={() => handleNewChat(user._id, ifExists)}>Start Chat Button</button>
                     {user.interests.map((interest, index) => (
                         <div key={index}>{interest}</div>
                     ))}
