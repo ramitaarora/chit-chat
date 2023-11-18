@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 export default function ProfilePage() {
@@ -8,10 +9,6 @@ export default function ProfilePage() {
     const { data, loading } = useQuery(QUERY_ME);
 
     const myData = data?.me;
-
-    const handleEditProfile = () => {
-        document.location.replace('/edit-profile');
-    }
 
     if (loading) {
         return (
@@ -39,11 +36,11 @@ export default function ProfilePage() {
                                 <button key={index} className="interest" id="interest1">{interest}</button>
                             ))}
                         </div>
-                        <div>
-                            <button id="edit" onClick={handleEditProfile}>
+                        <Link to="/profile/edit">
+                            <button id="edit">
                                 <img src="../src/assets/pencil.png" id="editImg" />
                             </button>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>

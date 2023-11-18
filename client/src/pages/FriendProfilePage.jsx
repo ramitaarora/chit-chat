@@ -80,7 +80,6 @@ export default function FriendProfilePage() {
                     <div>{user.photo}</div>
                     <div>{user.fullName}</div>
                     <div>{user.bio}</div>
-                    {/* <button onClick={() => handleAddFriend(user._id)}>Add Friend</button> */}
                     <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
                         <img src="../src/assets/plus.png" id="editImg" />
                     </button>
