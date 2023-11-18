@@ -94,7 +94,7 @@ const resolvers = {
                 const user2 = await User.findOneAndUpdate(
                     { _id: args.friend },
                     {
-                        $push: {
+                        $addToSet: {
                             friends: context.user._id
                         },
                     },
