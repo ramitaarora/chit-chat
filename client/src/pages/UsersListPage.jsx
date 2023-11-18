@@ -3,7 +3,7 @@ import { QUERY_USERS } from '../utils/queries';
 import Auth from '../utils/auth';
 import Header from '../components/Header';
 
-export default function AddFriendPage() {
+export default function UsersListPage() {
 
     const { loading, data } = useQuery(QUERY_USERS);
 

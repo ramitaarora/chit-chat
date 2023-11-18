@@ -34,15 +34,15 @@ export default function ProfilePage() {
                         <div id="bio">
                             <p>{myData. bio}</p>
                         </div>
-                        <div>
-                            <button id="edit" onClick={handleEditProfile}>
-                                <img src="../src/assets/pencil.png" id="editImg" />
-                            </button>
-                        </div>
                         <div className="container" id="interests">
                             {myData.interests.map((interest, index) => (
                                 <button key={index} className="interest" id="interest1">{interest}</button>
                             ))}
+                        </div>
+                        <div>
+                            <button id="edit" onClick={handleEditProfile}>
+                                <img src="../src/assets/pencil.png" id="editImg" />
+                            </button>
                         </div>
                     </div>
                 </div>
