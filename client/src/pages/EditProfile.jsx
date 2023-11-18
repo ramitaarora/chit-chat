@@ -95,124 +95,241 @@ export default function EditProfile() {
         });
     };
 
-    if (Auth.loggedIn()) {
-        return (
-            <div>
-                <h2>EDIT PROFILE</h2>
-                <div className="form-container">
-                    <form onSubmit={handleFormSubmit}>
+    return (
+        <div>
+            <h2>EDIT PROFILE</h2>
+            <div className="form-container">
+                <form onSubmit={handleFormSubmit}>
+                    <div>
+                        <label>Change Your Username</label>
                         <div>
-                            <label>Change Your Username</label>
-                            <div>
-                                <input
-                                    placeholder="Username"
-                                    name="username"
-                                    type="text"
-                                    value={formState.username}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <input
+                                placeholder="Username"
+                                name="username"
+                                type="text"
+                                value={formState.username}
+                                onChange={handleChange}
+                            />
                         </div>
+                    </div>
+                    <div>
+                        <label>Change Your Name</label>
                         <div>
-                            <label>Change Your Name</label>
-                            <div>
-                                <input
-                                    placeholder="name"
-                                    name="name"
-                                    type="text"
-                                    value={formState.fullName}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <input
+                                placeholder="name"
+                                name="name"
+                                type="text"
+                                value={formState.fullName}
+                                onChange={handleChange}
+                            />
                         </div>
-                        {/* <div>
-                            <label>Change Your Profile Pic</label>
-                            <div>
-                                <input
-                                    placeholder="profilePic"
-                                    name="photo"
-                                    type="image"
-                                    value={formState.photo}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div> */}
+                    </div>
+                    {/* <div>
+                        <label>Change Your Profile Pic</label>
                         <div>
-                            <label>Change Your Bio</label>
-                            <div>
-                                <input
-                                    placeholder="bio"
-                                    name="bio"
-                                    type="text"
-                                    value={formState.bio}
-                                    onChange={handleChange}
-                                />
-                            </div>
-
+                            <input
+                                placeholder="profilePic"
+                                name="photo"
+                                type="image"
+                                value={formState.photo}
+                                onChange={handleChange}
+                            />
                         </div>
-                        {/* <div>
-                            <label>Change Your Interests</label>
-                            <div>
-                                <input
-                                    placeholder="interest"
-                                    name="interest1"
-                                    type="text"
-                                    value={formState.interests}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div>
-                                <input
-                                    placeholder="interest"
-                                    name="interest2"
-                                    type="text"
-                                    value={formState.interests}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div>
-                                <input
-                                    placeholder="interest"
-                                    name="interest3"
-                                    type="text"
-                                    value={formState.interests}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div> */}
+                    </div> */}
+                    <div>
+                        <label>Change Your Bio</label>
                         <div>
-                            <button id="save" type="submit"> Save Changes</button>
+                            <input
+                                placeholder="bio"
+                                name="bio"
+                                type="text"
+                                value={formState.bio}
+                                onChange={handleChange}
+                            />
                         </div>
 
-                    </form>
-                </div>
-                <h2>THEMES</h2>
-                <div className="theme-container">
+                    </div>
+                    {/* <div>
+                        <label>Change Your Interests</label>
+                        <div>
+                            <input
+                                placeholder="interest"
+                                name="interest1"
+                                type="text"
+                                value={formState.interests}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                placeholder="interest"
+                                name="interest2"
+                                type="text"
+                                value={formState.interests}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                placeholder="interest"
+                                name="interest3"
+                                type="text"
+                                value={formState.interests}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </div> */}
+                    <div>
+                        <button id="save" type="submit"> Save Changes</button>
+                    </div>
 
-                    <div className="themes">
-                        <div>
-                            <button className="theme" id="night" onClick={setTheme}>
-                                night mode
-                            </button>
-                        </div>
-                        <div>
-                            <button className="theme" id="day" onClick={setTheme}>
-                                day mode
-                            </button>
-                        </div>
-                        <div>
-                            <button className="theme" id="dawn" onClick={setTheme}>
-                                dawn mode
-                            </button>
-                        </div>
+                </form>
+            </div>
+            <h2>THEMES</h2>
+            <div className="theme-container">
 
+                <div className="themes">
+                    <div>
+                        <button className="theme" id="night" onClick={setTheme}>
+                            night mode
+                        </button>
+                    </div>
+                    <div>
+                        <button className="theme" id="day" onClick={setTheme}>
+                            day mode
+                        </button>
+                    </div>
+                    <div>
+                        <button className="theme" id="dawn" onClick={setTheme}>
+                            dawn mode
+                        </button>
                     </div>
 
                 </div>
 
             </div>
-        )
-    } else {
-        document.location.replace('/');
-    };
+
+        </div>
+    )
+
+    // if (Auth.loggedIn()) {
+    //     return (
+    //         <div>
+    //             <h2>EDIT PROFILE</h2>
+    //             <div className="form-container">
+    //                 <form onSubmit={handleFormSubmit}>
+    //                     <div>
+    //                         <label>Change Your Username</label>
+    //                         <div>
+    //                             <input
+    //                                 placeholder="Username"
+    //                                 name="username"
+    //                                 type="text"
+    //                                 value={formState.username}
+    //                                 onChange={handleChange}
+    //                             />
+    //                         </div>
+    //                     </div>
+    //                     <div>
+    //                         <label>Change Your Name</label>
+    //                         <div>
+    //                             <input
+    //                                 placeholder="name"
+    //                                 name="name"
+    //                                 type="text"
+    //                                 value={formState.fullName}
+    //                                 onChange={handleChange}
+    //                             />
+    //                         </div>
+    //                     </div>
+    //                     {/* <div>
+    //                         <label>Change Your Profile Pic</label>
+    //                         <div>
+    //                             <input
+    //                                 placeholder="profilePic"
+    //                                 name="photo"
+    //                                 type="image"
+    //                                 value={formState.photo}
+    //                                 onChange={handleChange}
+    //                             />
+    //                         </div>
+    //                     </div> */}
+    //                     <div>
+    //                         <label>Change Your Bio</label>
+    //                         <div>
+    //                             <input
+    //                                 placeholder="bio"
+    //                                 name="bio"
+    //                                 type="text"
+    //                                 value={formState.bio}
+    //                                 onChange={handleChange}
+    //                             />
+    //                         </div>
+
+    //                     </div>
+    //                     {/* <div>
+    //                         <label>Change Your Interests</label>
+    //                         <div>
+    //                             <input
+    //                                 placeholder="interest"
+    //                                 name="interest1"
+    //                                 type="text"
+    //                                 value={formState.interests}
+    //                                 onChange={handleChange}
+    //                             />
+    //                         </div>
+    //                         <div>
+    //                             <input
+    //                                 placeholder="interest"
+    //                                 name="interest2"
+    //                                 type="text"
+    //                                 value={formState.interests}
+    //                                 onChange={handleChange}
+    //                             />
+    //                         </div>
+    //                         <div>
+    //                             <input
+    //                                 placeholder="interest"
+    //                                 name="interest3"
+    //                                 type="text"
+    //                                 value={formState.interests}
+    //                                 onChange={handleChange}
+    //                             />
+    //                         </div>
+    //                     </div> */}
+    //                     <div>
+    //                         <button id="save" type="submit"> Save Changes</button>
+    //                     </div>
+
+    //                 </form>
+    //             </div>
+    //             <h2>THEMES</h2>
+    //             <div className="theme-container">
+
+    //                 <div className="themes">
+    //                     <div>
+    //                         <button className="theme" id="night" onClick={setTheme}>
+    //                             night mode
+    //                         </button>
+    //                     </div>
+    //                     <div>
+    //                         <button className="theme" id="day" onClick={setTheme}>
+    //                             day mode
+    //                         </button>
+    //                     </div>
+    //                     <div>
+    //                         <button className="theme" id="dawn" onClick={setTheme}>
+    //                             dawn mode
+    //                         </button>
+    //                     </div>
+
+    //                 </div>
+
+    //             </div>
+
+    //         </div>
+    //     )
+    // } else {
+    //     document.location.replace('/');
+    // };
 }
