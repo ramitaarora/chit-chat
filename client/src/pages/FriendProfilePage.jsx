@@ -14,7 +14,7 @@ export default function FriendProfilePage() {
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
     const handleAddFriend = async (ID) => {
-
+        console.log('adding friend');
         try {
             await addFriend({
                 variables: { friend: ID }
