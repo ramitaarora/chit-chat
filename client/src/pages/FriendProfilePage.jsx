@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
@@ -20,7 +19,7 @@ export default function FriendProfilePage() {
             await addFriend({
                 variables: { friend: ID }
             })
-            alert('Added!');
+            alert('Added a new friend!');
         } catch (e) {
             console.log(e);
             console.log(friendErr);

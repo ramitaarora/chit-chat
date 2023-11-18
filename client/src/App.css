@@ -1741,3 +1741,10 @@ label form [type='radio'] {
 #header-img{
   height: 150px;
 }
+
+.usersListPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}

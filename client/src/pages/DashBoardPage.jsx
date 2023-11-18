@@ -15,7 +15,7 @@ function Dashboard() {
     // const { loading: chatLoading, data: chatData } = useQuery(CHAT_EXISTS);
 
     return (
-        <div>
+        <main>
             <section className="header">
                 <h1> <img src="/chitchatlogo.png"></img> Chit Chat <img src="/chitchatlogo.png"></img></h1>
                 <h2>Chats</h2>
@@ -44,9 +44,10 @@ function Dashboard() {
                         }
                     </>
                 )}
+                <Link to="/users">Search for friends!</Link>
             </section>
             <Floatingbutton />
-        </div>
+        </main>
     )
 }
 

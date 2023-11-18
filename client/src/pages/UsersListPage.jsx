@@ -11,9 +11,9 @@ export default function UsersListPage() {
     const users = data?.users || [];
 
     return (
-        <main>
+        <main className="usersListPage">
             <Header />
-            <div>Add Friends</div>
+            <h2>Users:</h2>
             <div>
                 {loading ? (
                     <div>Loading Users...</div>
