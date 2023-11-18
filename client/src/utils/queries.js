@@ -43,6 +43,7 @@ export const QUERY_FRIENDS = gql`
     me {
       username
       friends {
+        _id
         username
         photo
         bio
