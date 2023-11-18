@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
+import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import Header from '../components/Header';
 
@@ -8,11 +9,6 @@ export default function UsersListPage() {
     const { loading, data } = useQuery(QUERY_USERS);
 
     const users = data?.users || [];
-
-    const handleFriendProfilePage = (userID) => {
-        console.log(`/user/${userID}`);
-        document.location.replace(`/user/${userID}`)
-    };
 
     return (
         <main>
@@ -27,7 +23,7 @@ export default function UsersListPage() {
                             <section key={user._id}>
                                 <div>{user.photo}</div>
                                 <div>{user.username}</div>
-                                <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
+                                <Link to={`/user/${user._id}`}>+</Link>
                             </section>
                         ) : null))}
                     </div>

@@ -19,6 +19,7 @@ export default function FriendProfilePage() {
             await addFriend({
                 variables: { friend: ID }
             })
+            alert('Added!');
         } catch (e) {
             console.log(e);
             console.log(friendErr);
