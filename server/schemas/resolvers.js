@@ -78,13 +78,13 @@ const resolvers = {
                 )
             }
         },
-        addFriend: async (parent, { friend }, context) => {
+        addFriend: async (parent, args, context) => {
             if (context.user) {
                 const user1 = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     {
                         $addToSet: {
-                            friends: friend
+                            friends: args.friend
                         },
                     },
                     { new: true, runValidators: true }
