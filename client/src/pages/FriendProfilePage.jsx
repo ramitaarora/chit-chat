@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
@@ -8,6 +9,10 @@ import Auth from '../utils/auth';
 export default function FriendProfilePage() {
 
     const { userID } = useParams();
+
+    // const [updatePage, setUpdatePage] = useState(false);
+
+    // useEffect(() => console.log('updating page'), [updatePage]);
 
     // Add Friend Handler
 
@@ -31,7 +36,7 @@ export default function FriendProfilePage() {
 
     const [addChat, { chatErr }] = useMutation(NEW_CHAT);
 
-    const { loading: chatLoading, data: chatData } = useQuery(CHAT_EXISTS, {
+    const { loading: chatLoading, data: chatData, refetch } = useQuery(CHAT_EXISTS, {
         variables: { user2: userID }
     });
 
@@ -50,6 +55,8 @@ export default function FriendProfilePage() {
                 // const chatID = newChat._id;
                 // document.location.replace(`/chat/${chatID}`);
                 // return newChat;
+                console.log('new chat created');
+                refetch();
                 return data;
             }
 
@@ -73,7 +80,8 @@ export default function FriendProfilePage() {
 
         const user = userData?.user;
         const ifExists = chatData?.chatExists;
-        console.log(ifExists);
+        console.log(chatData, ifExists);
+        // Once chat is created, need to query for chatExists again
 
         return (
             <main>
