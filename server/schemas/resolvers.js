@@ -14,6 +14,7 @@ const resolvers = {
         },
         chatExists: async (parent, { user2 }, context) => {
             const user1 = context.user._id;
+            console.log(user1);
 
             return Chat.findOne({ $or: [
                 { user1, user2 },
