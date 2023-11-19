@@ -44,7 +44,7 @@ function Dashboard() {
                         }
                     </>
                 )}
-                <Link to="/users">Search for friends!</Link>
+                <Link to="/users">Find other users!</Link>
             </section>
             <Floatingbutton />
         </main>
