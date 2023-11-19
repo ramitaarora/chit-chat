@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Auth from '../utils/auth';
+import Floatingbutton from '../components/Floatingbuttons.jsx';
 
 export default function ProfilePage() {
     const [section, setSection] = useState(false)
     console.log(section);
 
-    if (Auth.loggedIn()) {
+    // if (Auth.loggedIn()) {
         return (
             <div>
                 <div>
@@ -31,9 +32,10 @@ export default function ProfilePage() {
                         </div>
                     </div>
                 </div>
+                <Floatingbutton />
             </div>
         );
-    } else {
-        document.location.replace('/');
+    // } else {
+        // document.location.replace('/');
     }
-}
+// }
