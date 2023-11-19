@@ -1,10 +1,10 @@
-import { useState } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import { useMutation } from "@apollo/client";
 import { SAVE_MESSAGE } from '../utils/mutations';
 import { socket } from '../socket';
 import Auth from '../utils/auth';
 
-export default function SendBox(chatID) {
+export default function SendBox({ chatID, fooEvents, setFooEvents }) {
     const [isLoading, setIsLoading] = useState(false);
     const [saveMessage] = useMutation(SAVE_MESSAGE);
 
@@ -18,24 +18,24 @@ export default function SendBox(chatID) {
             return false;
         }
 
-        console.log(token)
-
         const input = document.getElementById('messageInput');
         const message = input.value.trim();
 
         if (message !== '') {
             socket.emit('chat message', { user: Auth.getProfile().data.username, message });
-            console.log(message)
             try {
                 const { data } = await saveMessage({
                     variables: {
-                        id: chatID.chatID,
+                        id: chatID,
                         sender: Auth.getProfile().data._id,
                         textContent: message,
                     }
                 })
-                
-                console.log(data)
+                console.log(data);
+                setFooEvents(previous => [...previous, {
+                    sender: Auth.getProfile().data._id,
+                    textContent: message,
+                }]);
                 input.value = '';
                 setIsLoading(false);
 

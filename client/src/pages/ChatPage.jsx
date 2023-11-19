@@ -38,7 +38,6 @@ export default function ChatPage() {
         };
     }, []);
 
-
     const { chatID } = useParams();
 
     const { loading, data } = useQuery(QUERY_CHAT, {
@@ -55,9 +54,9 @@ export default function ChatPage() {
             <main>
                 <ConnectionState isConnected={ isConnected } />
                 <FriendHeader userID={userID} />
-                <ConvoBox chat={selectedChat}/>
+                <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents}/>
                 <ConnectionManager />
-                <SendBox chatID={chatID}/>
+                <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents}/>
             </main>
         )     
     }
