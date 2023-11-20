@@ -29,8 +29,6 @@ function Dashboard() {
                                     <section className="profile-picture">
                                         <img src={friend.photo} alt="user-one"></img>
                                     </section>
-                                </Link>
-                                <Link to={`/getchat/${friend._id}`}>
                                     <section className="message-preview">
                                         <h3>{friend.username}</h3>
                                         <p>So about coding...</p>

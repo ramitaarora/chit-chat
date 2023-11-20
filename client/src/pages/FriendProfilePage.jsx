@@ -39,17 +39,16 @@ export default function FriendProfilePage() {
         try {
             if (ifExists) {
                 console.log('found exists');
-                // const chatID = exists._id;
-                // document.location.replace(`/chat/${chatID}`);
+                console.log(chatData.chatExists._id)
+                const chatID = chatData.chatExists._id;
+                document.location.replace(`/chat/${chatID}`);
                 return ifExists;
             } else {
                 const { data } = await addChat({
                     variables: { user2: ID }
                 })
-                // const newChat = data?.newChat;
-                // const chatID = newChat._id;
-                // document.location.replace(`/chat/${chatID}`);
-                // return newChat;
+                const newChatID = data?.newChat._id;
+                document.location.replace(`/chat/${newChatID}`);
                 console.log('new chat created');
                 refetch();
                 return data;
