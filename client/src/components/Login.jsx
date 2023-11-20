@@ -40,7 +40,7 @@ export default function Login({ handleSignup }) {
     };
 
     return (
-        <>
+        <div>
             <form onSubmit={handleFormSubmit}>
                 <input
                     placeholder="Username"
@@ -69,6 +69,6 @@ export default function Login({ handleSignup }) {
                     Sign Up Instead
                 </button>
             </form>
-        </>
+        </div>
     )
 }
