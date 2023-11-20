@@ -6,7 +6,6 @@ export default function ConvoBox({ chat, fooEvents, setFooEvents, socket }) {
   // Runs whenever a socket event is recieved from the server
     useEffect(() => {
         socket.on('chat message', (data) => {
-            console.log("data", data);
             setFooEvents((state) => [
                 ...state,
                 {
@@ -18,10 +17,6 @@ export default function ConvoBox({ chat, fooEvents, setFooEvents, socket }) {
         // Remove event listener on component unmount
         return () => socket.off('chat message');
     }, [socket]);
-
-    useEffect(() => {
-        console.log("fooEvents", fooEvents);
-    }, [fooEvents])
 
     return (
         <section id="convoBox">

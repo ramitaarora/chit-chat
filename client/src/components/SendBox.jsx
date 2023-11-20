@@ -32,11 +32,6 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
                         textContent: message,
                     }
                 })
-                console.log("saving message", data);
-                // setFooEvents(previous => [...previous, {
-                //     sender: Auth.getProfile().data._id,
-                //     textContent: message,
-                // }]);
                 input.value = '';
                 setIsLoading(false);
 
