@@ -19,6 +19,7 @@ export default function Login({ handleSignup }) {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        console.log('logging in');
 
         try {
             const { data } = await login({
@@ -36,12 +37,10 @@ export default function Login({ handleSignup }) {
             username: '',
             password: '',
         });
-
-        document.location.replace('/dashboard');
     };
 
     return (
-        <>
+        <div>
             <form onSubmit={handleFormSubmit}>
                 <input
                     placeholder="Username"
@@ -70,6 +69,6 @@ export default function Login({ handleSignup }) {
                     Sign Up Instead
                 </button>
             </form>
-        </>
+        </div>
     )
 }
