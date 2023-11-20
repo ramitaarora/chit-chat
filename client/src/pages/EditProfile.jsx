@@ -71,22 +71,25 @@ export default function EditProfile() {
 
         // Interest update not working
 
-        // if (name === 'interest1' || name === 'interest2' || name === 'interest3') {
-        //     const interestIndex = parseInt(name.charAt(name.length - 1)) - 1;
-        //     setFormState((prevState) => ({
-        //         ...prevState,
-        //         interests: [
-        //             ...prevState.interests.slice(0, interestIndex),
-        //             value,
-        //             ...prevState.interests.slice(interestIndex + 1),
-        //         ],
-        //     }));
-        // };
+        if (name === 'interest1' || name === 'interest2' || name === 'interest3') {
+            const interestIndex = parseInt(name.charAt(name.length - 1)) - 1;
+            console.log(interestIndex, value);
+            setFormState((prevState) => ({
+                ...prevState,
+                interests: [
+                    ...prevState.interests.slice(0, interestIndex),
+                    value,
+                    ...prevState.interests.slice(interestIndex + 1),
+                ],
+            }));
+        } else {
+            setFormState({
+                ...formState,
+                [name]: value,
+            });
+        }
 
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
+        
     };
 
     const handleFormSubmit = async (event) => {
