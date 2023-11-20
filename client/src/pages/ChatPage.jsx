@@ -6,6 +6,7 @@ import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 import Auth from '../utils/auth';
+import styles from '../styles/chatpage.css'
 
 import { socket } from '../socket'
 import ConnectionState from '../components/ConnectionState';
@@ -63,11 +64,13 @@ export default function ChatPage() {
         if (userID) {
             return (
                 <main>
-                    {/*<ConnectionState isConnected={ isConnected } />*/}
-                    <FriendHeader userID={userID} />
-                    <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket}/>
-                    {/*<ConnectionManager />*/}
-                    <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents}/>
+                    <div id="chat-page">
+                        {/*<ConnectionState isConnected={ isConnected } />*/}
+                        <FriendHeader userID={userID} />
+                        <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
+                        {/*<ConnectionManager />*/}
+                        <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
+                    </div>
                 </main>
             )    
         }         
