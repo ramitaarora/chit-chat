@@ -8,11 +8,14 @@ import Logout from '../components/Logout';
 export default function ProfilePage() {
     if (Auth.loggedIn()) {
       const { data, loading } = useQuery(QUERY_ME);
-      const myData = data?.me;
   
       if (loading) {
         return <div>Loading...</div>;
       } else {
+
+        const myData = data?.me;
+        console.log(myData);
+
         return (
           <div className='centered'>
             <div>
@@ -28,13 +31,6 @@ export default function ProfilePage() {
                 </div>
                 <div id="bio">
                   <p>{myData.bio}</p>
-                </div>
-                <div className="container" id="interests">
-                  {myData.interests.map((interest, index) => (
-                    <button key={index} className="interest" id={`interest${index + 1}`}>
-                      {interest}
-                    </button>
-                  ))}
                 </div>
                 <Link to="/profile/edit">
                   <button id="edit">
