@@ -23,7 +23,7 @@ function Dashboard() {
         return (
             <main className="dashboard-container">
                 <Header />
-                <h2>Chats</h2>
+                <h2>Friends List</h2>
                 <section className="inbox-container">
                     {
                         friends.map((friend) => (

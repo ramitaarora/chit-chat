@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 
 export default function EditProfile() {
 
-    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '', interests: ''} );
+    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '', interests: []} );
 
     const [editUser, { error }] = useMutation(EDIT_USER);
 
@@ -69,6 +69,20 @@ export default function EditProfile() {
     const handleChange = (event) => {
         const { name, value } = event.target;
 
+        // Interest update not working
+
+        // if (name === 'interest1' || name === 'interest2' || name === 'interest3') {
+        //     const interestIndex = parseInt(name.charAt(name.length - 1)) - 1;
+        //     setFormState((prevState) => ({
+        //         ...prevState,
+        //         interests: [
+        //             ...prevState.interests.slice(0, interestIndex),
+        //             value,
+        //             ...prevState.interests.slice(interestIndex + 1),
+        //         ],
+        //     }));
+        // };
+
         setFormState({
             ...formState,
             [name]: value,
@@ -87,7 +101,7 @@ export default function EditProfile() {
                 name: '', 
                 photo: '', 
                 bio: '', 
-                interest: '',
+                interest: [],
             });
             
             await document.location.replace('/profile');
@@ -152,14 +166,14 @@ export default function EditProfile() {
                         </div>
 
                     </div>
-                    {/* <div>
+                    <div>
                         <label>Change Your Interests</label>
                         <div>
                             <input
                                 placeholder="interest"
                                 name="interest1"
                                 type="text"
-                                value={formState.interests}
+                                value={formState.interests[0]}
                                 onChange={handleChange}
                             />
                         </div>
@@ -168,7 +182,7 @@ export default function EditProfile() {
                                 placeholder="interest"
                                 name="interest2"
                                 type="text"
-                                value={formState.interests}
+                                value={formState.interests[1]}
                                 onChange={handleChange}
                             />
                         </div>
@@ -177,13 +191,13 @@ export default function EditProfile() {
                                 placeholder="interest"
                                 name="interest3"
                                 type="text"
-                                value={formState.interests}
+                                value={formState.interests[2]}
                                 onChange={handleChange}
                             />
                         </div>
-                    </div> */}
+                    </div>
                     <div>
-                        <button id="save" type="submit"> Save Changes</button>
+                        <button id="save" type="submit">Save Changes</button>
                     </div>
 
                 </form>
