@@ -6,9 +6,9 @@ import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 import Auth from '../utils/auth';
-import Header from '../components/Header';
+import Floatingbutton from '../components/Floatingbuttons';
 
-import { socket } from '../socket';
+import { socket } from '../socket'
 import ConnectionState from '../components/ConnectionState';
 import ConnectionManager from '../components/ConnectionManager';
 
@@ -56,9 +56,9 @@ export default function ChatPage() {
         let userID;
         
         if (userID1 === Auth.getProfile().data._id) {
-            userID = userID1;
-        } else {
             userID = userID2;
+        } else {
+            userID = userID1;
         }
 
         if (userID) {
@@ -70,6 +70,7 @@ export default function ChatPage() {
                         <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
                         {/*<ConnectionManager />*/}
                         <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
+                        <Floatingbutton />
                     </div>
                 </main>
             )    
