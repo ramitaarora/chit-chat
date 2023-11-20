@@ -9,11 +9,14 @@ import Logout from '../components/Logout';
 export default function ProfilePage() {
     if (Auth.loggedIn()) {
       const { data, loading } = useQuery(QUERY_ME);
-      const myData = data?.me;
   
       if (loading) {
         return <div>Loading...</div>;
       } else {
+
+        const myData = data?.me;
+        console.log(myData);
+
         return (
           <div>
             <div>

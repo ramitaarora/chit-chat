@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 
 export default function EditProfile() {
 
-    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '', interest1: '', interest2: '', interest3: '' });
+    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '', interests: '' });
 
     const imagePaths = [
         '/profile-pics/astronaut.png',
@@ -111,9 +111,7 @@ export default function EditProfile() {
                 name: '',
                 photo: '',
                 bio: '',
-                interest1: '',
-                interest2: '',
-                interest3: '',
+                interests: '',
             });
 
             await document.location.replace('/profile');
@@ -171,27 +169,9 @@ export default function EditProfile() {
                         <div>
                             <input
                                 placeholder="interest"
-                                name="interest1"
+                                name="interests"
                                 type="text"
-                                value={formState.interest1}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                placeholder="interest"
-                                name="interest2"
-                                type="text"
-                                value={formState.interest2}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                placeholder="interest"
-                                name="interest3"
-                                type="text"
-                                value={formState.interest3}
+                                value={formState.interests}
                                 onChange={handleChange}
                             />
                         </div>

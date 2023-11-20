@@ -14,9 +14,11 @@ const resolvers = {
         },
         chatExists: async (parent, { user2 }, context) => {
             const user1 = context.user._id;
+            console.log(user1);
+
             return Chat.findOne({ $or: [
                 { user1, user2 },
-                { user1: user2, user2: user1 },
+                {  user1: user2, user2: user1},
             ] })
         },
         me: async (parent, args, context) => {
@@ -67,9 +69,6 @@ const resolvers = {
                             fullName: args.fullName,
                             bio: args.bio,
                             photo: args.photo,
-                            interest1: args.interest1,
-                            interest2: args.interest2,
-                            interest3: args.interest3,
                         },
                     },
                     { new: true, runValidators: true },
