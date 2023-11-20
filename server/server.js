@@ -63,19 +63,13 @@ io.on('connection', (socket) => {
   socket.on('chat message', (data) => {
     console.log('Received message:', data);
 
-    // Save the message to MongoDB
-    // const message = new Message({ user: data.user, text: data.message });
-    // message.save((err) => {
-    //   if (err) {
-    //     console.error('Error saving message to database:', err);
-    //   } else {
-    //     console.log('Message saved to the database');
-    //   }
-    // });
+  // Broadcast the message to all connected clients
+  io.emit('chat message', data);
+    });
 
-    // Broadcast the message to all connected clients
-    io.emit('chat message', data);
-  });
+  socket.onAny((event, ...args) => {
+    console.log(event, args);
+  });  
 
   // Listen for user disconnection
   socket.on('disconnect', () => {

@@ -22,7 +22,7 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
         const message = input.value.trim();
 
         if (message !== '') {
-            socket.emit('chat message', { user: Auth.getProfile().data.username, message });
+            socket.emit('chat message', { user: Auth.getProfile().data._id, message });
             try {
                 const { data } = await saveMessage({
                     variables: {
@@ -31,11 +31,11 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
                         textContent: message,
                     }
                 })
-                console.log(data);
-                setFooEvents(previous => [...previous, {
-                    sender: Auth.getProfile().data._id,
-                    textContent: message,
-                }]);
+                console.log("saving message", data);
+                // setFooEvents(previous => [...previous, {
+                //     sender: Auth.getProfile().data._id,
+                //     textContent: message,
+                // }]);
                 input.value = '';
                 setIsLoading(false);
 
