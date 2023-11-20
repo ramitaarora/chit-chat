@@ -8,7 +8,6 @@ export const QUERY_USERS = gql`
       fullName
       photo
       bio
-      interests
     }
   }
 `
@@ -21,7 +20,6 @@ export const QUERY_USER = gql`
       fullName
       photo
       bio
-      interests
     }
   }
 `
@@ -33,7 +31,6 @@ export const QUERY_ME = gql`
       fullName
       photo
       bio
-      interests
     }
   }
 `
@@ -47,7 +44,6 @@ export const QUERY_FRIENDS = gql`
         username
         photo
         bio
-        interests
         fullName
       }
     }
