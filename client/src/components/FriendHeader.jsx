@@ -12,7 +12,7 @@ export default function FriendHeader(props) {
             const username = data.user.username;
     
             return (
-                <header>{username}</header>
+                <header><h2>@{username}</h2></header>
             )
     }
 }

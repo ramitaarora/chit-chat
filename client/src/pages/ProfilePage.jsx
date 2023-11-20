@@ -15,7 +15,7 @@ export default function ProfilePage() {
         return <div>Loading...</div>;
       } else {
         return (
-          <div>
+          <div className='centered'>
             <div>
               <div>
                 <div id="username">
