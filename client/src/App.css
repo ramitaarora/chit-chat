@@ -1717,6 +1717,11 @@ label form [type='radio'] {
   }
 }
 
+.header {
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
 
 #add-friend, #edit {
   background-color: #8C52FF;
