@@ -8,7 +8,7 @@ const typeDefs = `
         bio: String
         photo: String
         interests: [String]
-        friends: [ID]
+        friends: [User]
     }
 
     type Auth {
@@ -41,7 +41,7 @@ const typeDefs = `
         addUser(username: String!, email: String!, password: String!): Auth
         newChat(user2: ID!): Chat
         login(username: String!, password: String!): Auth
-        editUser(fullName: String, bio: String, photo: String, interests: [String]): User
+        editUser(username: String, fullName: String, bio: String, photo: String, interests: [String]): User
         addFriend(friend: ID): User
         saveMessage(_id: ID!, sender: ID, textContent: String): Chat
     }

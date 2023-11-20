@@ -4,7 +4,7 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find();
+            return User.find().populate('friends');
         },
         user: async (parent, { _id }) => {
             return User.findOne({ _id }).populate('friends');
@@ -14,6 +14,7 @@ const resolvers = {
         },
         chatExists: async (parent, { user2 }, context) => {
             const user1 = context.user._id;
+            console.log(user1);
 
             return Chat.findOne({ $or: [
                 { user1, user2 },
@@ -22,7 +23,7 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-              return User.findOne({ _id: context.user._id });
+              return User.findOne({ _id: context.user._id }).populate('friends');
             }
             throw AuthenticationError;
           },
@@ -41,30 +42,9 @@ const resolvers = {
             })
 
             return chat;
-
-            // const chatExists = await Chat.findOne({
-            //     $or: [
-            //         { user1: context.user._id, user2: user2 },
-            //         { user1: user2, user2: context.user._id },
-            //     ],
-            // });
-
-            // if (chatExists) {
-            //     return chatExists;
-            // }
-
-            // if (!chatExists) {
-            //     if (context.user) {
-            //         return await Chat.create(
-            //             { user1: { _id: context.user._id} },
-            //             { user2: { _id: user2 } },
-            //         )
-            //     } throw AuthenticationError;
-            // }
         },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
-      
             if (!user) {
               throw AuthenticationError;
             }
@@ -85,6 +65,7 @@ const resolvers = {
                     { _id: context.user._id },
                     {
                         $set: {
+                            username: args.username,
                             fullName: args.fullName,
                             bio: args.bio,
                             photo: args.photo,
@@ -112,7 +93,7 @@ const resolvers = {
                 const user2 = await User.findOneAndUpdate(
                     { _id: args.friend },
                     {
-                        $push: {
+                        $addToSet: {
                             friends: context.user._id
                         },
                     },
@@ -122,7 +103,7 @@ const resolvers = {
                 return user1;
             }
         },
-        saveMessage: async (parent, { _id, sender, textContent}, contenxt) => {
+        saveMessage: async (parent, { _id, sender, textContent}, context) => {
             if (context.user) {
                 return Chat.findOneAndUpdate(
                     { _id: _id },
