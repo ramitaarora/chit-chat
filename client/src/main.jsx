@@ -6,7 +6,7 @@ import LandingPage from './pages/LandingPage';
 import ErrorPage from './pages/ErrorPage';
 import FriendProfilePage from './pages/FriendProfilePage.jsx';
 import DashboardPage from './pages/DashBoardPage.jsx';
-// import ChatPage from './pages/ChatPage.jsx';
+import ChatPage from './pages/ChatPage.jsx';
 import UsersListPage from './pages/UsersListPage';
 import ProfilePage from './pages/ProfilePage.jsx';
 import EditProfile from './pages/EditProfile.jsx';
