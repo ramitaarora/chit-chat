@@ -7,7 +7,7 @@ import ErrorPage from './pages/ErrorPage';
 import FriendProfilePage from './pages/FriendProfilePage.jsx';
 import DashboardPage from './pages/DashBoardPage.jsx';
 import ChatPage from './pages/ChatPage.jsx';
-import AddFriendPage from './pages/AddFriendPage';
+import UsersListPage from './pages/UsersListPage';
 import ProfilePage from './pages/ProfilePage.jsx';
 import EditProfile from './pages/EditProfile.jsx';
 
@@ -35,14 +35,14 @@ const router = createBrowserRouter([
       },
       {
         path: 'users',
-        element: <AddFriendPage />,
+        element: <UsersListPage />,
       },
       {
         path: 'profile',
         element: <ProfilePage/>,
       },
       {
-        path: 'edit-profile',
+        path: 'profile/edit',
         element: <EditProfile/>,
       },
     ]

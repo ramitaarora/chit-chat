@@ -1,50 +1,62 @@
 import '../styles/dashboard.css';
-import '/profile-bubble.png';
-import '/profile-2.png';
-import '/profile-3.png';
-import '/profile-4.png';
-import '/chitchatlogo.png';
 import Floatingbutton from '../components/Floatingbuttons.jsx';
 import { useQuery } from '@apollo/client';
-import { QUERY_USERS } from '../utils/queries.js';
+import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
+import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 import Auth from '../utils/auth';
 
 function Dashboard() {
 
-    const { loading, data } = useQuery(QUERY_USERS);
+    const { loading: friendsLoading, data: friendsData } = useQuery(QUERY_FRIENDS);
 
-    const users = data?.users || [];
+    const friends = friendsData?.me.friends;
 
-    return (
-        <div>
-            <section className="header">
-                <h1> <img src="/chitchatlogo.png"></img> Chit Chat <img src="/chitchatlogo.png"></img></h1>
-                <h2>Chats</h2>
-            </section>
-            <section className="inbox-container">
-                {loading ? (
-                    <div>Loading...</div>
-                ) : (
-                    <>
-                        {
-                            users.map((user) => (
-                                <div className="chat-preview">
+    // Query for chat inside map function?
+    // const { loading: chatLoading, data: chatData } = useQuery(CHAT_EXISTS);
+
+    if (friendsLoading && !friendsData) {
+        return (
+            <div>Loading Dashboard...</div>
+        )
+    } else if (friendsData && !friendsLoading) {
+        return (
+            <main className="dashboard-container">
+                <Header />
+                <h2>Friends List</h2>
+                <section className="inbox-container">
+                    {
+                        friends.map((friend) => (
+                            <div key={friend._id} className="chat-preview">
+                                <Link to={`/user/${friend._id}`}>
                                     <section className="profile-picture">
-                                        <img src={user.photo} alt="user-one"></img>
+                                        <img src={friend.photo} alt="user-one"></img>
                                     </section>
+                                </Link>
+                                <Link to={`chat/:chatID`}>
                                     <section className="message-preview">
-                                        <h3>{user.username}</h3>
+                                        <h3>{friend.username}</h3>
                                         <p>So about coding...</p>
                                     </section>
-                                </div>
-                            ))
-                        }
-                    </>
-                )}
-            </section>
-            <Floatingbutton />
-        </div>
-    )
+                                </Link>
+                            </div>
+                        ))
+                    }
+                    <Link to="/users">Find other users!</Link>
+                </section>
+                <Floatingbutton />
+            </main>
+        )
+    } else {
+        return (
+            <main>
+                <Header />
+                <div>Friends List is Empty</div>
+                <Link to="/users">Add friends!</Link>
+            </main>
+        )
+    }
+
 }
 
 export default Dashboard;

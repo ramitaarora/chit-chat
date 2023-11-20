@@ -1717,6 +1717,24 @@ label form [type='radio'] {
   }
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.header-img {
+  height: 150px;
+  width: auto;
+  display: inline-flex;
+  /* padding-top: 10px; */
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 
 #add-friend, #edit {
   background-color: #8C52FF;
@@ -1738,6 +1756,9 @@ label form [type='radio'] {
   border-radius: 100%;
 }
 
-#header-img{
-  height: 150px;
+.usersListPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }

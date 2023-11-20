@@ -3,7 +3,6 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
-import Logout from '../components/Logout';
 import Auth from '../utils/auth';
 
 export default function FriendProfilePage() {
@@ -14,12 +13,13 @@ export default function FriendProfilePage() {
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
-    const handleAddFriend = async (userID) => {
-
+    const handleAddFriend = async (ID) => {
+        console.log('adding friend');
         try {
             await addFriend({
-                variables: { friend: userID }
+                variables: { friend: ID }
             })
+            alert('Added a new friend!');
         } catch (e) {
             console.log(e);
             console.log(friendErr);
@@ -31,27 +31,27 @@ export default function FriendProfilePage() {
 
     const [addChat, { chatErr }] = useMutation(NEW_CHAT);
 
-    const { data: existsData } = useQuery(CHAT_EXISTS, {
+    const { loading: chatLoading, data: chatData, refetch } = useQuery(CHAT_EXISTS, {
         variables: { user2: userID }
     });
 
-    const exists = existsData?.chatExists;
-
-    const handleNewChat = async (userID) => {
+    const handleNewChat = async (ID, ifExists) => {
         try {
-
-            if (exists) {
+            if (ifExists) {
+                console.log('found exists');
                 // const chatID = exists._id;
                 // document.location.replace(`/chat/${chatID}`);
-                return exists;
+                return ifExists;
             } else {
                 const { data } = await addChat({
-                    variables: { user2: userID }
+                    variables: { user2: ID }
                 })
                 // const newChat = data?.newChat;
                 // const chatID = newChat._id;
                 // document.location.replace(`/chat/${chatID}`);
                 // return newChat;
+                console.log('new chat created');
+                refetch();
                 return data;
             }
 
@@ -63,16 +63,18 @@ export default function FriendProfilePage() {
 
     // Loading User Profile Page
 
-    const { loading, data: userData } = useQuery(QUERY_USER, {
+    const { loading: userLoading, data: userData } = useQuery(QUERY_USER, {
         variables: { id: userID }
     });
 
-    if (loading && Auth.loggedIn()) {
+    if (userLoading || chatLoading) {
         return (
             <div>Loading User Profile...</div>
         )
-    } else if (userData && Auth.loggedIn) {
+    } else if (userData && chatData) {
+
         const user = userData?.user;
+        const ifExists = chatData?.chatExists;
 
         return (
             <main>
@@ -81,16 +83,15 @@ export default function FriendProfilePage() {
                     <div>{user.photo}</div>
                     <div>{user.fullName}</div>
                     <div>{user.bio}</div>
-                    <button onClick={() => handleAddFriend(user._id)}>Add Friend</button>
-                    <button onClick={() => handleNewChat(user._id)}>Start Chat</button>
+                    <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
+                        <img src="../src/assets/plus.png" id="editImg" />
+                    </button>
+                    <button onClick={() => handleNewChat(user._id, ifExists)}>Start Chat Button</button>
                     {user.interests.map((interest, index) => (
                         <div key={index}>{interest}</div>
                     ))}
                 </section>
-                <Logout />
             </main>
         )
-    } else {
-        document.location.replace('/');
     };
 }
