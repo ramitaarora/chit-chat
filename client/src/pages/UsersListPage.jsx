@@ -14,7 +14,7 @@ export default function UsersListPage() {
         <main className="usersListPage">
             <Header />
             <h2>Users:</h2>
-            <div>
+            <div className='centered'>
                 {loading ? (
                     <div>Loading Users...</div>
                 ) : (
@@ -22,8 +22,8 @@ export default function UsersListPage() {
                         {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
                             <section key={user._id}>
                                 <div>{user.photo}</div>
-                                <div>{user.username}</div>
-                                <Link to={`/user/${user._id}`}>Go to profile button</Link>
+                                <div><h3>@ {user.username}</h3></div>
+                                <Link to={`/user/${user._id}`}><button>view profile</button></Link>
                             </section>
                         ) : null))}
                     </div>

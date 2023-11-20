@@ -360,7 +360,7 @@ END NORMALIZE CSS
 
 html,
 body {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 body {
@@ -373,16 +373,6 @@ body {
   color: #1a1a1a;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'JetBrains Mono', monospace;
-  margin: 0 0 0.5rem;
-  line-height: 1.25;
-}
 
 h1 {
   font-size: 2.25rem;
@@ -1761,4 +1751,37 @@ label form [type='radio'] {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.pill {
+  border-radius: 20rem;
+  margin: 5px;
+  padding: 5px;
+  border-width: 0;
+
+}
+
+button {
+  color:white;
+  font-family: aristotle;
+  border-width: 0;
+  border-radius: 5rem;
+  margin: 5px;
+  background-color: #8C52FF;
+  font-size: large;
+}
+
+.centered {
+  text-align: center;
+}
+
+.design-container {
+  position: relative;
+}
+
+.design {
+  width: 200px;
+  position: absolute;
+  right: 50vw;
+
 }
