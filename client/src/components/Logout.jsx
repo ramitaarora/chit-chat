@@ -9,7 +9,7 @@ export default function Logout() {
 
     return (
         <>
-            <button onClick={logoutHandler}>Logout</button>
+            <button id='logout' onClick={logoutHandler}><img src ="../src/assets/logout.svg" id="logoutImg"></img></button>
         </>
     )
 }

@@ -1726,7 +1726,7 @@ label form [type='radio'] {
   align-items: center;
 }
 
-#add-friend, #edit {
+#add-friend, #edit, #start-chat, #logout{
   background-color: #8C52FF;
   border-radius: 70%;
   height: 50px;
@@ -1734,7 +1734,7 @@ label form [type='radio'] {
   border-width: 0px;
 }
 
-#editImg{
+#editImg, #chatImg #logoutImg{
   height: 20px;
   width: 20px;
 }

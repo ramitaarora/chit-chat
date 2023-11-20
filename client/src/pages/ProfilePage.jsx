@@ -18,7 +18,7 @@ export default function ProfilePage() {
         console.log(myData);
 
         return (
-          <div>
+          <div className='centered'>
             <div>
               <div>
                 <div id="username">
@@ -32,13 +32,6 @@ export default function ProfilePage() {
                 </div>
                 <div id="bio">
                   <p>{myData.bio}</p>
-                </div>
-                <div className="container" id="interests">
-                  {myData.interests.map((interest, index) => (
-                    <button key={index} className="interest" id={`interest${index + 1}`}>
-                      {interest}
-                    </button>
-                  ))}
                 </div>
                 <Link to="/profile/edit">
                   <button id="edit">

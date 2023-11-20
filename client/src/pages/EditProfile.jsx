@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 
 export default function EditProfile() {
 
-    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '', interests: '' });
+    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '' });
 
     const imagePaths = [
         '/profile-pics/astronaut.png',
@@ -111,7 +111,6 @@ export default function EditProfile() {
                 name: '',
                 photo: '',
                 bio: '',
-                interests: '',
             });
 
             await document.location.replace('/profile');
@@ -165,19 +164,7 @@ export default function EditProfile() {
 
                     </div>
                     <div>
-                        <label>Change Your Interests</label>
-                        <div>
-                            <input
-                                placeholder="interest"
-                                name="interests"
-                                type="text"
-                                value={formState.interests}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <label>Change Your Profile Pic</label>
+                        <label>Choose a New Profile Pic</label>
                         <div className="profile-pic-container">
                             {imagePaths.map((pic, index) => (
                                 <div key={index}>
