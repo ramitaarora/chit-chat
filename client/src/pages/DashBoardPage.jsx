@@ -57,42 +57,6 @@ function Dashboard() {
         )
     }
 
-//     return (
-//         <main>
-//             <section className="header">
-//                 <h1> <img src="/chitchatlogo.png"></img> Chit Chat <img src="/chitchatlogo.png"></img></h1>
-//                 <h2>Chats</h2>
-//             </section>
-//             <section className="inbox-container">
-//                 {friendsLoading ? (
-//                     <div>Loading...</div>
-//                 ) : (
-//                     <>
-//                         {
-//                             friends.map((friend) => (
-//                                 <div key={friend._id} className="chat-preview">
-//                                     <Link to={`/user/${friend._id}`}>
-//                                         <section className="profile-picture">
-//                                             <img src={friend.photo} alt="user-one"></img>
-//                                         </section>
-//                                     </Link>
-//                                     <Link to={`chat/:chatID`}>
-//                                         <section className="message-preview">
-//                                             <h3>{friend.username}</h3>
-//                                             <p>So about coding...</p>
-//                                         </section>
-//                                     </Link>
-//                                 </div>
-//                             ))
-//                         }
-//                     </>
-//                 )}
-//                 <Link to="/users">Find other users!</Link>
-//             </section>
-//             <Floatingbutton />
-//         </main>
-//     )
-
 }
 
 export default Dashboard;
