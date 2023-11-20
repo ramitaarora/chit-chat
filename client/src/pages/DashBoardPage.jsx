@@ -1,17 +1,14 @@
 import '../styles/dashboard.css';
-import Floatingbutton from '../components/Floatingbuttons.jsx';
 import { useQuery } from '@apollo/client';
 import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import Auth from '../utils/auth';
-import { useState } from 'react';
 
 function Dashboard() {
     const { loading: friendsLoading, data: friendsData } = useQuery(QUERY_FRIENDS);
 
     const friends = friendsData?.me.friends;
-    
+
     if (friendsLoading && !friendsData) {
         return (
             <div>Loading Dashboard...</div>
@@ -24,8 +21,8 @@ function Dashboard() {
                 <section className="inbox-container">
                     {
                         friends.map((friend) => (
-                            <div key={friend._id} className="chat-preview">
-                                <Link to={`/user/${friend._id}`}>
+                            <Link to={`/user/${friend._id}`}>
+                                <div key={friend._id} className="chat-preview">
                                     <section className="profile-picture">
                                         <img src={friend.photo} alt="user-one"></img>
                                     </section>
@@ -33,13 +30,12 @@ function Dashboard() {
                                         <h3>{friend.username}</h3>
                                         <p>So about coding...</p>
                                     </section>
-                                </Link>
-                            </div>
+                                </div>
+                            </Link>
                         ))
                     }
                     <Link to="/users">Find other users!</Link>
                 </section>
-                <Floatingbutton />
             </main>
         )
     } else {

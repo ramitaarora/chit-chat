@@ -6,7 +6,6 @@ import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 import Auth from '../utils/auth';
-import Floatingbutton from '../components/Floatingbuttons';
 
 import { socket } from '../socket'
 import ConnectionState from '../components/ConnectionState';
@@ -70,7 +69,6 @@ export default function ChatPage() {
                         <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
                         {/*<ConnectionManager />*/}
                         <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
-                        <Floatingbutton />
                     </div>
                 </main>
             )    
