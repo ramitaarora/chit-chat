@@ -9,6 +9,11 @@ import Auth from '../utils/auth';
 import Header from '../components/Header';
 import styles from '../styles/chatpage.css'
 
+import { socket } from 'socket';
+import { ConnectionState } from './components/ConnectionState';
+import { ConnectionManager } from './components/ConnectionManager';
+import { ConvoBox } from '../components/ConvoBox';
+import { SendBox } from '../components/SendBox';
 import { socket } from '../socket'
 import ConnectionState from '../components/ConnectionState';
 import ConnectionManager from '../components/ConnectionManager';

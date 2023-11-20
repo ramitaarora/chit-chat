@@ -1,5 +1,6 @@
 import React from 'react';
-import { HomeOutlined, SettingOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { HomeOutlined, SettingOutlined, UserAddOutlined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
 import iconSrc from '/chitchatlogo.png';
 
@@ -22,9 +23,19 @@ const Floatingbutton = () => {
       style={{ right: 90 }}
       icon={<CustomIcon />}
     >
-      <FloatButton icon={<SettingOutlined />} />
-      <FloatButton icon={<HomeOutlined />} />
-    </FloatButton.Group>
+    <Link to="/users">
+      <FloatButton icon={<UserAddOutlined />} style={{ marginBottom: 10 }} />
+    </Link>
+
+    <Link to="/profile">
+      <FloatButton icon={<SettingOutlined />} style={{ marginBottom: 10 }} />
+    </Link>
+
+    <Link to="/dashboard">
+    <FloatButton icon={<HomeOutlined />} />
+    </Link>
+    
+  </FloatButton.Group>
   );
 }
 
