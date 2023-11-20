@@ -22,6 +22,7 @@ a:hover {
     flex-direction: column;
     align-items: center;
     padding: 30px;
+    width: 60%;
 }
 
 .chat-preview:hover {

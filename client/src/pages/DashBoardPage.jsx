@@ -21,7 +21,7 @@ function Dashboard() {
         )
     } else if (friendsData && !friendsLoading) {
         return (
-            <main>
+            <main className="dashboard-container">
                 <Header />
                 <h2>Chats</h2>
                 <section className="inbox-container">

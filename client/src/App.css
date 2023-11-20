@@ -1729,6 +1729,13 @@ label form [type='radio'] {
   /* padding-top: 10px; */
 }
 
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #add-friend, #edit {
   background-color: #8C52FF;
   border-radius: 70%;
