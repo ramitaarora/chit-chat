@@ -20,17 +20,24 @@ const LandingPage = () => {
         document.location.replace('/dashboard')
     } else {
         return (
-            <main>
+            <main className='centered'>
                 <Header />
                 {form === null && (
                     <div>
-                        <button onClick={handleLogin}>Login</button>
-                        <button onClick={handleSignup}>Signup</button>
+                        <div>
+                            <button onClick={handleLogin}>Login</button>
+                        </div>
+                        <div>
+                            <button onClick={handleSignup}>Signup</button>
+                        </div>
                     </div>
                 )}
                 <div>
                     {form === 'login' && <Login handleSignup={handleSignup} />}
                     {form === 'signup' && <Signup handleLogin={handleLogin} />}
+                </div>
+                <div className='design-container'>
+                    <img className='design' src ="/chitchatlogo.png"></img>
                 </div>
             </main>
         );

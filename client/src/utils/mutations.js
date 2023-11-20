@@ -12,17 +12,12 @@ export const ADD_USER = gql`
 `
 
 export const NEW_CHAT = gql`
-    mutation NewChat($user2: ID!) {
+    mutation newChat($user2: ID!) {
         newChat(user2: $user2) {
         _id
-        user1 {
-            _id
-        }
-        user2 {
-            _id
-        }
         }
     }
+    
 `
 
 export const LOGIN = gql`

@@ -5,16 +5,13 @@ import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Auth from '../utils/auth';
+import { useState } from 'react';
 
 function Dashboard() {
-
     const { loading: friendsLoading, data: friendsData } = useQuery(QUERY_FRIENDS);
 
     const friends = friendsData?.me.friends;
-
-    // Query for chat inside map function?
-    // const { loading: chatLoading, data: chatData } = useQuery(CHAT_EXISTS);
-
+    
     if (friendsLoading && !friendsData) {
         return (
             <div>Loading Dashboard...</div>
@@ -32,8 +29,6 @@ function Dashboard() {
                                     <section className="profile-picture">
                                         <img src={friend.photo} alt="user-one"></img>
                                     </section>
-                                </Link>
-                                <Link to={`chat/:chatID`}>
                                     <section className="message-preview">
                                         <h3>{friend.username}</h3>
                                         <p>So about coding...</p>

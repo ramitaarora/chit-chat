@@ -3,7 +3,6 @@ import { useMutation } from "@apollo/client";
 import { SAVE_MESSAGE } from '../utils/mutations';
 import { socket } from '../socket';
 import Auth from '../utils/auth';
-import styles from '../styles/chatpage.css'
 
 export default function SendBox({ chatID, fooEvents, setFooEvents }) {
     const [isLoading, setIsLoading] = useState(false);
