@@ -1762,3 +1762,16 @@ label form [type='radio'] {
   justify-content: space-evenly;
   align-items: center;
 }
+
+.profile-pic-container {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 150px;
+  overflow-y: auto;
+}
+
+.profile-pic-container img {
+  height: 50px;
+  width: 50px;
+}

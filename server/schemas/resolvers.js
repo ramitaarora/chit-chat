@@ -69,10 +69,10 @@ const resolvers = {
                             fullName: args.fullName,
                             bio: args.bio,
                             photo: args.photo,
+                            interest1: args.interest1,
+                            interest2: args.interest2,
+                            interest3: args.interest3,
                         },
-                        $push: {
-                            interests: { $each: args.interests || [] },
-                        }
                     },
                     { new: true, runValidators: true },
                 )

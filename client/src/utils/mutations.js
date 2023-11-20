@@ -44,7 +44,9 @@ export const EDIT_USER = gql`
         fullName
         bio
         photo
-        interests
+        interest1
+        interest2
+        interest3
         }
     }
 `
