@@ -64,7 +64,6 @@ const resolvers = {
         },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
-      
             if (!user) {
               throw AuthenticationError;
             }
@@ -122,7 +121,7 @@ const resolvers = {
                 return user1;
             }
         },
-        saveMessage: async (parent, { _id, sender, textContent}, contenxt) => {
+        saveMessage: async (parent, { _id, sender, textContent}, context) => {
             if (context.user) {
                 return Chat.findOneAndUpdate(
                     { _id: _id },

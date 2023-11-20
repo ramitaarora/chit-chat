@@ -1,17 +1,37 @@
+import { useEffect, useState } from 'react';
 import Auth from '../utils/auth';
+import styles from '../styles/chatpage.css'
 
-export default function ConvoBox({ chat }) {
-
-    // if context.user === message.sender, append message to the right
+export default function ConvoBox({ chat, fooEvents, setFooEvents, socket }) {  
+  // Runs whenever a socket event is recieved from the server
+    useEffect(() => {
+        socket.on('chat message', (data) => {
+            setFooEvents((state) => [
+                ...state,
+                {
+                    textContent: data.message,
+                    sender: data.user,
+                },
+            ]);
+        });
+        // Remove event listener on component unmount
+        return () => socket.off('chat message');
+    }, [socket]);
 
     return (
-            <section id="convoBox">
-                {chat.text.map((message, index) => message.sender === Auth.getProfile().data._id ? (
-                        <div key={index} className="senderTxt">{message.textContent}</div>
-                    ) : (
-                        <div key={index} className="receiverTxt">{message.textContent}</div>
-                    )
-                )}
-            </section>
+        <section id="convoBox">
+            {chat.text.map((message, index) => message.sender === Auth.getProfile().data._id ? (
+                    <div key={index} className="senderTxt">{message.textContent}</div>
+                ) : (
+                    <div key={index} className="receiverTxt">{message.textContent}</div>
+                )
+            )}
+            {fooEvents.map((message, index) => message.sender === Auth.getProfile().data._id ? (
+                <div key={index} className="senderTxt">{message.textContent}</div>
+            ) : (
+                <div key={index} className="receiverTxt">{message.textContent}</div>
+            )
+            )}
+        </section>
     )
 }
