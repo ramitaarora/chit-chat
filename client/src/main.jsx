@@ -10,6 +10,7 @@ import ChatPage from './pages/ChatPage.jsx';
 import UsersListPage from './pages/UsersListPage';
 import ProfilePage from './pages/ProfilePage.jsx';
 import EditProfile from './pages/EditProfile.jsx';
+import Chat from './pages/Chat.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'user/:userID',
         element: <FriendProfilePage />,
+      },
+      {
+        path: '/getchat/:friendID',
+        element: <Chat />
       },
       {
         path: 'chat/:chatID',

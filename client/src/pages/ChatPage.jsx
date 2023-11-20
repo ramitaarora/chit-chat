@@ -6,8 +6,6 @@ import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 import Auth from '../utils/auth';
-import Header from '../components/Header';
-import styles from '../styles/chatpage.css'
 
 import { socket } from '../socket'
 import ConnectionState from '../components/ConnectionState';
