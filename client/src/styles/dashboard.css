@@ -4,19 +4,6 @@ body {
     font-weight: bolder;
 }
 
-
-.header {
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
-
-.header img {
-    width: 30px;
-    display: inline-flex;
-    /* padding-top: 10px; */
-}
-
 h1, h2 {
     font-family: bubbleFont;
     color: #b4a7e9;

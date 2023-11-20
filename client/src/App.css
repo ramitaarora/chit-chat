@@ -1718,9 +1718,15 @@ label form [type='radio'] {
 }
 
 .header {
-  color: white;
-  padding: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.header-img {
+  height: 150px;
+  width: auto;
+  display: inline-flex;
+  /* padding-top: 10px; */
 }
 
 #add-friend, #edit {
@@ -1741,10 +1747,6 @@ label form [type='radio'] {
   height: 150px;
   width: 150px;
   border-radius: 100%;
-}
-
-#header-img{
-  height: 150px;
 }
 
 .usersListPage {
