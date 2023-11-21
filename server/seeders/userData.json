@@ -3,31 +3,36 @@
         "fullname": "William",
         "username": "codeGod",
         "email": "w@g.com",
-        "password": "12345678"
+        "password": "12345678",
+        "photo": "/profile-pics/gamer.png"
     },
     {
         "fullname": "Eric",
         "username": "styleGod",
         "email": "e@l.com",
-        "password": "12345678"
+        "password": "12345678",
+        "photo": "/profile-pics/paperplane.png"
     },
     {
         "fullname": "Ramita",
         "username": "bakingGod",
         "email": "r@i.com",
-        "password": "12345678"
+        "password": "12345678",
+        "photo": "/profile-pics/avocado.png"
     },
     {
         "fullname": "Justin",
         "username": "lakersGod",
         "email": "j@c.com",
-        "password": "12345678"
+        "password": "12345678",
+        "photo": "/profile-pics/astronaut.png"
     },
     {
         "fullname": "Jamie",
         "username": "catGod",
         "email": "j@h.com",
-        "password": "12345678"
+        "password": "12345678",
+        "photo": "/profile-pics/cat.png"
     }
 
 ]
