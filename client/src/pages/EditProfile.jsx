@@ -120,90 +120,94 @@ export default function EditProfile() {
             console.log(error);
         }
     };
-
-    return (
-        <div>
-            <h2>EDIT PROFILE</h2>
-            <div className="form-container">
-                <form onSubmit={handleFormSubmit}>
-                    <div>
-                        <label>Change Your Username</label>
+    if (Auth.loggedIn()) {
+        return (
+            <div>
+                <h2>EDIT PROFILE</h2>
+                <div className="form-container">
+                    <form onSubmit={handleFormSubmit}>
                         <div>
-                            <input
-                                placeholder="Username"
-                                name="username"
-                                type="text"
-                                value={formState.username}
-                                onChange={handleChange}
-                            />
+                            <label>Change Your Username</label>
+                            <div>
+                                <input
+                                    placeholder="Username"
+                                    name="username"
+                                    type="text"
+                                    value={formState.username}
+                                    onChange={handleChange}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <label>Change Your Name</label>
                         <div>
-                            <input
-                                placeholder="name"
-                                name="name"
-                                type="text"
-                                value={formState.fullName}
-                                onChange={handleChange}
-                            />
+                            <label>Change Your Name</label>
+                            <div>
+                                <input
+                                    placeholder="name"
+                                    name="name"
+                                    type="text"
+                                    value={formState.fullName}
+                                    onChange={handleChange}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <label>Change Your Bio</label>
                         <div>
-                            <input
-                                placeholder="bio"
-                                name="bio"
-                                type="text"
-                                value={formState.bio}
-                                onChange={handleChange}
-                            />
+                            <label>Change Your Bio</label>
+                            <div>
+                                <input
+                                    placeholder="bio"
+                                    name="bio"
+                                    type="text"
+                                    value={formState.bio}
+                                    onChange={handleChange}
+                                />
+                            </div>
+    
                         </div>
-
-                    </div>
-                    <div>
-                        <label>Choose a New Profile Pic</label>
-                        <div className="profile-pic-container">
-                            {imagePaths.map((pic, index) => (
-                                <div key={index}>
-                                    <input type="radio" name="photo" value={pic} onChange={handleChange} />
-                                    <img src={pic} />
-                                </div>
-                            ))}
+                        <div>
+                            <label>Choose a New Profile Pic</label>
+                            <div className="profile-pic-container">
+                                {imagePaths.map((pic, index) => (
+                                    <div key={index}>
+                                        <input type="radio" name="photo" value={pic} onChange={handleChange} />
+                                        <img src={pic} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-
-                    <div>
-                        <button id="save" type="submit">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-            <h2>THEMES</h2>
-            <div className="theme-container">
-
-                <div className="themes">
-                    <div>
-                        <button className="theme" id="night" onClick={setTheme}>
-                            night mode
-                        </button>
-                    </div>
-                    <div>
-                        <button className="theme" id="day" onClick={setTheme}>
-                            day mode
-                        </button>
-                    </div>
-                    <div>
-                        <button className="theme" id="dawn" onClick={setTheme}>
-                            dawn mode
-                        </button>
-                    </div>
-
+    
+                        <div>
+                            <button id="save" type="submit">Save Changes</button>
+                        </div>
+                    </form>
                 </div>
-
+                <h2>THEMES</h2>
+                <div className="theme-container">
+    
+                    <div className="themes">
+                        <div>
+                            <button className="theme" id="night" onClick={setTheme}>
+                                night mode
+                            </button>
+                        </div>
+                        <div>
+                            <button className="theme" id="day" onClick={setTheme}>
+                                day mode
+                            </button>
+                        </div>
+                        <div>
+                            <button className="theme" id="dawn" onClick={setTheme}>
+                                dawn mode
+                            </button>
+                        </div>
+    
+                    </div>
+    
+                </div>
+    
             </div>
-
-        </div>
-    )
+        )
+    } else {
+        document.location.replace('/');
+    }
+    
 }

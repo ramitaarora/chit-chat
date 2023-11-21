@@ -14,7 +14,7 @@ export default function AddFriendPage() {
         document.location.replace(`/user/${userID}`)
     }
 
-    // if (Auth.loggedIn()) {
+    if (Auth.loggedIn()) {
         return (
             <main>
                 <Header />
@@ -37,7 +37,7 @@ export default function AddFriendPage() {
                 </div>
             </main>
         )
-    // } else {
-        // document.location.replace('/');
+    } else {
+        document.location.replace('/');
     };
-// }
+}
