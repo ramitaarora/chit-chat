@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { useMutation } from "@apollo/client";
 import { SAVE_MESSAGE } from '../utils/mutations';
 import { socket } from '../socket';
+import AudioRecorder from '../components/AudioRecorder';
 import Auth from '../utils/auth';
 
-export default function SendBox({ chatID, fooEvents, setFooEvents, audioData }) {
+export default function SendBox({ chatID, fooEvents, setFooEvents }) {
     const [isLoading, setIsLoading] = useState(false);
     const [saveMessage] = useMutation(SAVE_MESSAGE);
-
+    const [audioData, setAudioData] = useState(null);
     const [input, setInput] = useState('');
 
     useEffect(() => {
@@ -71,8 +72,8 @@ export default function SendBox({ chatID, fooEvents, setFooEvents, audioData }) 
                         <p onClick={handleEmoji}>🎉</p>
                     </div>
                 </div>
-
             </form>
+            <AudioRecorder newAudioData={(data) => setAudioData(data)} />
         </section>
     )
 }

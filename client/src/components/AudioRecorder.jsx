@@ -1,4 +1,3 @@
-import Spinner from 'react-bootstrap/Spinner';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
@@ -128,12 +127,16 @@ const AudioRecorder = ({ newAudioData }) => {
                 </button>
                 <button onClick={submitTranscriptionHandler}>Submit</button>
             </div>
-            {transcriptData.status === "completed" ? null : (
+            {transcriptData.status === "processing" ? (
                 <div>
-                    <p>{transcriptData.status}</p>
-                    <Spinner animation="border" />
+                    <p>Status: {transcriptData.status}...</p>
                 </div>
-            )}
+            ) : null }
+            {transcriptData.status === "completed" ? (
+                <div>
+                    <p>Status: {transcriptData.status}!</p>
+                </div>
+            ) : null }
         </div>
     )
 }
