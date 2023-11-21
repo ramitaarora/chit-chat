@@ -5,6 +5,7 @@ import { QUERY_CHAT } from '../utils/queries';
 import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
+import MicRecorder from '../components/MicRecorder';
 import Auth from '../utils/auth';
 
 import { socket } from '../socket';
@@ -70,6 +71,7 @@ export default function ChatPage() {
                             <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
                             {/*<ConnectionManager />*/}
                             <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
+                            <MicRecorder newAudioData={(data) => setAudioData(data)} />
                         </div>
                     </main>
                 )
