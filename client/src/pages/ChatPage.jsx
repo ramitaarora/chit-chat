@@ -5,7 +5,7 @@ import { QUERY_CHAT } from '../utils/queries';
 import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
-import MicRecorder from '../components/MicRecorder';
+import AudioRecorder from '../components/AudioRecorder';
 import Auth from '../utils/auth';
 
 import { socket } from '../socket';
@@ -15,6 +15,7 @@ import ConnectionManager from '../components/ConnectionManager';
 export default function ChatPage() {
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [fooEvents, setFooEvents] = useState([]);
+    const [audioData, setAudioData] = useState(null);
 
     useEffect(() => {
         function onConnect() {
@@ -70,8 +71,8 @@ export default function ChatPage() {
                             <FriendHeader userID={userID} />
                             <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
                             {/*<ConnectionManager />*/}
-                            <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
-                            <MicRecorder newAudioData={(data) => setAudioData(data)} />
+                            <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} audioData={audioData}/>
+                            <AudioRecorder newAudioData={(data) => setAudioData(data)} />
                         </div>
                     </main>
                 )

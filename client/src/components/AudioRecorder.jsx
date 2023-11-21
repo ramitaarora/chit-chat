@@ -12,7 +12,7 @@ const axiosHeader = axios.create({
     },
 })
 
-const MicRecorder = ({ newAudioData }) => {
+const AudioRecorder = ({ newAudioData }) => {
     const recorder = useRef(null);
     const audioPlayer = useRef(null);
     const [blobURL, setBlobUrl] = useState(null);
@@ -137,4 +137,4 @@ const MicRecorder = ({ newAudioData }) => {
     )
 }
 
-export default MicRecorder;
+export default AudioRecorder;
