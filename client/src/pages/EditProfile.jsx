@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { EDIT_USER } from '../utils/mutations';
+import Floatingbutton from '../components/Floatingbuttons.jsx';
 import Auth from '../utils/auth';
 
 
@@ -224,11 +225,8 @@ export default function EditProfile() {
                             dawn mode
                         </button>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     )
 }
