@@ -8,6 +8,13 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
     const [isLoading, setIsLoading] = useState(false);
     const [saveMessage] = useMutation(SAVE_MESSAGE);
 
+    const [input, setInput] = useState('hey!');
+
+    const handleEmoji = (event) => {
+        event.preventDefault();
+        setInput(input.concat(' ' + event.target.textContent));
+    }
+
     const handleSendMsg = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -46,6 +53,14 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
                 <div id="sendBox">
                     <input  className="pill" id="messageInput" type="text"/>
                     <input className='pill' id="submitBtn" type="submit" value="SEND"/>
+                    <div id="emojis">
+                        <p onClick={handleEmoji}>❤️</p>
+                        <p onClick={handleEmoji}>😊</p>
+                        <p onClick={handleEmoji}>😭</p>
+                        <p onClick={handleEmoji}>😂</p>
+                        <p onClick={handleEmoji}>😡</p>
+                        <p onClick={handleEmoji}>🎉</p>
+                    </div>
                 </div>
                 
             </form>
