@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HomeOutlined, SettingOutlined, UserAddOutlined } from '@ant-design/icons';
+import { HomeOutlined, SettingOutlined, UserAddOutlined, LogoutOutlined } from '@ant-design/icons';
 import { FloatButton } from 'antd';
 import iconSrc from '/chitchatlogo.png';
+import Auth from '../utils/auth';
 
 const CustomIcon = () => {
 
@@ -16,6 +17,12 @@ const CustomIcon = () => {
 };
 
 const Floatingbutton = () => {
+
+  const logoutHandler = () => {
+    Auth.logout();
+    document.location.replace('/');
+  };
+
   return (
     <FloatButton.Group
       trigger="hover"
@@ -29,6 +36,10 @@ const Floatingbutton = () => {
 
     <Link to="/profile">
       <FloatButton icon={<SettingOutlined />} style={{ marginBottom: 10 }} />
+    </Link>
+
+    <Link to="#">
+      <FloatButton onClick={logoutHandler} icon={<LogoutOutlined />} style={{ marginBottom: 10 }} />
     </Link>
 
     <Link to="/dashboard">
