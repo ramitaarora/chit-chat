@@ -21,31 +21,30 @@ function Dashboard() {
     const handleNewChat = async (ID) => {
 
         try {
-
-            let exists = null;
-
             await checkIfExists({ variables: { user2: ID } });
 
             if (chatLoading) {
                 console.log('still loading...')
-            } else {
-                exists = chatData?.chatExists
-            }
-                       
-            if (exists) {
-                console.log('found exists');
-                const chatID = chatData.chatExists._id;
-                document.location.replace(`/chat/${chatID}`);
-                return exists;
-            } else {
-                const { data } = await addChat({
-                    variables: { user2: ID }
-                })
-                const newChatID = data?.newChat._id;
-                document.location.replace(`/chat/${newChatID}`);
-                console.log('new chat created');
-                refetch();
-                return data;
+
+            } else if (chatData) {
+                const exists = chatData?.chatExists;
+                console.log(exists);
+
+                if (exists) {
+                    console.log('found exists');
+                    const chatID = chatData.chatExists._id;
+                    document.location.replace(`/chat/${chatID}`);
+                    return exists;
+                } else {
+                    const { data } = await addChat({
+                        variables: { user2: ID }
+                    })
+                    const newChatID = data?.newChat._id;
+                    document.location.replace(`/chat/${newChatID}`);
+                    console.log('new chat created');
+                    refetch();
+                    return data;
+                }
             }
 
         } catch (e) {
