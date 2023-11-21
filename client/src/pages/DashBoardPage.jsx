@@ -1,4 +1,3 @@
-import '../styles/dashboard.css';
 import { useQuery } from '@apollo/client';
 import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
 import { Link } from 'react-router-dom';
