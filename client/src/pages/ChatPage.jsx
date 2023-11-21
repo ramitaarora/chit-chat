@@ -75,5 +75,7 @@ export default function ChatPage() {
                 )
             }
         }
+    } else {
+        document.location.replace('/');
     }
 }

@@ -227,5 +227,7 @@ export default function EditProfile() {
                 </div>
             )
         }
+    } else {
+        document.location.replace('/');
     }
 }
