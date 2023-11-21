@@ -16,6 +16,7 @@
     "antd": "5.11.1",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
+    "dotenv": "^16.3.1",
     "graphql": "^16.6.0",
     "jwt-decode": "^3.1.2",
     "mic-recorder-to-mp3": "github:NikolaBalaban/mic-recorder-to-mp3",

@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+// import 'dotenv/config'
 
 import App from './App';
 import LandingPage from './pages/LandingPage';
@@ -10,6 +11,8 @@ import ChatPage from './pages/ChatPage.jsx';
 import UsersListPage from './pages/UsersListPage';
 import ProfilePage from './pages/ProfilePage.jsx';
 import EditProfile from './pages/EditProfile.jsx';
+
+// dotenv.config();
 
 const router = createBrowserRouter([
   {
