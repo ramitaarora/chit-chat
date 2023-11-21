@@ -15,7 +15,6 @@ export default function ProfilePage() {
       } else {
 
         const myData = data?.me;
-        console.log(myData);
 
         return (
           <div className='centered'>
@@ -25,7 +24,7 @@ export default function ProfilePage() {
                   <h3>{myData.username}</h3>
                 </div>
                 <div>
-                  <img id="profilePicture" src={myData.photo} alt="Profile" />
+                  <img className="profilePicture" src={myData.photo} alt="Profile" />
                 </div>
                 <div id="name">
                   <h2>{myData.fullName}</h2>

@@ -33,7 +33,7 @@ a:hover {
 
 .chat-preview {
     display: flex;
-    align-items: center;
+    justify-content: center;
     margin-bottom: 15px;
     background-color: white;
     padding: 10px;
@@ -41,6 +41,18 @@ a:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 500px;
+}
+
+.chat-preview a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chat-preview section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-picture {

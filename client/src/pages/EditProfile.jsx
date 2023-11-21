@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { EDIT_USER } from '../utils/mutations';
+import FloatingButton from '../components/Floatingbuttons.jsx';
 import Auth from '../utils/auth';
 
 
@@ -161,7 +162,6 @@ export default function EditProfile() {
                                 onChange={handleChange}
                             />
                         </div>
-
                     </div>
                     <div>
                         <label>Choose a New Profile Pic</label>
@@ -174,7 +174,6 @@ export default function EditProfile() {
                             ))}
                         </div>
                     </div>
-
                     <div>
                         <button id="save" type="submit">Save Changes</button>
                     </div>
@@ -199,11 +198,9 @@ export default function EditProfile() {
                             dawn mode
                         </button>
                     </div>
-
                 </div>
-
             </div>
-
+            <FloatingButton />
         </div>
     )
 }

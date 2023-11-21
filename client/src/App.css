@@ -1740,7 +1740,7 @@ label form [type='radio'] {
 }
 
 
-#profilePicture {
+.profilePicture {
   height: 150px;
   width: 150px;
   border-radius: 100%;
@@ -1756,9 +1756,15 @@ label form [type='radio'] {
 .profile-pic-container {
   display: flex;
   flex-direction: column;
-  height: 150px;
+  height: 100px;
   width: 150px;
   overflow-y: auto;
+}
+
+#profile-pic-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-pic-container img {
@@ -1786,6 +1792,12 @@ button {
 
 .centered {
   text-align: center;
+}
+
+.centered form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .design-container {
