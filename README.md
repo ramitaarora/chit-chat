@@ -43,4 +43,6 @@ WHEN I view the chat history
 THEN I see my messages on one side, and my friend’s messages on the other side
 
 # SCREENSHOTS
-![ScreenShot](https://www.canva.com/design/DAF0KgPCPQ0/mZCKaiYkxRT5WxekJ10P5g/edit)
+![ScreenShot](/client/public/Login%20Chit%20Chat.png) ![ScreenShot](/client/public/Find%20Other%20Users%20Chit%20Chat.png) ![ScreenShot](/client/public/Chat%20Box%20Chit%20Chat.png) ![ScreenShot](/client/public/Chat%20Box%202%20Chit%20Chat.PNG)
+
+© 2023 ChitChat-Team WeChatAlot Confidential and Proprietary. All Rights Reserved.
