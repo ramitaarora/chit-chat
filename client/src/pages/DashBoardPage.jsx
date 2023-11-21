@@ -1,15 +1,16 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
+import { QUERY_FRIENDS } from '../utils/queries.js';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Auth from '../utils/auth.js';
 
 function Dashboard() {
-    const { loading: friendsLoading, data: friendsData } = useQuery(QUERY_FRIENDS);
+    const { loading: friendsLoading, data: friendsData, error, refetch } = useQuery(QUERY_FRIENDS);
 
     const friends = friendsData?.me.friends;
 
     if (Auth.loggedIn()) {
+        refetch();
         if (friendsLoading && !friendsData) {
             return (
                 <div>Loading Dashboard...</div>
