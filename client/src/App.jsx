@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import Floatingbutton from './components/Floatingbuttons';
+import Auth from './utils/auth';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -55,7 +56,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
           <Outlet />
-          <Floatingbutton />
+          {Auth.loggedIn() ? <Floatingbutton /> : <div></div>}
     </ApolloProvider>
   );
 }

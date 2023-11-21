@@ -1,13 +1,33 @@
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
 import Auth from '../utils/auth';
 
+const AddFriendNotification = ({ onClose }) => {
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            onClose();
+        }, 1000);
+        return () => clearTimeout(timeout);
+    });
+
+    return (
+        <div>New Friend Added!</div>
+    )
+}
+
 export default function FriendProfilePage() {
 
     const { userID } = useParams();
+
+    const [showNotification, setShowNotification] = useState(false);
+
+    const hideNotification = () => {
+        setShowNotification(false);
+    }
 
     // Add Friend Handler
 
@@ -18,8 +38,7 @@ export default function FriendProfilePage() {
         try {
             await addFriend({
                 variables: { friend: ID }
-            })
-            alert('Added a new friend!');
+            });
         } catch (e) {
             console.log(e);
             console.log(friendErr);
@@ -72,33 +91,31 @@ export default function FriendProfilePage() {
                 <div>Loading User Profile...</div>
             )
         } else if (userData && chatData) {
-    
+
             const user = userData?.user;
             const ifExists = chatData?.chatExists;
-    
+
             return (
                 <main className='centered'>
+                    <FriendHeader userID={userID} />
                     <div>
-                        <FriendHeader userID={userID} />
+                        <img className="profilePicture" src={user.photo}></img>
+                        <div>{user.fullName}</div>
+                        <div>{user.bio}</div>
                     </div>
-                    <section>
-                        <div>
-                            <div>{user.photo}</div>
-                            <div>{user.fullName}</div>
-                            <div>{user.bio}</div>
-                        </div>
-                        
-                        <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
-                            <img src="../src/assets/plus.png" id="editImg" />
-                        </button>
-                        <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}><img src="../src/assets/start-chat.svg"id="chatImg"></img></button>
-                    </section>
+                    <button id="add-friend" onClick={() => { handleAddFriend(user._id); setShowNotification(true) }}>
+                        <img src="../src/assets/plus.png" id="editImg" />
+                    </button>
+                    <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}>
+                        <img src="../src/assets/start-chat.svg" id="chatImg"></img>
+                    </button>
+                    {showNotification && (
+                        <AddFriendNotification onClose={hideNotification}/>
+                    )}
                 </main>
             )
-        };
+        }
     } else {
         document.location.replace('/');
     }
-
-    
 }

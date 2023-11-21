@@ -1,21 +1,85 @@
-import { useQuery } from '@apollo/client';
-import { QUERY_FRIENDS } from '../utils/queries.js';
+import '../styles/dashboard.css';
+import { useState, useEffect } from 'react';
+import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
+import { NEW_CHAT } from '../utils/mutations';
+import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Auth from '../utils/auth.js';
 
 function Dashboard() {
+
+    const [user2ID, setUser2ID] = useState(null);
+
     const { loading: friendsLoading, data: friendsData, error, refetch } = useQuery(QUERY_FRIENDS);
 
     const friends = friendsData?.me.friends;
 
+    // New Chat Handler
+
+    const [addChat, { chatErr }] = useMutation(NEW_CHAT);
+
+    const [checkIfExists, { loading: chatLoading, data: chatData }] = useLazyQuery(CHAT_EXISTS);
+
+    const handleNewChat = async (ID) => {
+
+        try {
+            if (chatLoading) {
+                console.log('still loading...')
+
+            } else if (chatData) {
+                const exists = chatData?.chatExists;
+                console.log(exists);
+
+                if (exists) {
+                    console.log('found exists');
+                    const chatID = chatData.chatExists._id;
+                    document.location.replace(`/chat/${chatID}`);
+                    return exists;
+                } else {
+                    const { data } = await addChat({
+                        variables: { user2: ID }
+                    })
+                    const newChatID = data?.newChat._id;
+                    document.location.replace(`/chat/${newChatID}`);
+                    console.log('new chat created');
+                    refetch();
+                    return data;
+                }
+            }
+
+        } catch (e) {
+            console.log(e);
+            console.log(chatErr);
+        }
+    };
+
+    const fetchData = async (ID) => {
+        try {
+            await checkIfExists({ variables: { user2: ID } });
+
+            if (chatData) {
+
+                await handleNewChat(user2ID);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    useEffect(() => {
+
+        fetchData(user2ID);
+
+    }, [chatData])
+
     if (Auth.loggedIn()) {
-        refetch();
-        if (friendsLoading && !friendsData) {
+        if (friendsLoading) {
             return (
                 <div>Loading Dashboard...</div>
             )
-        } else if (friendsData && !friendsLoading) {
+        } else if (friendsData) {
+
             return (
                 <main className="dashboard-container">
                     <Header />
@@ -23,37 +87,29 @@ function Dashboard() {
                     <section className="inbox-container">
                         {
                             friends.map((friend) => (
-                                <Link to={`/user/${friend._id}`}>
-                                    <div key={friend._id} className="chat-preview">
+                                <div key={friend._id} className="chat-preview">
+                                    <Link to={`/user/${friend._id}`}>
                                         <section className="profile-picture">
                                             <img src={friend.photo} alt="user-one"></img>
                                         </section>
-                                        <section className="message-preview">
-                                            <h3>{friend.username}</h3>
-                                            <p>So about coding...</p>
-                                        </section>
-                                    </div>
-                                </Link>
+                                    </Link>
+                                    <section
+                                        className="message-preview"
+                                        onClick={() => { fetchData(friend._id); setUser2ID(friend._id) }}
+                                    >
+                                        <h3>{friend.username}</h3>
+                                    </section>
+                                </div>
                             ))
                         }
-                        <Link to="/users">Find other users!</Link>
+                        <Link to="/users">ADD NEW FRIENDS</Link>
                     </section>
-                </main>
-            )
-        } else {
-            return (
-                <main>
-                    <Header />
-                    <div>Friends List is Empty</div>
-                    <Link to="/users">Add friends!</Link>
                 </main>
             )
         }
     } else {
         document.location.replace('/');
     }
-    
-
 }
 
 export default Dashboard;
