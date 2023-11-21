@@ -14,13 +14,20 @@ const resolvers = {
         },
         chatExists: async (parent, { user2 }, context) => {
             const user1 = context.user._id;
-            console.log(user1);
 
             return Chat.findOne({ $or: [
                 { user1, user2 },
                 {  user1: user2, user2: user1},
             ] })
         },
+        // friendExists: async (parent, { user2 }, context) => {
+        //     const user1 = context.user._id;
+
+        //     return User.findOne({
+        //         { _id: user1 },
+        //         { friends._id: user 2 },
+        //     })
+        // },
         me: async (parent, args, context) => {
             if (context.user) {
               return User.findOne({ _id: context.user._id }).populate('friends');
@@ -29,8 +36,8 @@ const resolvers = {
           },
     },
     Mutation: {
-        addUser: async (parent, { username, fullName, email, password }) => {
-            const user = await User.create({ username, fullName, email, password });
+        addUser: async (parent, { username, fullName, email, password, photo }) => {
+            const user = await User.create({ username, fullName, email, password, photo });
             const token = signToken(user);
             return { token, user }; 
         },

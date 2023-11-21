@@ -21,10 +21,15 @@ export default function UsersListPage() {
                     ) : (
                         <div>
                             {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
+<<<<<<< HEAD
                                 <section key={user._id} className='padding'>
                                     <div><img id="userPfp" src={user.photo} alt="friendProfile" /></div>
+=======
+                                <section key={user._id}>
+                                    <img className="profilePicture" src={user.photo}></img>
+>>>>>>> main
                                     <div><h3>@ {user.username}</h3></div>
-                                    <Link to={`/user/${user._id}`}><button>view profile</button></Link>
+                                    <Link to={`/user/${user._id}`}><button id="view-profile-btn">view profile</button></Link>
                                 </section>
                             ) : null))}
                         </div>

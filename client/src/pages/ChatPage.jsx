@@ -69,9 +69,7 @@ export default function ChatPage() {
                             <FriendHeader userID={userID} />
                             <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
                             {/*<ConnectionManager />*/}
-                            <div id='footer'>
-                                <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
-                            </div>
+                            <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
                         </div>
                     </main>
                 )

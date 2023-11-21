@@ -1,12 +1,35 @@
 import { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery, useLazyQuery } from '@apollo/client';
 import { EDIT_USER } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 
 export default function EditProfile() {
 
     const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '' });
+
+    const [editUser, { error }] = useMutation(EDIT_USER);
+
+    const [findUsername, { loading, data }] = useLazyQuery(QUERY_ME);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                await findUsername();
+                console.log('searching for username');
+
+                if (data) {
+                    const username = data?.me.username;
+                    setFormState({ username: username });
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        fetchData();
+    }, [data]);
 
     const imagePaths = [
         '/profile-pics/astronaut.png',
@@ -24,8 +47,6 @@ export default function EditProfile() {
         '/profile-pics/woman.png',
         '/profile-pics/zebra.png',
     ];
-
-    const [editUser, { error }] = useMutation(EDIT_USER);
 
     const setTheme = (event) => {
         const { id } = event.target;
@@ -121,14 +142,18 @@ export default function EditProfile() {
         }
     };
     if (Auth.loggedIn()) {
-        return (
-            <div>
-                <h2>EDIT PROFILE</h2>
-                <div className="form-container">
-                    <form onSubmit={handleFormSubmit}>
-                        <div>
-                            <label>Change Your Username</label>
+
+        if (loading) {
+            <div>Loading...</div>
+
+        } else {
+            return (
+                <div>
+                    <h2>EDIT PROFILE</h2>
+                    <div className="form-container">
+                        <form onSubmit={handleFormSubmit}>
                             <div>
+<<<<<<< HEAD
                                 <input
                                     className='pill'
                                     placeholder="Username"
@@ -137,11 +162,21 @@ export default function EditProfile() {
                                     value={formState.username}
                                     onChange={handleChange}
                                 />
+=======
+                                <label>Change Your Username</label>
+                                <div>
+                                    <input
+                                        placeholder="username"
+                                        name="username"
+                                        type="text"
+                                        value={formState.username}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+>>>>>>> main
                             </div>
-                        </div>
-                        <div>
-                            <label>Change Your Name</label>
                             <div>
+<<<<<<< HEAD
                                 <input
                                     className='pill'
                                     placeholder="name"
@@ -150,11 +185,21 @@ export default function EditProfile() {
                                     value={formState.fullName}
                                     onChange={handleChange}
                                 />
+=======
+                                <label>Change Your Name</label>
+                                <div>
+                                    <input
+                                        placeholder="name"
+                                        name="name"
+                                        type="text"
+                                        value={formState.fullName}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+>>>>>>> main
                             </div>
-                        </div>
-                        <div>
-                            <label>Change Your Bio</label>
                             <div>
+<<<<<<< HEAD
                                 <input
                                     className='pill'
                                     placeholder="bio"
@@ -175,42 +220,59 @@ export default function EditProfile() {
                                         <img src={pic} />
                                     </div>
                                 ))}
+=======
+                                <label>Change Your Bio</label>
+                                <div>
+                                    <input
+                                        placeholder="bio"
+                                        name="bio"
+                                        type="text"
+                                        value={formState.bio}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label>Choose a New Profile Pic</label>
+                                <div className="profile-pic-container">
+                                    {imagePaths.map((pic, index) => (
+                                        <div key={index}>
+                                            <input type="radio" name="photo" value={pic} onChange={handleChange} />
+                                            <img src={pic} />
+                                        </div>
+                                    ))}
+                                </div>
+>>>>>>> main
+                            </div>
+                            <div>
+                                <button id="save" type="submit">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    <h2>THEMES</h2>
+                    <div className="theme-container">
+                        <div className="themes">
+                            <div>
+                                <button className="theme" id="night" onClick={setTheme}>
+                                    night mode
+                                </button>
+                            </div>
+                            <div>
+                                <button className="theme" id="day" onClick={setTheme}>
+                                    day mode
+                                </button>
+                            </div>
+                            <div>
+                                <button className="theme" id="dawn" onClick={setTheme}>
+                                    dawn mode
+                                </button>
                             </div>
                         </div>
-    
-                        <div>
-                            <button id="save" type="submit">Save Changes</button>
-                        </div>
-                    </form>
-                </div>
-                <h2>THEMES</h2>
-                <div className="theme-container">
-    
-                    <div className="themes">
-                        <div>
-                            <button className="theme" id="night" onClick={setTheme}>
-                                night mode
-                            </button>
-                        </div>
-                        <div>
-                            <button className="theme" id="day" onClick={setTheme}>
-                                day mode
-                            </button>
-                        </div>
-                        <div>
-                            <button className="theme" id="dawn" onClick={setTheme}>
-                                dawn mode
-                            </button>
-                        </div>
-    
                     </div>
-    
                 </div>
-    
-            </div>
-        )
+            )
+        }
     } else {
         document.location.replace('/');
     }
-    
 }
