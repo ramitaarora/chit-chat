@@ -153,6 +153,16 @@ export default function EditProfile() {
                     <div className="form-container">
                         <form onSubmit={handleFormSubmit}>
                             <div>
+<<<<<<< HEAD
+                                <input
+                                    className='pill'
+                                    placeholder="Username"
+                                    name="username"
+                                    type="text"
+                                    value={formState.username}
+                                    onChange={handleChange}
+                                />
+=======
                                 <label>Change Your Username</label>
                                 <div>
                                     <input
@@ -163,8 +173,19 @@ export default function EditProfile() {
                                         onChange={handleChange}
                                     />
                                 </div>
+>>>>>>> main
                             </div>
                             <div>
+<<<<<<< HEAD
+                                <input
+                                    className='pill'
+                                    placeholder="name"
+                                    name="name"
+                                    type="text"
+                                    value={formState.fullName}
+                                    onChange={handleChange}
+                                />
+=======
                                 <label>Change Your Name</label>
                                 <div>
                                     <input
@@ -175,8 +196,31 @@ export default function EditProfile() {
                                         onChange={handleChange}
                                     />
                                 </div>
+>>>>>>> main
                             </div>
                             <div>
+<<<<<<< HEAD
+                                <input
+                                    className='pill'
+                                    placeholder="bio"
+                                    name="bio"
+                                    type="text"
+                                    value={formState.bio}
+                                    onChange={handleChange}
+                                />
+                            </div>
+    
+                        </div>
+                        <div>
+                            <label>Choose a New Profile Pic</label>
+                            <div id="profile-pic-container">
+                                {imagePaths.map((pic, index) => (
+                                    <div key={index}>
+                                        <input type="radio" name="photo" value={pic} onChange={handleChange} />
+                                        <img src={pic} />
+                                    </div>
+                                ))}
+=======
                                 <label>Change Your Bio</label>
                                 <div>
                                     <input
@@ -198,6 +242,7 @@ export default function EditProfile() {
                                         </div>
                                     ))}
                                 </div>
+>>>>>>> main
                             </div>
                             <div>
                                 <button id="save" type="submit">Save Changes</button>

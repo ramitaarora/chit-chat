@@ -17,9 +17,8 @@ export default function ProfilePage() {
         return (
           <div className='centered'>
             <div>
-              <div>
                 <div id="username">
-                  <h3>{myData.username}</h3>
+                  <h2>@ {myData.username}</h2>
                 </div>
                 <div>
                   <img className="profilePicture" src={myData.photo} alt="Profile" />
@@ -35,7 +34,11 @@ export default function ProfilePage() {
                     <img src="../src/assets/pencil.png" id="editImg" alt="Edit Profile" />
                   </button>
                 </Link>
+<<<<<<< HEAD
+                <Logout />
+=======
               </div>
+>>>>>>> main
             </div>
           </div>
         );
