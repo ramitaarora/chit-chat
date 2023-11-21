@@ -22,9 +22,9 @@ export default function UsersListPage() {
                         <div>
                             {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
                                 <section key={user._id}>
-                                    <div>{user.photo}</div>
+                                    <img className="profilePicture" src={user.photo}></img>
                                     <div><h3>@ {user.username}</h3></div>
-                                    <Link to={`/user/${user._id}`}><button>view profile</button></Link>
+                                    <Link to={`/user/${user._id}`}><button id="view-profile-btn">view profile</button></Link>
                                 </section>
                             ) : null))}
                         </div>
