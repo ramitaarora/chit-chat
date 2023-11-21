@@ -62,19 +62,20 @@ export default function ChatPage() {
                 userID = userID1;
             }
 
-        if (userID) {
-            return (
-                <main>
-                    <div id="chat-page">
-                        {/*<ConnectionState isConnected={ isConnected } />*/}
-                        <FriendHeader userID={userID} />
-                        <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
-                        {/*<ConnectionManager />*/}
-                        <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
-                        <Floatingbutton />
-                    </div>
-                </main>
-            )    
-        }         
+            if (userID) {
+                return (
+                    <main>
+                        <div id="chat-page">
+                            {/*<ConnectionState isConnected={ isConnected } />*/}
+                            <FriendHeader userID={userID} />
+                            <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
+                            {/*<ConnectionManager />*/}
+                            <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
+                            <Floatingbutton />
+                        </div>
+                    </main>
+                )
+            }
+        }
     }
 }

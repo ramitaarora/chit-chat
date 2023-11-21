@@ -26,7 +26,7 @@ export default function AddFriendPage() {
                         <div>
                             {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
                                 <section key={user._id}>
-                                    <div>{user.photo}</div>
+                                    <img className="profilePicture" src={user.photo}></img>
                                     <div>{user.username}</div>
                                     <button onClick={() => handleFriendProfilePage(user._id)}>+</button>
                                 </section>

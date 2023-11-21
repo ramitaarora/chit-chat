@@ -162,7 +162,6 @@ export default function EditProfile() {
                                     onChange={handleChange}
                                 />
                             </div>
-    
                         </div>
                         <div>
                             <label>Choose a New Profile Pic</label>
@@ -175,7 +174,6 @@ export default function EditProfile() {
                                 ))}
                             </div>
                         </div>
-    
                         <div>
                             <button id="save" type="submit">Save Changes</button>
                         </div>
@@ -183,7 +181,6 @@ export default function EditProfile() {
                 </div>
                 <h2>THEMES</h2>
                 <div className="theme-container">
-    
                     <div className="themes">
                         <div>
                             <button className="theme" id="night" onClick={setTheme}>
@@ -200,11 +197,8 @@ export default function EditProfile() {
                                 dawn mode
                             </button>
                         </div>
-    
                     </div>
-    
                 </div>
-    
             </div>
         )
     } else {
