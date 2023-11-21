@@ -34,11 +34,7 @@ export default function ProfilePage() {
                     <img src="../src/assets/pencil.png" id="editImg" alt="Edit Profile" />
                   </button>
                 </Link>
-<<<<<<< HEAD
                 <Logout />
-=======
-              </div>
->>>>>>> main
             </div>
           </div>
         );
