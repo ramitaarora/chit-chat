@@ -5,6 +5,7 @@ import { QUERY_CHAT } from '../utils/queries';
 import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
+import AudioRecorder from '../components/AudioRecorder';
 import Auth from '../utils/auth';
 
 import { socket } from '../socket';

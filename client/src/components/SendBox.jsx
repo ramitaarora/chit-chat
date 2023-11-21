@@ -1,14 +1,21 @@
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react';
 import { useMutation } from "@apollo/client";
 import { SAVE_MESSAGE } from '../utils/mutations';
 import { socket } from '../socket';
+import AudioRecorder from '../components/AudioRecorder';
 import Auth from '../utils/auth';
 
 export default function SendBox({ chatID, fooEvents, setFooEvents }) {
     const [isLoading, setIsLoading] = useState(false);
     const [saveMessage] = useMutation(SAVE_MESSAGE);
-
+    const [audioData, setAudioData] = useState(null);
     const [input, setInput] = useState('');
+
+    useEffect(() => {
+        if (audioData) {
+            setInput(audioData)
+        }
+    }, [audioData]);
 
     const handleEmoji = (event) => {
         event.preventDefault();
@@ -54,8 +61,8 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
         <section>
             <form id="chatForm" onSubmit={handleSendMsg}>
                 <div id="sendBox">
-                    <input  className="pill" id="messageInput" value={input} onChange={handleText} type="text"/>
-                    <input className='pill' id="submitBtn" type="submit" value="SEND"/>
+                    <input className="pill" id="messageInput" value={input} onChange={handleText} type="text" />
+                    <input className='pill' id="submitBtn" type="submit" value="SEND" />
                     <div id="emojis">
                         <p onClick={handleEmoji}>❤️</p>
                         <p onClick={handleEmoji}>😊</p>
@@ -65,8 +72,8 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
                         <p onClick={handleEmoji}>🎉</p>
                     </div>
                 </div>
-                
             </form>
+            <AudioRecorder newAudioData={(data) => setAudioData(data)} />
         </section>
     )
 }

@@ -1936,3 +1936,31 @@ button {
 .padding {
   margin:4rem;
 }
+
+.audio-recorder {
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-tip {
+  position: relative;
+  display: inline-block;
+}
+
+.tool-tip .tool-tip-text {
+  visibility: hidden;
+  width: auto;
+  background-color: black;
+  opacity: 0.75;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1rem;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tool-tip:hover .tool-tip-text {
+  visibility: visible;
+}
