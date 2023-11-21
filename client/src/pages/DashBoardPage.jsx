@@ -1,5 +1,5 @@
 import '../styles/dashboard.css';
-import FloatingButton from '../components/Floatingbuttons.jsx';
+import { useState, useEffect } from 'react';
 import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import { NEW_CHAT } from '../utils/mutations';
 import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
@@ -8,6 +8,11 @@ import Header from '../components/Header';
 import Auth from '../utils/auth.js';
 
 function Dashboard() {
+
+    // const [chatData, setChatData] = useState(null);
+
+    const [user2ID, setUser2ID] = useState(null);
+
     const { loading: friendsLoading, data: friendsData, error, refetch } = useQuery(QUERY_FRIENDS);
 
     const friends = friendsData?.me.friends;
@@ -21,8 +26,6 @@ function Dashboard() {
     const handleNewChat = async (ID) => {
 
         try {
-            await checkIfExists({ variables: { user2: ID } });
-
             if (chatLoading) {
                 console.log('still loading...')
 
@@ -53,6 +56,25 @@ function Dashboard() {
         }
     };
 
+    const fetchData = async (ID) => {
+        try {
+            await checkIfExists({ variables: { user2: ID } });
+
+            if (chatData) {
+                
+                await handleNewChat(user2ID);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    useEffect(() => {
+        
+        fetchData(user2ID);
+
+    }, [chatData])
+
     if (friendsLoading) {
         return (
             <div>Loading Dashboard...</div>
@@ -72,7 +94,10 @@ function Dashboard() {
                                         <img src={friend.photo} alt="user-one"></img>
                                     </section>
                                 </Link>
-                                <section className="message-preview" onClick={() => handleNewChat(friend._id)}>
+                                <section
+                                    className="message-preview"
+                                    onClick={() => { fetchData(friend._id); setUser2ID(friend._id) }}
+                                >
                                     <h3>{friend.username}</h3>
                                     <p>So about coding...</p>
                                 </section>
@@ -81,7 +106,6 @@ function Dashboard() {
                     }
                     <Link to="/users">ADD NEW FRIENDS</Link>
                 </section>
-                <FloatingButton />
             </main>
         )
     }

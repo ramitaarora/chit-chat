@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
-import Logout from '../components/Logout';
 
 export default function ProfilePage() {
     if (Auth.loggedIn()) {

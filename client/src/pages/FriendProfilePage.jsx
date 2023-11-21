@@ -3,7 +3,6 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
-import FloatingButton from '../components/Floatingbuttons.jsx';
 import Auth from '../utils/auth';
 
 export default function FriendProfilePage() {
@@ -89,7 +88,6 @@ export default function FriendProfilePage() {
                         <img src="../src/assets/plus.png" id="editImg" />
                     </button>
                     <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}><img src="../src/assets/start-chat.svg" id="chatImg"></img></button>
-                    <FloatingButton />
                 </main>
             )
         }
