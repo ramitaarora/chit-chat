@@ -23,12 +23,12 @@ body {
 
 @font-face {
   font-family: bubbleFont;
-  src: url(boorsok.ttf) format('truetype');
+  src: url(../public/boorsok.ttf) format('truetype');
 }
 
 @font-face {
   font-family: aristotle;
-  src: url(AristotelicaProDisplayExtralight.otf);
+  src: url(../public/AristotelicaProDisplayExtralight.otf);
 }
 
 /**
@@ -380,10 +380,12 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  font-family: bubbleFont;
 }
 
 h3 {
   font-size: 1.75rem;
+  font-family: aristotle;
 }
 
 h4 {
@@ -1707,7 +1709,7 @@ label form [type='radio'] {
   }
 }
 
-.header {
+header,.header {
   display: flex;
   justify-content: center;
 }
@@ -1726,7 +1728,7 @@ label form [type='radio'] {
   align-items: center;
 }
 
-#add-friend, #edit {
+#add-friend, #edit, #start-chat, #logout{
   background-color: #8C52FF;
   border-radius: 70%;
   height: 50px;
@@ -1734,7 +1736,7 @@ label form [type='radio'] {
   border-width: 0px;
 }
 
-#editImg{
+#editImg, #chatImg #logoutImg{
   height: 20px;
   width: 20px;
 }
@@ -1751,6 +1753,19 @@ label form [type='radio'] {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.profile-pic-container {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 150px;
+  overflow-y: auto;
+}
+
+.profile-pic-container img {
+  height: 50px;
+  width: 50px;
 }
 
 .pill {
@@ -1784,4 +1799,130 @@ button {
   position: absolute;
   right: 50vw;
 
+}
+
+.chat{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.senderTxt {
+  background-color: #C1A2FF;
+  max-height: auto;
+  max-width: 40vw;
+  width: fit-content;
+  color: #7843E6;
+  border-radius: 2rem;
+  padding: 1rem;
+  margin-left: auto;
+  font-family: aristotle;
+}
+
+.receiverTxt {
+  width: fit-content;
+  color: white;
+  max-height: auto;
+  max-width: 40vw;
+  background-color: #7843E6;
+  border-radius: 2rem;
+  padding: 1rem;
+  margin-right: auto;
+  font-family: aristotle;
+}
+
+#chatInput {
+ display: flexbox;
+}
+
+#sendBox{
+  background-color: black;
+  flex-wrap: nowrap;
+}
+
+#messageInput {
+  width: 60vw;
+  display: inline;
+  margin-left: 5vw;
+  height: 2rem;
+}
+
+#submitBtn {
+  background-color: #7843E6;
+  color: white;
+  width: 30vw;
+  display:inline;
+  font-family: bubbleFont;
+  font-size: 1.5rem;
+  height: 2rem;
+
+}
+
+#footer{
+  position:absolute;
+  width:100%;
+  bottom:0px;
+}
+
+ /*imported from dashboard.css */
+
+
+.inbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  width: 60vw;
+}
+
+.chat-preview:hover {
+  background-color: rgb(255, 255, 96);
+  cursor: pointer;
+  transform: scale(1.15);
+  transition: 0.5s ease;
+}
+
+.chat-preview {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80vw;
+  max-width: 500px;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-picture:hover {
+  transform: scale(1.25);
+  transition: ease;
+}
+
+.message-preview {
+  flex: 1;
+}
+
+.message-preview h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.message-preview p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  color: #777;
 }

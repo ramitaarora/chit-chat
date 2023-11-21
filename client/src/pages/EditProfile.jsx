@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { EDIT_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -6,22 +6,39 @@ import Auth from '../utils/auth';
 
 export default function EditProfile() {
 
-    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '', interests: []} );
+    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '' });
+
+    const imagePaths = [
+        '/profile-pics/astronaut.png',
+        '/profile-pics/avocado.png',
+        '/profile-pics/cat.png',
+        '/profile-pics/gamer.png',
+        '/profile-pics/icecream.png',
+        '/profile-pics/livingroom.png',
+        '/profile-pics/man.png',
+        '/profile-pics/paperplane.png',
+        '/profile-pics/rain.png',
+        '/profile-pics/river.png',
+        '/profile-pics/rubberduck.png',
+        '/profile-pics/watermelon.png',
+        '/profile-pics/woman.png',
+        '/profile-pics/zebra.png',
+    ];
 
     const [editUser, { error }] = useMutation(EDIT_USER);
 
     const setTheme = (event) => {
-        const {id} = event.target;
+        const { id } = event.target;
         console.log(id)
 
         if (id === 'night') {
             document.body.style.backgroundImage = "linear-gradient(to bottom, rgba(2,0,36,1) 0%, #5543E6 100%)";
             document.body.style.color = "white";
-            Array.from(document.querySelectorAll('h2')).map(function(h2) {
-                h2.style.color="#C1A2FF";
+            Array.from(document.querySelectorAll('h2')).map(function (h2) {
+                h2.style.color = "#C1A2FF";
             })
-            Array.from(document.querySelectorAll('button')).map(function(button) {
-                button.style.backgroundColor="#8C52FF";
+            Array.from(document.querySelectorAll('button')).map(function (button) {
+                button.style.backgroundColor = "#8C52FF";
             })
 
             localStorage.setItem("bgImage", "linear-gradient(to bottom, rgba(2,0,36,1) 0%, #5543E6 100%)");
@@ -31,15 +48,15 @@ export default function EditProfile() {
             localStorage.setItem("headerImg", "../src/assets/chitchatheader.png")
 
         }
-        
+
         if (id === 'day') {
             document.body.style.backgroundImage = "linear-gradient(to bottom, #93B1F4  0%, #A1C7FF 100%)";
             document.body.style.color = "white";
-            Array.from(document.querySelectorAll('h2')).map(function(h2) {
-                h2.style.color="white";
+            Array.from(document.querySelectorAll('h2')).map(function (h2) {
+                h2.style.color = "white";
             })
-            Array.from(document.querySelectorAll('button')).map(function(button) {
-                button.style.backgroundColor="#43ABE6";
+            Array.from(document.querySelectorAll('button')).map(function (button) {
+                button.style.backgroundColor = "#43ABE6";
             })
             localStorage.setItem("bgImage", "linear-gradient(to bottom, #93B1F4  0%, #A1C7FF 100%)");
             localStorage.setItem("bodyColor", "white");
@@ -52,11 +69,11 @@ export default function EditProfile() {
         if (id === 'dawn') {
             document.body.style.backgroundImage = "linear-gradient(to bottom, #FFB3E2 0%, #FFC6C6 100%)";
             document.body.style.color = "white";
-            Array.from(document.querySelectorAll('h2')).map(function(h2) {
-                h2.style.color="white";
+            Array.from(document.querySelectorAll('h2')).map(function (h2) {
+                h2.style.color = "white";
             })
-            Array.from(document.querySelectorAll('button')).map(function(button) {
-                button.style.backgroundColor="#FF66C4";
+            Array.from(document.querySelectorAll('button')).map(function (button) {
+                button.style.backgroundColor = "#FF66C4";
             })
             localStorage.setItem("bgImage", "linear-gradient(to bottom, #FFB3E2 0%, #FFC6C6 100%)");
             localStorage.setItem("bodyColor", "white");
@@ -67,168 +84,130 @@ export default function EditProfile() {
     };
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value, type } = event.target;
 
-        // Interest update not working
-
-        if (name === 'interest1' || name === 'interest2' || name === 'interest3') {
-            const interestIndex = parseInt(name.charAt(name.length - 1)) - 1;
-            console.log(interestIndex, value);
-            setFormState((prevState) => ({
-                ...prevState,
-                interests: [
-                    ...prevState.interests.slice(0, interestIndex),
-                    value,
-                    ...prevState.interests.slice(interestIndex + 1),
-                ],
-            }));
+        if (type === 'radio' && name === 'photo') {
+            setFormState({
+                ...formState,
+                [name]: value,
+            });
         } else {
             setFormState({
                 ...formState,
                 [name]: value,
             });
         }
-
-        
     };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
             await editUser({
-                variables: { ...formState}
+                variables: { ...formState }
             });
 
             await setFormState({
-                username: '', 
-                name: '', 
-                photo: '', 
-                bio: '', 
-                interest: [],
+                username: '',
+                name: '',
+                photo: '',
+                bio: '',
             });
-            
+
             await document.location.replace('/profile');
-            
+
         } catch (e) {
             console.error(e);
             console.log(error);
         }
     };
-
-    return (
-        <div>
-            <h2>EDIT PROFILE</h2>
-            <div className="form-container">
-                <form onSubmit={handleFormSubmit}>
-                    <div>
-                        <label>Change Your Username</label>
+    if (Auth.loggedIn()) {
+        return (
+            <div>
+                <h2>EDIT PROFILE</h2>
+                <div className="form-container">
+                    <form onSubmit={handleFormSubmit}>
                         <div>
-                            <input
-                                placeholder="Username"
-                                name="username"
-                                type="text"
-                                value={formState.username}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <label>Change Your Name</label>
-                        <div>
-                            <input
-                                placeholder="name"
-                                name="name"
-                                type="text"
-                                value={formState.fullName}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div>
-                    {/* <div>
-                        <label>Change Your Profile Pic</label>
-                        <div>
-                            <input
-                                placeholder="profilePic"
-                                name="photo"
-                                type="image"
-                                value={formState.photo}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div> */}
-                    <div>
-                        <label>Change Your Bio</label>
-                        <div>
-                            <input
-                                placeholder="bio"
-                                name="bio"
-                                type="text"
-                                value={formState.bio}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                    </div>
-                    <div>
-                        <label>Change Your Interests</label>
-                        <div>
-                            <input
-                                placeholder="interest"
-                                name="interest1"
-                                type="text"
-                                value={formState.interests[0]}
-                                onChange={handleChange}
-                            />
+                            <label>Change Your Username</label>
+                            <div>
+                                <input
+                                    placeholder="Username"
+                                    name="username"
+                                    type="text"
+                                    value={formState.username}
+                                    onChange={handleChange}
+                                />
+                            </div>
                         </div>
                         <div>
-                            <input
-                                placeholder="interest"
-                                name="interest2"
-                                type="text"
-                                value={formState.interests[1]}
-                                onChange={handleChange}
-                            />
+                            <label>Change Your Name</label>
+                            <div>
+                                <input
+                                    placeholder="name"
+                                    name="name"
+                                    type="text"
+                                    value={formState.fullName}
+                                    onChange={handleChange}
+                                />
+                            </div>
                         </div>
                         <div>
-                            <input
-                                placeholder="interest"
-                                name="interest3"
-                                type="text"
-                                value={formState.interests[2]}
-                                onChange={handleChange}
-                            />
+                            <label>Change Your Bio</label>
+                            <div>
+                                <input
+                                    placeholder="bio"
+                                    name="bio"
+                                    type="text"
+                                    value={formState.bio}
+                                    onChange={handleChange}
+                                />
+                            </div>
+    
                         </div>
-                    </div>
-                    <div>
-                        <button id="save" type="submit">Save Changes</button>
-                    </div>
-
-                </form>
-            </div>
-            <h2>THEMES</h2>
-            <div className="theme-container">
-
-                <div className="themes">
-                    <div>
-                        <button className="theme" id="night" onClick={setTheme}>
-                            night mode
-                        </button>
-                    </div>
-                    <div>
-                        <button className="theme" id="day" onClick={setTheme}>
-                            day mode
-                        </button>
-                    </div>
-                    <div>
-                        <button className="theme" id="dawn" onClick={setTheme}>
-                            dawn mode
-                        </button>
-                    </div>
-
+                        <div>
+                            <label>Choose a New Profile Pic</label>
+                            <div className="profile-pic-container">
+                                {imagePaths.map((pic, index) => (
+                                    <div key={index}>
+                                        <input type="radio" name="photo" value={pic} onChange={handleChange} />
+                                        <img src={pic} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+    
+                        <div>
+                            <button id="save" type="submit">Save Changes</button>
+                        </div>
+                    </form>
                 </div>
-
+                <h2>THEMES</h2>
+                <div className="theme-container">
+    
+                    <div className="themes">
+                        <div>
+                            <button className="theme" id="night" onClick={setTheme}>
+                                night mode
+                            </button>
+                        </div>
+                        <div>
+                            <button className="theme" id="day" onClick={setTheme}>
+                                day mode
+                            </button>
+                        </div>
+                        <div>
+                            <button className="theme" id="dawn" onClick={setTheme}>
+                                dawn mode
+                            </button>
+                        </div>
+    
+                    </div>
+    
+                </div>
+    
             </div>
-
-        </div>
-    )
+        )
+    } else {
+        document.location.replace('/');
+    }
+    
 }

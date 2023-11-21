@@ -3,19 +3,21 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
-import FloatingButton from '../components/Floatingbuttons.jsx';
 import Logout from '../components/Logout';
 
 export default function ProfilePage() {
     if (Auth.loggedIn()) {
       const { data, loading } = useQuery(QUERY_ME);
-      const myData = data?.me;
   
       if (loading) {
         return <div>Loading...</div>;
       } else {
+
+        const myData = data?.me;
+        console.log(myData);
+
         return (
-          <div>
+          <div className='centered'>
             <div>
               <div>
                 <div id="username">
@@ -30,13 +32,6 @@ export default function ProfilePage() {
                 <div id="bio">
                   <p>{myData.bio}</p>
                 </div>
-                <div className="container" id="interests">
-                  {myData.interests.map((interest, index) => (
-                    <button key={index} className="interest" id={`interest${index + 1}`}>
-                      {interest}
-                    </button>
-                  ))}
-                </div>
                 <Link to="/profile/edit">
                   <button id="edit">
                     <img src="../src/assets/pencil.png" id="editImg" alt="Edit Profile" />
@@ -45,7 +40,6 @@ export default function ProfilePage() {
                 <Logout />
               </div>
             </div>
-            <FloatingButton />
           </div>
         );
       }

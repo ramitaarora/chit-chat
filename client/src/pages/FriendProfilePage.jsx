@@ -66,31 +66,39 @@ export default function FriendProfilePage() {
         variables: { id: userID }
     });
 
-    if (userLoading || chatLoading) {
-        return (
-            <div>Loading User Profile...</div>
-        )
-    } else if (userData && chatData) {
+    if (Auth.loggedIn()) {
+        if (userLoading || chatLoading) {
+            return (
+                <div>Loading User Profile...</div>
+            )
+        } else if (userData && chatData) {
+    
+            const user = userData?.user;
+            const ifExists = chatData?.chatExists;
+    
+            return (
+                <main className='centered'>
+                    <div>
+                        <FriendHeader userID={userID} />
+                    </div>
+                    <section>
+                        <div>
+                            <div>{user.photo}</div>
+                            <div>{user.fullName}</div>
+                            <div>{user.bio}</div>
+                        </div>
+                        
+                        <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
+                            <img src="../src/assets/plus.png" id="editImg" />
+                        </button>
+                        <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}><img src="../src/assets/start-chat.svg"id="chatImg"></img></button>
+                    </section>
+                </main>
+            )
+        };
+    } else {
+        document.location.replace('/');
+    }
 
-        const user = userData?.user;
-        const ifExists = chatData?.chatExists;
-
-        return (
-            <main>
-                <FriendHeader userID={userID} />
-                <section>
-                    <div>{user.photo}</div>
-                    <div>{user.fullName}</div>
-                    <div>{user.bio}</div>
-                    <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
-                        <img src="../src/assets/plus.png" id="editImg" />
-                    </button>
-                    <button onClick={() => handleNewChat(user._id, ifExists)}>Start Chat Button</button>
-                    {user.interests.map((interest, index) => (
-                        <div key={index}>{interest}</div>
-                    ))}
-                </section>
-            </main>
-        )
-    };
+    
 }
