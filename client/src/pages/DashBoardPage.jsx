@@ -92,17 +92,6 @@ function Dashboard() {
                                         <section className="profile-picture">
                                             <img src={friend.photo} alt="user-one"></img>
                                         </section>
-<<<<<<< HEAD
-                                        <section className="message-preview">
-                                            <h3>@ {friend.username}</h3>
-                                            {/* <p>So about coding...</p> */}
-                                        </section>
-                                    </div>
-                                </Link>
-                            ))
-                        }
-                        <Link to="/users"><button>Find other users!</button></Link>
-=======
                                     </Link>
                                     <section
                                         className="message-preview"
@@ -115,7 +104,6 @@ function Dashboard() {
                             ))
                         }
                         <Link to="/users">ADD NEW FRIENDS</Link>
->>>>>>> main
                     </section>
                 </main>
             )
