@@ -8,7 +8,7 @@ import SendBox from '../components/SendBox';
 import Auth from '../utils/auth';
 import Floatingbutton from '../components/Floatingbuttons';
 
-import { socket } from '../socket'
+import { socket } from '../socket';
 import ConnectionState from '../components/ConnectionState';
 import ConnectionManager from '../components/ConnectionManager';
 

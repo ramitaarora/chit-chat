@@ -1753,6 +1753,19 @@ label form [type='radio'] {
   align-items: center;
 }
 
+.profile-pic-container {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 150px;
+  overflow-y: auto;
+}
+
+.profile-pic-container img {
+  height: 50px;
+  width: 50px;
+}
+
 .pill {
   border-radius: 20rem;
   margin: 5px;

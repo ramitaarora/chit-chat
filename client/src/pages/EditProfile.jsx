@@ -164,7 +164,7 @@ export default function EditProfile() {
 
                     </div>
                     <div>
-                        <label>Choose a New Profile Picture</label>
+                        <label>Choose a New Profile Pic</label>
                         <div className="profile-pic-container">
                             {imagePaths.map((pic, index) => (
                                 <div key={index}>
