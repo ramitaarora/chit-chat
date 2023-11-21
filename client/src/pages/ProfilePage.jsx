@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
-import FloatingButton from '../components/Floatingbuttons.jsx';
 import Logout from '../components/Logout';
 
 export default function ProfilePage() {
@@ -41,7 +40,6 @@ export default function ProfilePage() {
                 <Logout />
               </div>
             </div>
-            <FloatingButton />
           </div>
         );
       }

@@ -43,8 +43,11 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
     return (
         <section>
             <form id="chatForm" onSubmit={handleSendMsg}>
-                <input id="messageInput" type="text"/>
-                <input type="submit"/>
+                <div id="sendBox">
+                    <input  className="pill" id="messageInput" type="text"/>
+                    <input className='pill' id="submitBtn" type="submit" value="SEND"/>
+                </div>
+                
             </form>
         </section>
     )

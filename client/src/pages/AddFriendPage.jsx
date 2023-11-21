@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
 import Auth from '../utils/auth';
 import Header from '../components/Header';
-import Floatingbutton from '../components/Floatingbuttons.jsx';
 
 
 export default function AddFriendPage() {
@@ -15,7 +14,7 @@ export default function AddFriendPage() {
         document.location.replace(`/user/${userID}`)
     }
 
-    // if (Auth.loggedIn()) {
+    if (Auth.loggedIn()) {
         return (
             <main>
                 <Header />
@@ -34,12 +33,11 @@ export default function AddFriendPage() {
                             ) : null))}
                         </div>
                     )}
-                                    <Floatingbutton />
 
                 </div>
             </main>
         )
-    // } else {
-        // document.location.replace('/');
+    } else {
+        document.location.replace('/');
     };
-// }
+}

@@ -20,7 +20,7 @@ const Floatingbutton = () => {
     <FloatButton.Group
       trigger="hover"
       type="default"
-      style={{ right: 90 }}
+      style={{ right: 30 }}
       icon={<CustomIcon />}
     >
     <Link to="/users">

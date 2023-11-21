@@ -1,4 +1,4 @@
-#chat-page {
+/* #chat-page {
     width: 500px;
     margin: 10px auto;
     height: 100vh;
@@ -40,4 +40,13 @@
 #chatForm input {
     padding: 5px;
     margin: 0 2px;
+} */
+
+body {
+    font-family: aristotle;
+    font-weight: bolder;
+}
+
+h1, h2 {
+    font-family: bubbleFont;
 }
