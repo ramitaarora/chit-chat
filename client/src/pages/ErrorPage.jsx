@@ -1,4 +1,5 @@
 import { useRouteError } from "react-router-dom";
+import Floatingbutton from '../components/Floatingbuttons'
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -11,6 +12,7 @@ export default function ErrorPage() {
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
+      <Floatingbutton/>
     </div>
   );
 }
