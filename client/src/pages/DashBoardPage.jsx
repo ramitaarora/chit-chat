@@ -98,7 +98,6 @@ function Dashboard() {
                                         onClick={() => { fetchData(friend._id); setUser2ID(friend._id) }}
                                     >
                                         <h3>{friend.username}</h3>
-                                        <p>So about coding...</p>
                                     </section>
                                 </div>
                             ))
