@@ -10,9 +10,13 @@ export default function FriendHeader(props) {
             return <div>Loading...</div>;
         } else {
             const username = data.user.username;
+            const photo = data.user.photo;
     
             return (
-                <header><h2>@{username}</h2></header>
+                <header>
+                    <img src={photo} alt={username} width="50px"/>
+                    <h2>@{username}</h2>
+                </header>
             )
     }
 }
