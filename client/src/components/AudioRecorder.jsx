@@ -2,14 +2,11 @@ import Spinner from 'react-bootstrap/Spinner';
 import MicRecorder from 'mic-recorder-to-mp3';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-// import 'dotenv/config';
-
-// dotenv.config();
 
 const axiosHeader = axios.create({
     baseURL: "https://api.assemblyai.com/v2",
     headers: {
-        authorization: "4395f6b5f7644ae8b98528673dea181d",
+        authorization: import.meta.env.VITE_REACT_APP_ASSEMBLYAI_API_KEY,
         "content-type": "application/json",
         "transfer-encoding": "chunked",
     },
@@ -95,6 +92,7 @@ const AudioRecorder = ({ newAudioData }) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
+            console.log(transcriptData);
             if (transcriptData.status !== "completed" && isLoading) {
                 checkStatusHandler()
             } else {
@@ -105,7 +103,7 @@ const AudioRecorder = ({ newAudioData }) => {
             }
         }, 1000)
         return () => clearInterval(interval)
-    },)
+    })
 
     return (
         <div className="audio-recorder">
