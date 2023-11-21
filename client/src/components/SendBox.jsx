@@ -8,11 +8,16 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
     const [isLoading, setIsLoading] = useState(false);
     const [saveMessage] = useMutation(SAVE_MESSAGE);
 
-    const [input, setInput] = useState('hey!');
+    const [input, setInput] = useState('');
 
     const handleEmoji = (event) => {
         event.preventDefault();
-        setInput(input.concat(' ' + event.target.textContent));
+        setInput(input + ' ' + event.target.textContent);
+    }
+
+    const handleText = event => {
+        event.preventDefault();
+        setInput(event.target.value);
     }
 
     const handleSendMsg = async (event) => {
@@ -24,9 +29,7 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
         if (!token) {
             return false;
         }
-
-        const input = document.getElementById('messageInput');
-        const message = input.value.trim();
+        const message = input.trim();
 
         if (message !== '') {
             socket.emit('chat message', { user: Auth.getProfile().data._id, message });
@@ -38,7 +41,7 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
                         textContent: message,
                     }
                 })
-                input.value = '';
+                setInput('')
                 setIsLoading(false);
 
             } catch (err) {
@@ -51,7 +54,7 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
         <section>
             <form id="chatForm" onSubmit={handleSendMsg}>
                 <div id="sendBox">
-                    <input  className="pill" id="messageInput" type="text"/>
+                    <input  className="pill" id="messageInput" value={input} onChange={handleText} type="text"/>
                     <input className='pill' id="submitBtn" type="submit" value="SEND"/>
                     <div id="emojis">
                         <p onClick={handleEmoji}>❤️</p>
