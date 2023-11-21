@@ -24,7 +24,7 @@ export default function UsersListPage() {
                                 <section key={user._id}>
                                     <img className="profilePicture" src={user.photo}></img>
                                     <div><h3>@ {user.username}</h3></div>
-                                    <Link to={`/user/${user._id}`}><button>view profile</button></Link>
+                                    <Link to={`/user/${user._id}`}><button id="view-profile-btn">view profile</button></Link>
                                 </section>
                             ) : null))}
                         </div>

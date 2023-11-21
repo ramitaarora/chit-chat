@@ -106,7 +106,9 @@ export default function FriendProfilePage() {
                     <button id="add-friend" onClick={() => { handleAddFriend(user._id); setShowNotification(true) }}>
                         <img src="../src/assets/plus.png" id="editImg" />
                     </button>
-                    <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}><img src="../src/assets/start-chat.svg" id="chatImg"></img></button>
+                    <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}>
+                        <img src="../src/assets/start-chat.svg" id="chatImg"></img>
+                    </button>
                     {showNotification && (
                         <AddFriendNotification onClose={hideNotification}/>
                     )}
