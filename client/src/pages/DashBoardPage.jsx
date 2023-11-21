@@ -1,4 +1,3 @@
-import '../styles/dashboard.css';
 import Floatingbutton from '../components/Floatingbuttons.jsx';
 import { useQuery } from '@apollo/client';
 import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
