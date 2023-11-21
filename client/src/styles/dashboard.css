@@ -21,7 +21,7 @@ a:hover {
     flex-direction: column;
     align-items: center;
     padding: 30px;
-    width: 60%;
+    width: 60vw;
 }
 
 .chat-preview:hover {
@@ -39,7 +39,7 @@ a:hover {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 80vw;
     max-width: 500px;
 }
 

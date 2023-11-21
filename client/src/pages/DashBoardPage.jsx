@@ -5,11 +5,10 @@ import { NEW_CHAT } from '../utils/mutations';
 import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import Auth from '../utils/auth';
-import { useState } from 'react';
+import Auth from '../utils/auth.js';
 
 function Dashboard() {
-    const { loading: friendsLoading, data: friendsData } = useQuery(QUERY_FRIENDS);
+    const { loading: friendsLoading, data: friendsData, error, refetch } = useQuery(QUERY_FRIENDS);
 
     const friends = friendsData?.me.friends;
 
@@ -17,7 +16,7 @@ function Dashboard() {
 
     const [addChat, { chatErr }] = useMutation(NEW_CHAT);
 
-    const [checkIfExists, { loading: chatLoading, data: chatData, refetch }] = useLazyQuery(CHAT_EXISTS);
+    const [checkIfExists, { loading: chatLoading, data: chatData }] = useLazyQuery(CHAT_EXISTS);
 
     const handleNewChat = async (ID) => {
 

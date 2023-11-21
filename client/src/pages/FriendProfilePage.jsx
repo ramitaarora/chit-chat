@@ -67,34 +67,31 @@ export default function FriendProfilePage() {
         variables: { id: userID }
     });
 
-    if (userLoading || chatLoading) {
-        return (
-            <div>Loading User Profile...</div>
-        )
-    } else if (userData && chatData) {
+    if (Auth.loggedIn()) {
+        if (userLoading || chatLoading) {
+            return (
+                <div>Loading User Profile...</div>
+            )
+        } else if (userData && chatData) {
 
-        const user = userData?.user;
-        const ifExists = chatData?.chatExists;
+            const user = userData?.user;
+            const ifExists = chatData?.chatExists;
 
-        return (
-            <main className='centered'>
-                <div>
-                    <FriendHeader userID={userID} />
-                </div>
-                <section>
+            return (
+                <main className='centered'>
                     <div>
                         <img className="profilePicture" src={user.photo}></img>
                         <div>{user.fullName}</div>
                         <div>{user.bio}</div>
                     </div>
-                    
+
                     <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
                         <img src="../src/assets/plus.png" id="editImg" />
                     </button>
-                    <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}><img src="../src/assets/start-chat.svg"id="chatImg"></img></button>
-                </section>
-                <FloatingButton />
-            </main>
-        )
-    };
+                    <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}><img src="../src/assets/start-chat.svg" id="chatImg"></img></button>
+                    <FloatingButton />
+                </main>
+            )
+        }
+    }
 }

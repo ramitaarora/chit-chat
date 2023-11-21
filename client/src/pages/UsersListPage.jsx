@@ -11,26 +11,30 @@ export default function UsersListPage() {
 
     const users = data?.users || [];
 
-    return (
-        <main className="usersListPage">
-            <Header />
-            <h2>Users:</h2>
-            <div className='centered'>
-                {loading ? (
-                    <div>Loading Users...</div>
-                ) : (
-                    <div>
-                        {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
-                            <section key={user._id}>
-                                <img className="profilePicture" src={user.photo}></img>
-                                <div><h3>@ {user.username}</h3></div>
-                                <Link to={`/user/${user._id}`}><button>view profile</button></Link>
-                            </section>
-                        ) : null))}
-                    </div>
-                )}
-            </div>
-            <FloatingButton />
-        </main>
-    )
+    if (Auth.loggedIn()) {
+        return (
+            <main className="usersListPage">
+                <Header />
+                <h2>Users:</h2>
+                <div className='centered'>
+                    {loading ? (
+                        <div>Loading Users...</div>
+                    ) : (
+                        <div>
+                            {users.map((user) => (user._id !== Auth.getProfile().data._id ? (
+                                <section key={user._id}>
+                                    <img className="profilePicture" src={user.photo}></img>
+                                    <div><h3>@ {user.username}</h3></div>
+                                    <Link to={`/user/${user._id}`}><button>view profile</button></Link>
+                                </section>
+                            ) : null))}
+                        </div>
+                    )}
+                </div>
+            </main>
+        )
+    } else {
+        document.location.replace('/');
+    }
+    
 }

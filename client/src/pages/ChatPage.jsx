@@ -6,7 +6,7 @@ import FriendHeader from '../components/FriendHeader';
 import ConvoBox from '../components/ConvoBox';
 import SendBox from '../components/SendBox';
 import Auth from '../utils/auth';
-import FloatingButton from '../components/Floatingbuttons';
+import Floatingbutton from '../components/Floatingbuttons';
 
 import { socket } from '../socket';
 import ConnectionState from '../components/ConnectionState';
@@ -46,20 +46,21 @@ export default function ChatPage() {
         variables: { id: chatID }
     });
 
-    if (loading) {
-        return <div>Loading...</div>;
-    } else {
-        const selectedChat = data.chat;
-        const userID1 = data.chat.user1._id;
-        const userID2 = data.chat.user2._id;
-
-        let userID;
-        
-        if (userID1 === Auth.getProfile().data._id) {
-            userID = userID2;
+    if (Auth.loggedIn()) {
+        if (loading) {
+            return <div>Loading...</div>;
         } else {
-            userID = userID1;
-        }
+            const selectedChat = data.chat;
+            const userID1 = data.chat.user1._id;
+            const userID2 = data.chat.user2._id;
+
+            let userID;
+
+            if (userID1 === Auth.getProfile().data._id) {
+                userID = userID2;
+            } else {
+                userID = userID1;
+            }
 
         if (userID) {
             return (
@@ -70,7 +71,7 @@ export default function ChatPage() {
                         <ConvoBox chat={selectedChat} fooEvents={fooEvents} setFooEvents={setFooEvents} socket={socket} />
                         {/*<ConnectionManager />*/}
                         <SendBox chatID={chatID} fooEvents={fooEvents} setFooEvents={setFooEvents} />
-                        <FloatingButton />
+                        <Floatingbutton />
                     </div>
                 </main>
             )    
