@@ -20,6 +20,14 @@ const resolvers = {
                 {  user1: user2, user2: user1},
             ] })
         },
+        // friendExists: async (parent, { user2 }, context) => {
+        //     const user1 = context.user._id;
+
+        //     return User.findOne({
+        //         { _id: user1 },
+        //         { friends._id: user 2 },
+        //     })
+        // },
         me: async (parent, args, context) => {
             if (context.user) {
               return User.findOne({ _id: context.user._id }).populate('friends');
