@@ -31,6 +31,9 @@ body {
   src: url(../public/AristotelicaProDisplayExtralight.otf);
 }
 
+* {
+  font-family: aristotle;
+}
 /**
  * Render the `main` element consistently in IE.
  */
@@ -110,7 +113,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
+  font-family: aristotle;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -1755,7 +1758,7 @@ header,.header {
   align-items: center;
 }
 
-.profile-pic-container {
+#profile-pic-container {
   display: flex;
   flex-direction: column;
   height: 150px;
@@ -1763,7 +1766,7 @@ header,.header {
   overflow-y: auto;
 }
 
-.profile-pic-container img {
+#profile-pic-container img {
   height: 50px;
   width: 50px;
 }
@@ -1925,4 +1928,13 @@ button {
   margin: 5px 0 0 0;
   font-size: 14px;
   color: #777;
+}
+
+#userPfp {
+  border-radius: 100rem;
+  width: 5rem;
+}
+
+.padding {
+  margin:4rem;
 }

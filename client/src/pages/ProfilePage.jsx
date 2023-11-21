@@ -19,9 +19,8 @@ export default function ProfilePage() {
         return (
           <div className='centered'>
             <div>
-              <div>
                 <div id="username">
-                  <h3>{myData.username}</h3>
+                  <h2>@ {myData.username}</h2>
                 </div>
                 <div>
                   <img id="profilePicture" src={myData.photo} alt="Profile" />
@@ -38,7 +37,6 @@ export default function ProfilePage() {
                   </button>
                 </Link>
                 <Logout />
-              </div>
             </div>
           </div>
         );

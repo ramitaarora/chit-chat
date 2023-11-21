@@ -29,14 +29,14 @@ function Dashboard() {
                                             <img src={friend.photo} alt="user-one"></img>
                                         </section>
                                         <section className="message-preview">
-                                            <h3>{friend.username}</h3>
-                                            <p>So about coding...</p>
+                                            <h3>@ {friend.username}</h3>
+                                            {/* <p>So about coding...</p> */}
                                         </section>
                                     </div>
                                 </Link>
                             ))
                         }
-                        <Link to="/users">Find other users!</Link>
+                        <Link to="/users"><button>Find other users!</button></Link>
                     </section>
                 </main>
             )

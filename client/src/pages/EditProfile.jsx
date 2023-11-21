@@ -130,6 +130,7 @@ export default function EditProfile() {
                             <label>Change Your Username</label>
                             <div>
                                 <input
+                                    className='pill'
                                     placeholder="Username"
                                     name="username"
                                     type="text"
@@ -142,6 +143,7 @@ export default function EditProfile() {
                             <label>Change Your Name</label>
                             <div>
                                 <input
+                                    className='pill'
                                     placeholder="name"
                                     name="name"
                                     type="text"
@@ -154,6 +156,7 @@ export default function EditProfile() {
                             <label>Change Your Bio</label>
                             <div>
                                 <input
+                                    className='pill'
                                     placeholder="bio"
                                     name="bio"
                                     type="text"
@@ -165,7 +168,7 @@ export default function EditProfile() {
                         </div>
                         <div>
                             <label>Choose a New Profile Pic</label>
-                            <div className="profile-pic-container">
+                            <div id="profile-pic-container">
                                 {imagePaths.map((pic, index) => (
                                     <div key={index}>
                                         <input type="radio" name="photo" value={pic} onChange={handleChange} />

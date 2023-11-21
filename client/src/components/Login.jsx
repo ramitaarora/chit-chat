@@ -42,20 +42,24 @@ export default function Login({ handleSignup }) {
     return (
         <div className='centered'>
             <form onSubmit={handleFormSubmit}>
-                <input className='pill'
-                    placeholder="Username"
-                    name="username"
-                    type="text"
-                    value={formState.username}
-                    onChange={handleChange}
-                />
-                <input className='pill'
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                />
+                <div>
+                    <input className='pill'
+                        placeholder="Username"
+                        name="username"
+                        type="text"
+                        value={formState.username}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <input className='pill'
+                        placeholder="Password"
+                        name="password"
+                        type="password"
+                        value={formState.password}
+                        onChange={handleChange}
+                    />
+                </div>
                 <div>
                     <button className='pill'
                         style={{ cursor: 'pointer' }}

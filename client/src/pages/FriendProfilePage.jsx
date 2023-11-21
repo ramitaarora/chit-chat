@@ -83,7 +83,9 @@ export default function FriendProfilePage() {
                     </div>
                     <section>
                         <div>
-                            <div>{user.photo}</div>
+                            <div>
+                                <img id="profilePicture" src={user.photo} alt="friendProfile" />
+                            </div>   
                             <div>{user.fullName}</div>
                             <div>{user.bio}</div>
                         </div>
