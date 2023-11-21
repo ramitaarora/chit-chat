@@ -79,14 +79,14 @@ function Dashboard() {
                 <div>Loading Dashboard...</div>
             )
         } else if (friendsData) {
-
+            refetch();
             return (
                 <main className="dashboard-container">
                     <Header />
                     <h2>Friends List</h2>
                     <section className="inbox-container">
                         {
-                            friends.map((friend) => (
+                            friends?.map((friend) => (
                                 <div key={friend._id} className="chat-preview">
                                     <Link to={`/user/${friend._id}`}>
                                         <section className="profile-picture">
