@@ -3,9 +3,11 @@ import { useMutation, useQuery, useLazyQuery } from '@apollo/client';
 import { EDIT_USER } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import UpdateTheme from '../components/UpdateTheme';
 
 
 export default function EditProfile() {
+    UpdateTheme();
 
     const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '' });
 
@@ -68,6 +70,10 @@ export default function EditProfile() {
             localStorage.setItem("btnColor", "#8C52FF");
             localStorage.setItem("headerImg", "../src/assets/chitchatheader.png")
 
+            localStorage.setItem("senderTxtColor","#7843E6");
+            localStorage.setItem("senderBgColor","#C1A2FF");
+            localStorage.setItem("receiverTxtColor","white");
+            localStorage.setItem("receiverBgColor","#8C52FF");
         }
 
         if (id === 'day') {
@@ -79,11 +85,18 @@ export default function EditProfile() {
             Array.from(document.querySelectorAll('button')).map(function (button) {
                 button.style.backgroundColor = "#43ABE6";
             })
+            Array.from(document.getElementsByClassName('senderTxt')).map(function (senderTxt) {
+                senderTxt.style.backgroundColor = "#D2E5FF";
+            })
             localStorage.setItem("bgImage", "linear-gradient(to bottom, #93B1F4  0%, #A1C7FF 100%)");
             localStorage.setItem("bodyColor", "white");
             localStorage.setItem("h2Color", "white");
             localStorage.setItem("btnColor", "#43ABE6");
             localStorage.setItem("headerImg", "../src/assets/chitchatheader-white.png");
+            localStorage.setItem("senderTxtColor","#43ABE6");
+            localStorage.setItem("senderBgColor","#D2E5FF");
+            localStorage.setItem("receiverTxtColor","white");
+            localStorage.setItem("receiverBgColor","#43ABE6");
 
 
         }
@@ -101,6 +114,10 @@ export default function EditProfile() {
             localStorage.setItem("h2Color", "white");
             localStorage.setItem("btnColor", "#FF66C4");
             localStorage.setItem("headerImg", "../src/assets/chitchatheader-white.png");
+            localStorage.setItem("senderTxtColor","#FF66C4");
+            localStorage.setItem("senderBgColor","#FFE8F6");
+            localStorage.setItem("receiverTxtColor","white");
+            localStorage.setItem("receiverBgColor","#FF66C4");
         }
     };
 
@@ -148,7 +165,7 @@ export default function EditProfile() {
 
         } else {
             return (
-                <div>
+                <div className='centered'>
                     <h2>EDIT PROFILE</h2>
                     <div className="form-container">
                         <form onSubmit={handleFormSubmit}>
@@ -156,6 +173,7 @@ export default function EditProfile() {
                                 <label>Change Your Username</label>
                                 <div>
                                     <input
+                                        className='pill'
                                         placeholder="username"
                                         name="username"
                                         type="text"
@@ -168,6 +186,7 @@ export default function EditProfile() {
                                 <label>Change Your Name</label>
                                 <div>
                                     <input
+                                        className='pill'
                                         placeholder="name"
                                         name="name"
                                         type="text"
@@ -180,6 +199,7 @@ export default function EditProfile() {
                                 <label>Change Your Bio</label>
                                 <div>
                                     <input
+                                        className='pill'
                                         placeholder="bio"
                                         name="bio"
                                         type="text"

@@ -3,8 +3,10 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+import UpdateTheme from '../components/UpdateTheme';
 
 export default function ProfilePage() {
+   UpdateTheme();
     if (Auth.loggedIn()) {
       const { data, loading } = useQuery(QUERY_ME);
   
@@ -31,7 +33,7 @@ export default function ProfilePage() {
                 </div>
                 <Link to="/profile/edit">
                   <button id="edit">
-                    <img src="../src/assets/pencil.png" id="editImg" alt="Edit Profile" />
+                    edit profile
                   </button>
                 </Link>
             </div>

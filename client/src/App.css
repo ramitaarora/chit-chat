@@ -21,6 +21,16 @@ body {
   margin: 0;
 }
 
+@font-face {
+  font-family: bubbleFont;
+  src: url(/boorsok.ttf);
+}
+
+@font-face {
+  font-family: aristotle;
+  src: url(/AristotelicaProDisplayExtralight.otf);
+}
+
 * {
   font-family: aristotle;
 }
@@ -60,7 +70,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace;
+  font-family: aristotle;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -367,14 +377,17 @@ body {
 }
 
 h1,
-h2,
+h2 {
+  font-family: bubbleFont;
+  margin: 0.5rem 0 0.5rem;
+  line-height: 1.25;
+}
+
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'JetBrains Mono', monospace;
-  margin: 0 0 0.5rem;
-  line-height: 1.25;
+  font-family: aristotle;
 }
 
 h1 {
@@ -1729,21 +1742,28 @@ header,.header {
   align-items: center;
 }
 
-#add-friend, #edit, #start-chat, #logout{
-  background-color: #8C52FF;
+#add-friend, #start-chat, #logout {
+  
   border-radius: 70%;
   height: 50px;
   width: 50px;
   border-width: 0px;
 }
 
+.recordBtn{
+  height: 30px;
+  width: 30px;
+  border-radius: 70%;
+
+}
+
 #editImg, #chatImg #logoutImg{
-  height: 20px;
-  width: 20px;
+  height: 17px;
+  width: 17px;
 }
 
 
-#profilePicture {
+.profilePicture {
   height: 150px;
   width: 150px;
   border-radius: 100%;
@@ -1756,15 +1776,23 @@ header,.header {
   align-items: center;
 }
 
-#profile-pic-container {
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-pic-container {
   display: flex;
   flex-direction: column;
   height: 150px;
   width: 150px;
   overflow-y: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#profile-pic-container img {
+.profile-pic-container img {
   height: 50px;
   width: 50px;
 }
@@ -1797,8 +1825,7 @@ button {
 
 .design {
   width: 200px;
-  position: absolute;
-  right: 50vw;
+  position: center;
 
 }
 
@@ -1816,6 +1843,7 @@ button {
   border-radius: 2rem;
   padding: 1rem;
   margin-left: auto;
+  margin-right: 1rem;
   font-family: aristotle;
 }
 
@@ -1828,6 +1856,7 @@ button {
   border-radius: 2rem;
   padding: 1rem;
   margin-right: auto;
+  margin-left: 1rem;
   font-family: aristotle;
 }
 
@@ -1838,6 +1867,9 @@ button {
 #sendBox{
   background-color: black;
   flex-wrap: nowrap;
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
 }
 
 #messageInput {
@@ -1848,7 +1880,6 @@ button {
 }
 
 #submitBtn {
-  background-color: #7843E6;
   color: white;
   width: 30vw;
   display:inline;
@@ -1865,7 +1896,6 @@ button {
 }
 
  /*imported from dashboard.css */
-
 
 .inbox-container {
   display: flex;
@@ -1914,23 +1944,19 @@ button {
 }
 
 .message-preview {
-  flex: 1;
+  flex: 0;
+ 
 }
 
-.message-preview h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.message-preview p {
-  margin: 5px 0 0 0;
-  font-size: 14px;
-  color: #777;
+.message-preview h4 {
+  color: #8C52FF;
+  
 }
 
 #userPfp {
   border-radius: 100rem;
   width: 5rem;
+  height: 5rem;
 }
 
 .padding {
@@ -1939,17 +1965,22 @@ button {
 
 .audio-recorder {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100vw;
 }
 
 .tool-tip {
   position: relative;
   display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .tool-tip .tool-tip-text {
   visibility: hidden;
-  width: auto;
+  width: 200px;
   background-color: black;
   opacity: 0.75;
   color: white;
@@ -1958,9 +1989,40 @@ button {
   font-size: 1rem;
 
   position: absolute;
+  bottom:7vh;
+  left:10vh;
   z-index: 1;
 }
 
 .tool-tip:hover .tool-tip-text {
   visibility: visible;
+}
+
+#pfp {
+  border-radius: 100rem;
+  height: 2.25rem;
+  width: 2.25rem;
+  margin-right: .5rem;
+  margin: 0.5rem;
+}
+
+li {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+.emoji{
+  font-size: 30px;
+}
+
+#emojis{
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly;
+ 
+}
+
+audio {
+  height: 30px;
 }

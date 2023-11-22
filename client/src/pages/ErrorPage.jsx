@@ -1,7 +1,9 @@
 import { useRouteError } from "react-router-dom";
 import Floatingbutton from '../components/Floatingbuttons'
+import UpdateTheme from "../components/UpdateTheme";
 
 export default function ErrorPage() {
+  UpdateTheme();
   const error = useRouteError();
   console.error(error);
 

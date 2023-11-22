@@ -36,23 +36,7 @@ const client = new ApolloClient({
 });
 
 function App() {
-  useEffect (()=>{
-    const bgImage = localStorage.getItem("bgImage") || "linear-gradient(to bottom, rgba(2,0,36,1) 0%, #5543E6 100%)";
-    const bodyColor = localStorage.getItem("bodyColor") || "white";
-    const h2Color = localStorage.getItem("h2Color") || "#C1A2FF";
-    const btnColor = localStorage.getItem("btnColor") || "#8C52FF";
 
-    
-
-    document.body.style.backgroundImage = bgImage;
-    document.body.style.color = bodyColor;
-    Array.from(document.querySelectorAll('h2')).map(function(h2) {
-        h2.style.color=h2Color;
-    })
-    Array.from(document.querySelectorAll('button')).map(function(button) {
-        button.style.backgroundColor=btnColor;
-    })
-  })
   return (
     <ApolloProvider client={client}>
           <Outlet />

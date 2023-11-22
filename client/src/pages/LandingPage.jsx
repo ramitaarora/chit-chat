@@ -3,9 +3,10 @@ import Auth from '../utils/auth';
 import Header from '../components/Header';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import UpdateTheme from '../components/UpdateTheme';
 
 const LandingPage = () => {
-
+    UpdateTheme();
     const [form, setForm] = useState(null);
 
     const handleLogin = () => {

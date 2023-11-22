@@ -65,34 +65,46 @@ export default function Signup({ handleLogin }) {
     return (
         <div className="centered">
             <form onSubmit={handleFormSubmit}>
-                <input
-                    placeholder="Full Name"
-                    name="fullName"
-                    type="text"
-                    value={formState.fullName}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="Username"
-                    name="username"
-                    type="text"
-                    value={formState.username}
-                    onChange={handleChange}
-                />
-                <input
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                />
+                <div>
+                    <input
+                        className='pill'
+                        placeholder="Full Name"
+                        name="fullName"
+                        type="text"
+                        value={formState.fullName}
+                        onChange={handleChange}
+                    />
+                </div>
+               <div>
+                    <input
+                        className='pill'
+                        placeholder="Email"
+                        name="email"
+                        type="email"
+                        value={formState.email}
+                        onChange={handleChange}
+                    />
+               </div>
+                <div>
+                    <input
+                        className='pill'
+                        placeholder="Username"
+                        name="username"
+                        type="text"
+                        value={formState.username}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <input
+                        className='pill'
+                        placeholder="Password"
+                        name="password"
+                        type="password"
+                        value={formState.password}
+                        onChange={handleChange}
+                    />
+                </div>
                 <div id="profile-pic-div">
                     <label>Choose a Profile Pic</label>
                     <div className="profile-pic-container">
@@ -104,18 +116,22 @@ export default function Signup({ handleLogin }) {
                         ))}
                     </div>
                 </div>
-                <button
-                    style={{ cursor: 'pointer' }}
-                    type="submit"
-                >
-                    Create
-                </button>
-                <button
-                    style={{ cursor: 'pointer' }}
-                    onClick={handleLogin}
-                >
-                    Login Instead
-                </button>
+                <div>
+                    <button
+                        style={{ cursor: 'pointer' }}
+                        type="submit"
+                    >
+                        Create
+                    </button>
+                </div>
+                <div>
+                    <button
+                        style={{ cursor: 'pointer' }}
+                        onClick={handleLogin}
+                    >
+                        Login Instead
+                    </button>
+                </div>
             </form>
         </div>
     )

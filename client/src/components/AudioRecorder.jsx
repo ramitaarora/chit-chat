@@ -106,27 +106,30 @@ const AudioRecorder = ({ newAudioData }) => {
 
     return (
         <div className="audio-recorder">
-            <h3 className="tool-tip">Voice Memo
-                <div className="tool-tip-text">Press start to record, and stop when finished. Then hit submit to send as a message.</div>
-            </h3>
-            <audio ref={audioPlayer} src={blobURL} controls='controls' />
-            <div>
-                <button
-                    disabled={isRecording}
-                    style={isRecording ? { backgroundColor: 'gray' } : {}}
-                    onClick={startRecording}
-                >
-                    Start
-                </button>
-                <button
-                    disabled={!isRecording}
-                    style={!isRecording ? { backgroundColor: 'gray' } : {}}
-                    onClick={stopRecording}
-                >
-                    Stop
-                </button>
-                <button onClick={submitTranscriptionHandler}>Submit</button>
-            </div>
+                <h5 className="tool-tip">Voice Memo
+                    <div className="tool-tip-text">Press start to record, and stop when finished. Then hit submit to send as a message.</div>
+                </h5>
+                <audio ref={audioPlayer} src={blobURL} controls='controls' />
+                <div>
+                    <button
+                        className='recordBtn'
+                        disabled={isRecording}
+                        style={isRecording ? { backgroundColor: 'gray' } : {}}
+                        onClick={startRecording}
+                    >
+                        <img id ="editImg"src="../src/assets/play.svg"/>
+                    </button>
+                    <button
+                        className='recordBtn'
+                        disabled={!isRecording}
+                        style={!isRecording ? { backgroundColor: 'gray' } : {}}
+                        onClick={stopRecording}
+                    >
+                        <img id="editImg" src ="../src/assets/stop.svg"/>
+                    </button>
+                    <button className='recordBtn' onClick={submitTranscriptionHandler}><img id="editImg" src="../src/assets/mic.svg"/></button>
+                </div>
+                
             {transcriptData.status === "processing" ? (
                 <div>
                     <p>Status: {transcriptData.status}...</p>
