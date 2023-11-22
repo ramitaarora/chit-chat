@@ -6,10 +6,13 @@ import AudioRecorder from '../components/AudioRecorder';
 import Auth from '../utils/auth';
 
 export default function SendBox({ chatID, fooEvents, setFooEvents }) {
+
     const [isLoading, setIsLoading] = useState(false);
     const [saveMessage] = useMutation(SAVE_MESSAGE);
     const [audioData, setAudioData] = useState(null);
     const [input, setInput] = useState('');
+
+    // Displays response from mic recording transcription in send message box
 
     useEffect(() => {
         if (audioData) {

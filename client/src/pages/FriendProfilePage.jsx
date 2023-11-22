@@ -1,13 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
+import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
+import { QUERY_USER, CHAT_EXISTS, QUERY_FRIENDS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
 import Auth from '../utils/auth';
 import UpdateTheme from '../components/UpdateTheme';
 
+// Component for notification when friend is added
+
 const AddFriendNotification = ({ onClose }) => {
+
     useEffect(() => {
         const timeout = setTimeout(() => {
             onClose();
@@ -16,36 +19,100 @@ const AddFriendNotification = ({ onClose }) => {
     });
 
     return (
-        <div>New Friend Added!</div>
+        <h3>New Friend Added!</h3>
     )
-}
+};
+
+// Component for notification when friend is already on friends list
+
+const AlreadyFriendNotification = ({ onClose }) => {
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            onClose();
+        }, 1000);
+        return () => clearTimeout(timeout);
+    });
+
+    return (
+        <h3>Already Friends!</h3>
+    )
+};
 
 export default function FriendProfilePage() {
+
     UpdateTheme();
 
     const { userID } = useParams();
-
-    const [showNotification, setShowNotification] = useState(false);
+    const [friendExists, setFriendExists] = useState(false);
+    const [showAddFriendNotification, setAddFriendNotification] = useState(false);
+    const [showAlreadyFriendNotification, setAlreadyFriendNotification] = useState(false);
 
     const hideNotification = () => {
-        setShowNotification(false);
-    }
+        setAddFriendNotification(false);
+        setAlreadyFriendNotification(false);
+    };
 
-    // Add Friend Handler
+    // Query for searched user's data and checks if they are a friend
+
+    const [searchFriends, { loading: friendsLoading, data: friendsData }] = useLazyQuery(QUERY_FRIENDS);
+    const [searchUser, { loading: userLoading, data: userData }] = useLazyQuery(QUERY_USER, {
+        variables: { id: userID }
+    });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                await searchUser();
+                await searchFriends();
+
+                if (userData) {
+                    const user2ID = userData?.user._id;
+                    const allFriends = friendsData?.me.friends;
+                    const friend = allFriends.filter(friend => friend._id === user2ID);
+
+                    if (friend.length) {
+                        setFriendExists(true);
+                    } else {
+                        console.log('not friends');
+                    }
+                } else {
+                    console.log('still loading friends data');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchData();
+
+    }, [userData, friendsData]);
+
+    // Add friend button handler
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
     const handleAddFriend = async (ID) => {
-        console.log('adding friend');
-        try {
-            await addFriend({
-                variables: { friend: ID }
-            });
-        } catch (e) {
-            console.log(e);
-            console.log(friendErr);
-        }
 
+        if (friendExists) {
+
+            setAlreadyFriendNotification(true);
+            return;
+
+        } else if (!friendExists) {
+
+            try {
+                await addFriend({
+                    variables: { friend: ID }
+                });
+                setFriendExists(true);
+                setAddFriendNotification(true);
+                
+            } catch (e) {
+                console.log(e);
+                console.log(friendErr);
+            }
+        }
     };
 
     // New Chat Handler
@@ -81,12 +148,6 @@ export default function FriendProfilePage() {
         }
     };
 
-    // Loading User Profile Page
-
-    const { loading: userLoading, data: userData } = useQuery(QUERY_USER, {
-        variables: { id: userID }
-    });
-
     if (Auth.loggedIn()) {
         if (userLoading || chatLoading) {
             return (
@@ -105,14 +166,17 @@ export default function FriendProfilePage() {
                         <div>{user.fullname}</div>
                         <div>{user.bio}</div>
                     </div>
-                    <button id="add-friend" onClick={() => { handleAddFriend(user._id); setShowNotification(true) }}>
+                    <button id="add-friend" onClick={() => handleAddFriend(user._id)}>
                         <img src="../src/assets/plus.png" id="editImg" />
                     </button>
                     <button id="start-chat" onClick={() => handleNewChat(user._id, ifExists)}>
                         <img src="../src/assets/start-chat.svg" id="chatImg"></img>
                     </button>
-                    {showNotification && (
-                        <AddFriendNotification onClose={hideNotification}/>
+                    {showAddFriendNotification && (
+                        <AddFriendNotification onClose={hideNotification} />
+                    )}
+                    {showAlreadyFriendNotification && (
+                        <AlreadyFriendNotification onClose={hideNotification} />
                     )}
                 </main>
             )

@@ -6,8 +6,13 @@ import Auth from '../utils/auth';
 import UpdateTheme from '../components/UpdateTheme';
 
 export default function ProfilePage() {
+
    UpdateTheme();
+
     if (Auth.loggedIn()) {
+
+      // Query for logged in user information to render profile page
+      
       const { data, loading } = useQuery(QUERY_ME);
   
       if (loading) {

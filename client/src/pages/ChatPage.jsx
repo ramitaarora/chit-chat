@@ -14,6 +14,7 @@ import ConnectionManager from '../components/ConnectionManager';
 import UpdateTheme from '../components/UpdateTheme';
 
 export default function ChatPage() {
+
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [fooEvents, setFooEvents] = useState([]);
 
@@ -40,7 +41,10 @@ export default function ChatPage() {
             socket.off('foo', onFooEvent);
         };
     }, []);
+
     UpdateTheme();
+
+    // Query for chat data to display chat history
 
     const { chatID } = useParams();
 

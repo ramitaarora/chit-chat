@@ -6,7 +6,11 @@ import Signup from '../components/Signup';
 import UpdateTheme from '../components/UpdateTheme';
 
 const LandingPage = () => {
+
     UpdateTheme();
+
+    // Using state variable to switch between login and signup page
+    
     const [form, setForm] = useState(null);
 
     const handleLogin = () => {

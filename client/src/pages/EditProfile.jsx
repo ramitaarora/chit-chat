@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useMutation, useQuery, useLazyQuery } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import { EDIT_USER } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
@@ -7,7 +7,10 @@ import UpdateTheme from '../components/UpdateTheme';
 
 
 export default function EditProfile() {
+
     UpdateTheme();
+
+    // Handling update and submission of form for editing user's profile data
 
     const [formState, setFormState] = useState({ username: '', fullname: '', photo: '', bio: '' });
 
@@ -160,6 +163,7 @@ export default function EditProfile() {
             console.log(error);
         }
     };
+
     if (Auth.loggedIn()) {
 
         if (loading) {

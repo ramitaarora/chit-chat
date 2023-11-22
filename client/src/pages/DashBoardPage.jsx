@@ -14,6 +14,8 @@ function Dashboard() {
 
     const [user2ID, setUser2ID] = useState(null);
 
+    // Searching for logged in user's friends
+
     const { loading: friendsLoading, data: friendsData, error, refetch } = useQuery(QUERY_FRIENDS);
 
     const friends = friendsData?.me.friends;

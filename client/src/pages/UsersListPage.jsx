@@ -6,7 +6,10 @@ import Header from '../components/Header';
 import UpdateTheme from '../components/UpdateTheme';
 
 export default function UsersListPage() {
+    
     UpdateTheme();
+
+    // Query for all users to display
 
     const { loading, data } = useQuery(QUERY_USERS);
 

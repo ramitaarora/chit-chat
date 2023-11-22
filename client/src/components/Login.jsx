@@ -5,6 +5,8 @@ import Auth from '../utils/auth';
 
 export default function Login({ handleSignup }) {
 
+    // Handling login form
+
     const [formState, setFormState] = useState({ username: '', password: '' });
     const [login, { error }] = useMutation(LOGIN);
 

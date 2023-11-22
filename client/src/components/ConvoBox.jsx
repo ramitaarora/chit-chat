@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Auth from '../utils/auth';
 
 export default function ConvoBox({ chat, fooEvents, setFooEvents, socket }) {
+    
   // Runs whenever a socket event is recieved from the server
     useEffect(() => {
         socket.on('chat message', (data) => {
