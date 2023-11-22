@@ -34,7 +34,7 @@ To start, run <code>npm run develop</code>.
 
 ## Usage
 
-This project has been deployed at:
+This project has been deployed at: https://chit-chat-wechatalot-00f4f8dc2d8e.herokuapp.com/
 
 
 <img src="./client/public/screenshots/chitchat-screenshot-1.png" alt="screenshot-1">
