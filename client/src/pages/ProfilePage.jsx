@@ -31,7 +31,7 @@ export default function ProfilePage() {
                   <img className="profilePicture" src={myData.photo} alt="Profile" />
                 </div>
                 <div id="name">
-                  <h2>{myData.fullName}</h2>
+                  <h2>{myData.fullname}</h2>
                 </div>
                 <div id="bio">
                   <p>{myData.bio}</p>

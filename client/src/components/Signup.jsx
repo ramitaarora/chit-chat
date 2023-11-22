@@ -27,7 +27,7 @@ export default function Signup({ handleLogin }) {
     // Handling signup form
 
     const [formState, setFormState] = useState({
-        fullName: '',
+        fullname: '',
         email: '',
         username: '',
         password: '',
@@ -73,9 +73,9 @@ export default function Signup({ handleLogin }) {
                     <input
                         className='pill'
                         placeholder="Full Name"
-                        name="fullName"
+                        name="fullname"
                         type="text"
-                        value={formState.fullName}
+                        value={formState.fullname}
                         onChange={handleChange}
                     />
                 </div>
