@@ -7,7 +7,10 @@ import UpdateTheme from '../components/UpdateTheme';
 
 
 export default function EditProfile() {
+
     UpdateTheme();
+
+    // Handling update and submission of form for editing user's profile data
 
     const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '' });
 
@@ -158,6 +161,7 @@ export default function EditProfile() {
             console.log(error);
         }
     };
+
     if (Auth.loggedIn()) {
 
         if (loading) {

@@ -12,6 +12,9 @@ const axiosHeader = axios.create({
 })
 
 const AudioRecorder = ({ newAudioData }) => {
+
+    // Setting up mic recorder + start and stop functions
+
     const recorder = useRef(null);
     const audioPlayer = useRef(null);
     const [blobURL, setBlobUrl] = useState(null);
@@ -45,7 +48,7 @@ const AudioRecorder = ({ newAudioData }) => {
             .catch((e) => console.log(e))
     }
 
-    // AssemblyAI API
+    // Assembly AI API
 
     const [uploadURL, setUploadURL] = useState("")
     const [transcriptID, setTranscriptID] = useState("")
@@ -62,6 +65,8 @@ const AudioRecorder = ({ newAudioData }) => {
         }
     }, [audioFile])
 
+    // Sending mic recording for transcription
+
     const submitTranscriptionHandler = () => {
 
         alert('Voice memo sent for transcription! 😎 Please wait.');
@@ -77,6 +82,8 @@ const AudioRecorder = ({ newAudioData }) => {
             })
             .catch((err) => console.error(err))
     }
+
+    // Checking if transcription is complete
 
     const checkStatusHandler = async () => {
         setIsLoading(true)

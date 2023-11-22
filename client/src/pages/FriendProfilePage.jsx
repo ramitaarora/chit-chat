@@ -7,7 +7,10 @@ import FriendHeader from '../components/FriendHeader';
 import Auth from '../utils/auth';
 import UpdateTheme from '../components/UpdateTheme';
 
+// Component for notification when friend is added
+
 const AddFriendNotification = ({ onClose }) => {
+
     useEffect(() => {
         const timeout = setTimeout(() => {
             onClose();
@@ -20,7 +23,10 @@ const AddFriendNotification = ({ onClose }) => {
     )
 };
 
+// Component for notification when friend is already on friends list
+
 const AlreadyFriendNotification = ({ onClose }) => {
+
     useEffect(() => {
         const timeout = setTimeout(() => {
             onClose();
@@ -34,6 +40,7 @@ const AlreadyFriendNotification = ({ onClose }) => {
 };
 
 export default function FriendProfilePage() {
+
     UpdateTheme();
 
     const { userID } = useParams();
@@ -46,7 +53,7 @@ export default function FriendProfilePage() {
         setAlreadyFriendNotification(false);
     };
 
-    // Add Friend Handler
+    // Query for searched user's data and checks if they are a friend
 
     const [searchFriends, { loading: friendsLoading, data: friendsData }] = useLazyQuery(QUERY_FRIENDS);
     const [searchUser, { loading: userLoading, data: userData }] = useLazyQuery(QUERY_USER, {
@@ -78,8 +85,10 @@ export default function FriendProfilePage() {
         };
 
         fetchData();
+
     }, [userData, friendsData]);
 
+    // Add friend button handler
 
     const [addFriend, { friendErr }] = useMutation(ADD_FRIEND);
 
@@ -138,8 +147,6 @@ export default function FriendProfilePage() {
             console.log(chatErr);
         }
     };
-
-    // Loading User Profile Page
 
     if (Auth.loggedIn()) {
         if (userLoading || chatLoading) {

@@ -5,6 +5,8 @@ import Auth from '../utils/auth';
 
 export default function Signup({ handleLogin }) {
 
+    // Import photos for profile pic selection
+
     const imagePaths = [
         '/profile-pics/astronaut.png',
         '/profile-pics/avocado.png',
@@ -21,6 +23,8 @@ export default function Signup({ handleLogin }) {
         '/profile-pics/woman.png',
         '/profile-pics/zebra.png',
     ];
+
+    // Handling signup form
 
     const [formState, setFormState] = useState({
         fullName: '',
