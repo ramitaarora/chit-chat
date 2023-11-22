@@ -102,7 +102,7 @@ export default function FriendProfilePage() {
                     <FriendHeader userID={userID} />
                     <div>
                         <img className="profilePicture" src={user.photo}></img>
-                        <div>{user.fullName}</div>
+                        <div>{user.fullname}</div>
                         <div>{user.bio}</div>
                     </div>
                     <button id="add-friend" onClick={() => { handleAddFriend(user._id); setShowNotification(true) }}>
