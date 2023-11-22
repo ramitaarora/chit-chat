@@ -3,8 +3,10 @@ import { QUERY_USERS } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import Header from '../components/Header';
+import UpdateTheme from '../components/UpdateTheme';
 
 export default function UsersListPage() {
+    UpdateTheme();
 
     const { loading, data } = useQuery(QUERY_USERS);
 

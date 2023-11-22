@@ -59,21 +59,21 @@ export default function SendBox({ chatID, fooEvents, setFooEvents }) {
 
     return (
         <section>
-            <form id="chatForm" onSubmit={handleSendMsg}>
+            <form id="chatForm" onSubmit={handleSendMsg}>        
                 <div id="sendBox">
+                    <li><AudioRecorder newAudioData={(data) => setAudioData(data)} /></li>
+                    <ul id="emojis">
+                        <li className="emoji" onClick={handleEmoji}>❤️</li>
+                        <li className="emoji" onClick={handleEmoji}>😊</li>
+                        <li className="emoji" onClick={handleEmoji}>😭</li>
+                        <li className="emoji" onClick={handleEmoji}>😂</li>
+                        <li className="emoji" onClick={handleEmoji}>😡</li>
+                        <li className="emoji" onClick={handleEmoji}>🎉</li>
+                    </ul>
                     <input className="pill" id="messageInput" value={input} onChange={handleText} type="text" />
                     <input className='pill' id="submitBtn" type="submit" value="SEND" />
-                    <div id="emojis">
-                        <p onClick={handleEmoji}>❤️</p>
-                        <p onClick={handleEmoji}>😊</p>
-                        <p onClick={handleEmoji}>😭</p>
-                        <p onClick={handleEmoji}>😂</p>
-                        <p onClick={handleEmoji}>😡</p>
-                        <p onClick={handleEmoji}>🎉</p>
-                    </div>
                 </div>
             </form>
-            <AudioRecorder newAudioData={(data) => setAudioData(data)} />
         </section>
     )
 }

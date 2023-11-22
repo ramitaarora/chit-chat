@@ -5,6 +5,7 @@ import { QUERY_USER, CHAT_EXISTS } from '../utils/queries';
 import { NEW_CHAT, ADD_FRIEND } from '../utils/mutations';
 import FriendHeader from '../components/FriendHeader';
 import Auth from '../utils/auth';
+import UpdateTheme from '../components/UpdateTheme';
 
 const AddFriendNotification = ({ onClose }) => {
     useEffect(() => {
@@ -20,6 +21,7 @@ const AddFriendNotification = ({ onClose }) => {
 }
 
 export default function FriendProfilePage() {
+    UpdateTheme();
 
     const { userID } = useParams();
 

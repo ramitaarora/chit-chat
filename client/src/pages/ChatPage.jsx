@@ -11,6 +11,7 @@ import Auth from '../utils/auth';
 import { socket } from '../socket';
 import ConnectionState from '../components/ConnectionState';
 import ConnectionManager from '../components/ConnectionManager';
+import UpdateTheme from '../components/UpdateTheme';
 
 export default function ChatPage() {
     const [isConnected, setIsConnected] = useState(socket.connected);
@@ -39,6 +40,7 @@ export default function ChatPage() {
             socket.off('foo', onFooEvent);
         };
     }, []);
+    UpdateTheme();
 
     const { chatID } = useParams();
 
@@ -63,6 +65,7 @@ export default function ChatPage() {
             }
 
             if (userID) {
+                
                 return (
                     <main>
                         <div id="chat-page">

@@ -6,8 +6,11 @@ import { QUERY_FRIENDS, CHAT_EXISTS } from '../utils/queries.js';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Auth from '../utils/auth.js';
+import UpdateTheme from '../components/UpdateTheme.jsx';
 
 function Dashboard() {
+
+    UpdateTheme();
 
     const [user2ID, setUser2ID] = useState(null);
 
@@ -97,12 +100,12 @@ function Dashboard() {
                                         className="message-preview"
                                         onClick={() => { fetchData(friend._id); setUser2ID(friend._id) }}
                                     >
-                                        <h3>{friend.username}</h3>
+                                        <h4>@ {friend.username}</h4>
                                     </section>
                                 </div>
                             ))
                         }
-                        <Link to="/users">ADD NEW FRIENDS</Link>
+                        <Link to="/users"><button>ADD NEW FRIENDS</button></Link>
                     </section>
                 </main>
             )

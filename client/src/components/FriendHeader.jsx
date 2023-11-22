@@ -14,8 +14,8 @@ export default function FriendHeader(props) {
     
             return (
                 <header>
-                    <img src={photo} alt={username} width="50px"/>
-                    <h2>@{username}</h2>
+                    <img id ="pfp" src={photo} alt={username}/>
+                    <h2> @{username}</h2>
                 </header>
             )
     }

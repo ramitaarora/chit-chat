@@ -20,15 +20,15 @@ export default function ConvoBox({ chat, fooEvents, setFooEvents, socket }) {
     return (
         <section id="convoBox">
             {chat.text.map((message, index) => message.sender === Auth.getProfile().data._id ? (
-                    <div key={index} className="senderTxt">{message.textContent}</div>
+                    <p key={index} className="senderTxt">{message.textContent}</p>
                 ) : (
-                    <div key={index} className="receiverTxt">{message.textContent}</div>
+                    <p key={index} className="receiverTxt">{message.textContent}</p>
                 )
             )}
             {fooEvents.map((message, index) => message.sender === Auth.getProfile().data._id ? (
-                <div key={index} className="senderTxt">{message.textContent}</div>
+                <p key={index} className="senderTxt">{message.textContent}</p>
             ) : (
-                <div key={index} className="receiverTxt">{message.textContent}</div>
+                <p key={index} className="receiverTxt">{message.textContent}</p>
             )
             )}
         </section>
