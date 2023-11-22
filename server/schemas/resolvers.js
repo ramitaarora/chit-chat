@@ -28,6 +28,21 @@ const resolvers = {
         //         { friends._id: user 2 },
         //     })
         // },
+        myFriend: async (parent, args, context) => {
+            if (context.user) {
+                const user = User.findOne({ _id: context.user._id });
+
+                if (args.user2) {
+                    const friend = user.find({
+                        friends: args.user2
+                    });
+                    return friend;
+                }
+                
+                return user;
+            }
+            throw AuthenticationError;
+        },
         me: async (parent, args, context) => {
             if (context.user) {
               return User.findOne({ _id: context.user._id }).populate('friends');
