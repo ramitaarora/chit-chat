@@ -36,8 +36,8 @@ const resolvers = {
           },
     },
     Mutation: {
-        addUser: async (parent, { username, fullName, email, password, photo }) => {
-            const user = await User.create({ username, fullName, email, password, photo });
+        addUser: async (parent, { username, fullname, email, password, photo }) => {
+            const user = await User.create({ username, fullname, email, password, photo });
             const token = signToken(user);
             return { token, user }; 
         },
@@ -73,7 +73,7 @@ const resolvers = {
                     {
                         $set: {
                             username: args.username,
-                            fullName: args.fullName,
+                            fullname: args.fullname,
                             bio: args.bio,
                             photo: args.photo,
                         },

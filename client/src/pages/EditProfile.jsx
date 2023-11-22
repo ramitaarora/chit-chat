@@ -9,7 +9,7 @@ import UpdateTheme from '../components/UpdateTheme';
 export default function EditProfile() {
     UpdateTheme();
 
-    const [formState, setFormState] = useState({ username: '', name: '', photo: '', bio: '' });
+    const [formState, setFormState] = useState({ username: '', fullname: '', photo: '', bio: '' });
 
     const [editUser, { error }] = useMutation(EDIT_USER);
 
@@ -23,7 +23,9 @@ export default function EditProfile() {
 
                 if (data) {
                     const username = data?.me.username;
-                    setFormState({ username: username });
+                    const fullname = data?.me.fullname;
+                    const bio = data?.me.bio;
+                    setFormState({ username: username, fullname: fullname, bio: bio });
                 }
             } catch (err) {
                 console.error(err);
@@ -146,7 +148,7 @@ export default function EditProfile() {
 
             await setFormState({
                 username: '',
-                name: '',
+                fullname: '',
                 photo: '',
                 bio: '',
             });
@@ -188,9 +190,9 @@ export default function EditProfile() {
                                     <input
                                         className='pill'
                                         placeholder="name"
-                                        name="name"
+                                        name="fullname"
                                         type="text"
-                                        value={formState.fullName}
+                                        value={formState.fullname}
                                         onChange={handleChange}
                                     />
                                 </div>

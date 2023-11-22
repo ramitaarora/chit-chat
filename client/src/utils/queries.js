@@ -5,7 +5,7 @@ export const QUERY_USERS = gql`
     users {
       _id
       username
-      fullName
+      fullname
       photo
       bio
     }
@@ -17,7 +17,7 @@ export const QUERY_USER = gql`
     user(_id: $id) {
       _id
       username
-      fullName
+      fullname
       photo
       bio
     }
@@ -28,7 +28,7 @@ export const QUERY_ME = gql`
   query me {
     me {
       username
-      fullName
+      fullname
       photo
       bio
     }
@@ -44,7 +44,7 @@ export const QUERY_FRIENDS = gql`
         username
         photo
         bio
-        fullName
+        fullname
       }
     }
   }
