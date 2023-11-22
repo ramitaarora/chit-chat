@@ -124,7 +124,7 @@ const AudioRecorder = ({ newAudioData }) => {
                         style={isRecording ? { backgroundColor: 'gray' } : {}}
                         onClick={startRecording}
                     >
-                        <img id ="editImg"src="../src/assets/play.svg"/>
+                        <img id ="editImg"src="/play.svg"/>
                     </button>
                     <button
                         className='recordBtn'
@@ -132,9 +132,9 @@ const AudioRecorder = ({ newAudioData }) => {
                         style={!isRecording ? { backgroundColor: 'gray' } : {}}
                         onClick={stopRecording}
                     >
-                        <img id="editImg" src ="../src/assets/stop.svg"/>
+                        <img id="editImg" src ="/stop.svg"/>
                     </button>
-                    <button className='recordBtn' onClick={submitTranscriptionHandler}><img id="editImg" src="../src/assets/mic.svg"/></button>
+                    <button className='recordBtn' onClick={submitTranscriptionHandler}><img id="editImg" src="/mic.svg"/></button>
                 </div>
                 
             {transcriptData.status === "processing" ? (
