@@ -16,7 +16,7 @@ const AddFriendNotification = ({ onClose }) => {
     });
 
     return (
-        <div>New Friend Added!</div>
+        <h3>New Friend Added!</h3>
     )
 };
 
@@ -29,7 +29,7 @@ const AlreadyFriendNotification = ({ onClose }) => {
     });
 
     return (
-        <div>Already Friends!</div>
+        <h3>Already Friends!</h3>
     )
 };
 
@@ -63,7 +63,6 @@ export default function FriendProfilePage() {
                     const user2ID = userData?.user._id;
                     const allFriends = friendsData?.me.friends;
                     const friend = allFriends.filter(friend => friend._id === user2ID);
-                    console.log(friend);
 
                     if (friend.length) {
                         setFriendExists(true);
@@ -87,17 +86,19 @@ export default function FriendProfilePage() {
     const handleAddFriend = async (ID) => {
 
         if (friendExists) {
-            console.log('already friends');
+
             setAlreadyFriendNotification(true);
             return;
+
         } else if (!friendExists) {
-            console.log('adding friend');
+
             try {
                 await addFriend({
                     variables: { friend: ID }
                 });
                 setFriendExists(true);
                 setAddFriendNotification(true);
+                
             } catch (e) {
                 console.log(e);
                 console.log(friendErr);
